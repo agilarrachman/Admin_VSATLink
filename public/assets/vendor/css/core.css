@@ -7078,7 +7078,7 @@ input:-internal-autofill-selected {
 
 .bg-label-secondary {
     background-color: #ebeef0 !important;
-    color: #8592a3 !important;
+    color: #5623D8 !important;
 }
 
 .border-label-secondary {
@@ -8514,7 +8514,6 @@ button:focus-visible {
 }
 
 .badge {
-    text-transform: uppercase;
     line-height: 0.75;
 }
 
