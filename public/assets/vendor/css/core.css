@@ -7076,7 +7076,7 @@ input:-internal-autofill-selected {
 
 .bg-label-secondary {
     background-color: #ebeef0 !important;
-    color: #5623D8 !important;
+    color: #5623d8 !important;
 }
 
 .border-label-secondary {
@@ -19028,6 +19028,98 @@ html:not(.layout-footer-fixed) .content-wrapper {
 }
 
 .form-control[readonly] {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     opacity: 1;
 }
+
+/* Adjustment Start */
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+h4 {
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+}
+
+p.summary {
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+}
+
+.order-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 24px 0 32px;
+}
+
+/* garis horizontal */
+.order-steps::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e5e7eb;
+    z-index: 1;
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 25%;
+}
+
+.step .circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    color: white;
+    font-size: 16px;
+}
+
+/* status selesai */
+.step.completed .circle {
+    background: #5623d8;
+}
+
+/* status aktif (sedang berjalan) */
+.step.active .circle {
+    border: 2px solid #5623d8;
+    background: white;
+    color: #5623d8;
+}
+
+.step h5 {
+    font-size: 14px;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.step p {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.order-info {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #f5f3ff;
+    border-left: 4px solid #5623d8;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1f2937;
+}
+/* Adjustment End */

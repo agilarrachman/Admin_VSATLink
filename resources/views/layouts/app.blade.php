@@ -13,7 +13,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/icon VSATLink.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="/assets/img/icon VSATLink.png" type="image/gif" sizes="16x16">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

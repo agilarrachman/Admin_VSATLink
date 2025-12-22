@@ -1,95 +1,3 @@
-<style>
-    .product-image {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    h4 {
-        font-size: 14px !important;
-        margin-bottom: 0 !important;
-    }
-
-    p.summary {
-        font-size: 14px !important;
-        margin-bottom: 0 !important;
-    }
-
-    .order-steps {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        margin: 24px 0 32px;
-    }
-
-    /* garis horizontal */
-    .order-steps::before {
-        content: '';
-        position: absolute;
-        top: 14px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: #e5e7eb;
-        z-index: 1;
-    }
-
-    .step {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        width: 25%;
-    }
-
-    .step .circle {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #e5e7eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 8px;
-        color: white;
-        font-size: 16px;
-    }
-
-    /* status selesai */
-    .step.completed .circle {
-        background: #5623D8;
-    }
-
-    /* status aktif (sedang berjalan) */
-    .step.active .circle {
-        border: 2px solid #5623D8;
-        background: white;
-        color: #5623D8;
-    }
-
-    .step h5 {
-        font-size: 14px;
-        margin-bottom: 2px;
-        font-weight: 600;
-    }
-
-    .step p {
-        font-size: 12px;
-        color: #6b7280;
-        margin: 0;
-    }
-
-    .order-info {
-        margin-top: 12px;
-        padding: 12px 16px;
-        background: #f5f3ff;
-        border-left: 4px solid #5623D8;
-        border-radius: 6px;
-        font-size: 14px;
-        color: #1f2937;
-    }
-</style>
-
 <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -142,6 +50,7 @@
                     <h4>Total</h4>
                     <p class="summary text-right">Rp50.150.000</p>
                 </div>
+
                 <p class="fw-bold text-primary">Status Pesanan</p>
                 <div class="status mb-4">
                     <div class="order-steps">
@@ -192,6 +101,7 @@
                             value="081332303211" readonly />
                     </div>
                 </div>
+
                 <p class="fw-bold text-primary">Alamat Pengiriman</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">

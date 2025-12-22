@@ -42,6 +42,7 @@
                             readonly />
                     </div>
                 </div>
+
                 <p class="fw-bold text-primary">Informasi Akun</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
@@ -55,6 +56,7 @@
                             readonly />
                     </div>
                 </div>
+
                 <p class="fw-bold text-primary">Alamat Perusahaan</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
@@ -97,6 +99,7 @@
                         <textarea name="full_address" id="full_address" class="form-control" style="min-height: 160px;">Jalan Sudirman No 19</textarea>
                     </div>
                 </div>
+                
                 <p class="fw-bold text-primary">Narahubung Perusahaan</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
