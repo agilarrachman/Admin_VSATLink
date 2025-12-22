@@ -25,159 +25,204 @@
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                    
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
                             <td>VSATLink Aurora</td>
                             <td>11 November 2025</td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-receipt me-2"></i>
-                                    Lihat</a></td>
-                            <td><a class="btn btn-primary" href="javascript:void(0);"><i class="bx bx-user me-2"></i>
-                                    Lihat</a></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#orderModal">
+                                    <i class="bx bx-receipt me-2"></i> Lihat
+                                </button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#customerModal">
+                                    <i class="bx bx-user me-2"></i> Lihat
+                                </button></td>
                             <td>
                                 <button type="button" class="btn btn-success">Konfirmasi</button>
                                 <button type="button" class="btn btn-danger">Batalkan</button>
                             </td>
-                        </tr>                        
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    @include('partials.customer-modal')
+    @include('partials.order-modal')
 @endsection
