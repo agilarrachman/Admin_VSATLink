@@ -12,5 +12,5 @@ Route::get('/sign-in', function () {
     return view('signin');
 });
 Route::get('/profile', function () {
-    return view('profile');
+    return view('profile', ['management' => 'profile', 'page' => 'profile']);
 });

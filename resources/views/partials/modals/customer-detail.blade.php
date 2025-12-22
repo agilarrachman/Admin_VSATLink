@@ -13,8 +13,8 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="username" class="form-label">Username</label>
-                        <input class="form-control" type="text" name="username" id="username"
-                            value="agilarrachman" readonly />
+                        <input class="form-control" type="text" name="username" id="username" value="agilarrachman"
+                            readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="company_name" class="form-label">Nama Perusahaan</label>
@@ -23,8 +23,8 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="fullname" class="form-label">Nama Pejabat yang Berwenang</label>
-                        <input class="form-control" type="text" id="fullname" name="fullname"
-                            value="Agil ArRachman" readonly />
+                        <input class="form-control" type="text" id="fullname" name="fullname" value="Agil ArRachman"
+                            readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="npwp" class="form-label">Nomor NPWP Perusahaan</label>
@@ -38,8 +38,8 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="phone" class="form-label">Nomor Telepon Perusahaan</label>
-                        <input type="number" class="form-control" id="phone" name="phone"
-                            value="081332303211" readonly />
+                        <input type="number" class="form-control" id="phone" name="phone" value="081332303211"
+                            readonly />
                     </div>
                 </div>
                 <p class="fw-bold text-primary">Informasi Akun</p>
@@ -51,16 +51,16 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="role" class="form-label">Sumber Informasi</label>
-                        <input class="form-control" type="text" id="role" name="role"
-                            value="Media Sosial" readonly />
+                        <input class="form-control" type="text" id="role" name="role" value="Media Sosial"
+                            readonly />
                     </div>
                 </div>
                 <p class="fw-bold text-primary">Alamat Perusahaan</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="province" class="form-label">Provinsi</label>
-                        <input class="form-control" type="text" id="province" name="province"
-                            value="Jawa Barat" readonly />
+                        <input class="form-control" type="text" id="province" name="province" value="Jawa Barat"
+                            readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="city" class="form-label">Kabupaten</label>
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

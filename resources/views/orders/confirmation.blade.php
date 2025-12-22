@@ -33,8 +33,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -51,8 +53,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -69,8 +73,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -87,8 +93,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -105,8 +113,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -123,8 +133,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -141,8 +153,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -159,8 +173,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -177,8 +193,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -195,8 +213,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                         <tr>
@@ -213,8 +233,10 @@
                                     <i class="bx bx-user me-2"></i> Lihat
                                 </button></td>
                             <td>
-                                <button type="button" class="btn btn-success">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger">Batalkan</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#confirmOrderModal">Konfirmasi</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#cancelOrderModal">Batalkan</button>
                             </td>
                         </tr>
                     </tbody>
@@ -223,6 +245,8 @@
         </div>
     </div>
 
-    @include('partials.customer-modal')
-    @include('partials.order-modal')
+    @include('partials.modals.customer-detail')
+    @include('partials.modals.order-detail')
+    @include('partials.modals.confirm-order')
+    @include('partials.modals.cancel-order')
 @endsection
