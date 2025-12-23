@@ -34,9 +34,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/order-detail"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer-information"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit Data Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
@@ -56,9 +55,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/order-detail"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer-information"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit Data Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
@@ -78,9 +76,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/order-detail"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer-information"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit Data Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
@@ -100,9 +97,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/order-detail"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer-information"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit Data Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
@@ -122,9 +118,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/order-detail"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer-information"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit Data Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
@@ -144,9 +139,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/order-detail"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer-information"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit Data Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>

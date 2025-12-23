@@ -146,6 +146,15 @@
                             </div>
                         </div>
 
+                        <p class="fw-bold text-primary">Lokasi Instalasi dan Aktivasi</p>
+                        <div id="map" class="w-full rounded-lg mb-3" style="height: 350px;"></div>
+                        <div class="mb-3">
+                            <label for="full_address" class="form-label">Link Google Maps</label>
+                            <a href="https://maps.app.goo.gl/189CmxbFUrZpXsD19" class="form-control px-3 py-2">
+                                https://maps.app.goo.gl/189CmxbFUrZpXsD19
+                            </a>
+                        </div>
+
                         <div class="mt-2">
                             <button type="button" class="btn btn-outline-secondary"
                                 onclick="history.back()">Kembali</button>
@@ -155,4 +164,26 @@
             </div>
         </div>
     </div>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZJEfXn4JomPN0kP0TIlqL1Qr8AniNKIY&callback=initMap&libraries=places"
+        async defer></script>
+
+    <script>
+        // === Script Preview Map Start ===
+        // Koordinat dummy
+        const lat = -6.602234321160505;
+        const lng = 106.80913996183654;
+
+        const map = L.map('map').setView([lat, lng], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([lat, lng])
+            .addTo(map)
+            .openPopup();
+        // === Script Preview Map End ===
+    </script>
 @endsection
