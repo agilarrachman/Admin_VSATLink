@@ -38,8 +38,8 @@ return new class extends Migration
             $table->string('contact_phone', 255);
             $table->string('contact_position', 255);
             $table->string('npwp_document_url', 255);
-            $table->string('nib_document_url', 255);
-            $table->string('sk_document_url', 255);
+            $table->string('nib_document_url', 255)->nullable();
+            $table->string('sk_document_url', 255)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

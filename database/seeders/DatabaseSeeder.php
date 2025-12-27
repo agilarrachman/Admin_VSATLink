@@ -93,8 +93,8 @@ class DatabaseSeeder extends Seeder
 
                 'province_code' => '32',
                 'city_code' => '3273',
-                'district_code' => '3273010',
-                'village_code' => '3273010001',
+                'district_code' => '327310',
+                'village_code' => '3273101003',
                 'rt' => '001',
                 'rw' => '002',
                 'postal_code' => '40115',
@@ -108,8 +108,8 @@ class DatabaseSeeder extends Seeder
                 'contact_position' => 'Pemilik',
 
                 'npwp_document_url' => 'docs/npwp_perorangan.pdf',
-                'nib_document_url' => 'docs/nib_perorangan.pdf',
-                'sk_document_url' => 'docs/sk_perorangan.pdf',
+                'nib_document_url' => null,
+                'sk_document_url' => null,
 
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -129,8 +129,8 @@ class DatabaseSeeder extends Seeder
 
                 'province_code' => '31',
                 'city_code' => '3171',
-                'district_code' => '3171020',
-                'village_code' => '3171020005',
+                'district_code' => '317105',
+                'village_code' => '3171051001',
                 'rt' => '003',
                 'rw' => '004',
                 'postal_code' => '10220',
