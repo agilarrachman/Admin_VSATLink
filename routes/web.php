@@ -8,9 +8,8 @@ Route::post('/signin', [SalesController::class, 'authenticate']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SalesController::class, 'index']);
     Route::post('/signout', [SalesController::class, 'signout']);
-    Route::get('/profile', function () {
-        return view('profile', ['management' => 'profile', 'page' => 'profile']);
-    });
+    Route::post('/profile', [SalesController::class, 'profile']);
+
     Route::get('/orders/show', function () {
         return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
     });

@@ -49,12 +49,12 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="/" class="menu-link">
                             <div data-i18n="Analytics">Expedition Orders</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="/" class="menu-link">
                             <div data-i18n="Analytics">Pickup Orders</div>
                         </a>
                     </li>
@@ -70,17 +70,17 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="/" class="menu-link">
                             <div data-i18n="Analytics">All Orders</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="/" class="menu-link">
                             <div data-i18n="Analytics">Confirm Orders</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a href="/" class="menu-link">
                             <div data-i18n="Analytics">Verification Orders</div>
                         </a>
                     </li>

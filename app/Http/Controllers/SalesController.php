@@ -53,4 +53,9 @@ class SalesController extends Controller
         request()->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function profile()
+    {
+        return view('profile', ['management' => 'profile', 'page' => 'profile']);
+    }
 }
