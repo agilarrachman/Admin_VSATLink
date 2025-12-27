@@ -5,20 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SalesController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role === 'Super Admin') {
-            return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
-        } elseif (Auth::user()->role === 'Sales Admin') {
-            return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
-        } elseif (Auth::user()->role === 'Logistic Admin') {
-            return view('logistics.index', ['management' => 'logistics', 'page' => 'logistic-management']);
-        } elseif (Auth::user()->role === 'Service Activation Admin') {
-            return view('service-activation.index', ['management' => 'service-activation', 'page' => 'service-activation-management']);
+        $user = Auth::user();
+
+        // Log info role user saat mengakses index
+        Log::info('User mengakses index', [
+            'id' => $user->id,
+            'username' => $user->username,
+            'role' => $user->role
+        ]);
+
+        if ($user->role === 'Super Admin') {
+            Log::info('Redirect ke /orders');
+            return redirect('/orders');
+        } elseif ($user->role === 'Sales Admin') {
+            Log::info('Redirect ke /orders');
+            return redirect('/orders');
+        } elseif ($user->role === 'Logistic Admin') {
+            Log::info('Redirect ke /logistics');
+            return redirect('/logistics');
+        } elseif ($user->role === 'Service Activation Admin') {
+            Log::info('Redirect ke /service-activation');
+            return redirect('/service-activation');
         } else {
+            Log::warning('Role tidak dikenal, redirect ke /login', [
+                'role' => $user->role
+            ]);
             return redirect('/login');
         }
     }

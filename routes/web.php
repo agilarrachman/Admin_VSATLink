@@ -10,13 +10,30 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/signout', [SalesController::class, 'signout']);
     Route::post('/profile', [SalesController::class, 'profile']);
 
-    Route::get('/orders/show', function () {
-        return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
+    Route::middleware('role:Super Admin,Sales Admin')->group(function () {
+        Route::get('/orders', function () {
+            return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
+        });
+        Route::get('/orders/show', function () {
+            return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
+        });
+        Route::get('/orders/customer', function () {
+            return view('orders.customer', ['management' => 'orders', 'page' => 'order-management']);
+        });
+        Route::get('/order-confirmation', function () {
+            return view('orders.confirmation', ['management' => 'orders', 'page' => 'order-confirmation']);
+        });
     });
-    Route::get('/orders/customer', function () {
-        return view('orders.customer', ['management' => 'orders', 'page' => 'order-management']);
+
+    Route::middleware('role:Super Admin, Logistic Admin')->group(function () {
+        Route::get('/logistics', function () {
+            return view('logistics.index', ['management' => 'logistics', 'page' => 'logistic-management']);
+        });
     });
-    Route::get('/order-confirmation', function () {
-        return view('orders.confirmation', ['management' => 'orders', 'page' => 'order-confirmation']);
+
+    Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {
+        Route::get('/service-activation', function () {
+            return view('service-activation.index', ['management' => 'service-activation', 'page' => 'service-activation-management']);
+        });
     });
 });

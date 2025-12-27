@@ -49,7 +49,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="/" class="menu-link">
+                        <a href="/logistics" class="menu-link">
                             <div data-i18n="Analytics">Expedition Orders</div>
                         </a>
                     </li>
@@ -70,7 +70,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="/" class="menu-link">
+                        <a href="/service-activation" class="menu-link">
                             <div data-i18n="Analytics">All Orders</div>
                         </a>
                     </li>
