@@ -75,7 +75,7 @@
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Enter your username" value="{{ old('email') }}" autofocus />
+                                    placeholder="Enter your username" value="{{ old('username') }}" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>
