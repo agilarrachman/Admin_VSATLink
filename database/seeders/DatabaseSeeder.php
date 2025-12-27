@@ -82,6 +82,7 @@ class DatabaseSeeder extends Seeder
             [
                 'username' => 'agilarrachman',
                 'name' => 'Agil ArRachman',
+                'company_representative_name' => null,
                 'customer_type' => 'Perorangan',
                 'email' => 'perorangan@example.com',
                 'password' => Hash::make('password123'),
@@ -117,6 +118,7 @@ class DatabaseSeeder extends Seeder
             [
                 'username' => 'pt_mitra_digital',
                 'name' => 'PT Mitra Digital Nusantara',
+                'company_representative_name' => 'Budi Santoso',
                 'customer_type' => 'PT.',
                 'email' => 'admin@mitradigital.co.id',
                 'password' => Hash::make('password123'),

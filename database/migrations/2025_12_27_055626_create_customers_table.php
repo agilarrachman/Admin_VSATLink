@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username', 255)->unique();
             $table->string('name', 255);
+            $table->string('company_representative_name', 255)->nullable();
             $table->enum('customer_type', ['PT.', 'CV.', 'Koperasi', 'Instansi Pendidikan', 'Instansi Pemerintah', 'Perorangan']);
             $table->string('email', 255);
             $table->string('password', 255);
