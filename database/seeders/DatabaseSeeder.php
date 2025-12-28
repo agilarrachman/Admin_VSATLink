@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,138 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        DB::table('sales')->insert([
+            [
+                'profile_picture' => 'profile_pictures/1.png',
+                'username' => 'superadmin',
+                'name' => 'Super Administrator',
+                'email' => 'superadmin@vsatlink.co.id',
+                'password' => Hash::make('password123'),
+                'phone' => '081111111111',
+                'gender' => 'Pria',
+                'role' => 'Super Admin',
+                'division' => 'Management',
+                'position' => 'System Owner',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'profile_picture' => 'profile_pictures/3.png',
+                'username' => 'salesadmin',
+                'name' => 'Dewi Lestari',
+                'email' => 'sales@vsatlink.co.id',
+                'password' => Hash::make('password123'),
+                'phone' => '081222222222',
+                'gender' => 'Wanita',
+                'role' => 'Sales Admin',
+                'division' => 'Sales & Marketing',
+                'position' => 'Sales Executive',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'profile_picture' => 'profile_pictures/2.png',
+                'username' => 'logisticadmin',
+                'name' => 'Andi Pratama',
+                'email' => 'logistic@vsatlink.co.id',
+                'password' => Hash::make('password123'),
+                'phone' => '081333333333',
+                'gender' => 'Pria',
+                'role' => 'Logistic Admin',
+                'division' => 'Logistic',
+                'position' => 'Logistic Officer',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'profile_picture' => 'profile_pictures/4.png',
+                'username' => 'serviceactivationadmin',
+                'name' => 'Rina Kurnia',
+                'email' => 'service.activation@vsatlink.co.id',
+                'password' => Hash::make('password123'),
+                'phone' => '081444444444',
+                'gender' => 'Wanita',
+                'role' => 'Service Activation Admin',
+                'division' => 'Technical Service Activation',
+                'position' => 'Service Activation Officer',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        DB::table('customers')->insert([
+            [
+                'username' => 'agilarrachman',
+                'name' => 'Agil ArRachman',
+                'company_representative_name' => null,
+                'customer_type' => 'Perorangan',
+                'email' => 'perorangan@example.com',
+                'password' => Hash::make('password123'),
+                'phone' => '081234567890',
+                'npwp' => '00.000.000.0-000.000',
+                'source_information' => 'Web',
+                'sales_id' => 2,
+
+                'province_code' => '32',
+                'city_code' => '3273',
+                'district_code' => '327310',
+                'village_code' => '3273101003',
+                'rt' => '001',
+                'rw' => '002',
+                'postal_code' => '40115',
+                'latitude' => '-6.914744',
+                'longitude' => '107.609810',
+                'full_address' => 'Jl. Contoh No. 1, Bandung',
+
+                'contact_name' => 'Agil Arrachman',
+                'contact_email' => 'perorangan@example.com',
+                'contact_phone' => '081234567890',
+                'contact_position' => 'Pemilik',
+
+                'npwp_document_url' => 'docs/npwp_perorangan.pdf',
+                'nib_document_url' => null,
+                'sk_document_url' => null,
+
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'username' => 'pt_mitra_digital',
+                'name' => 'PT Mitra Digital Nusantara',
+                'company_representative_name' => 'Budi Santoso',
+                'customer_type' => 'PT.',
+                'email' => 'admin@mitradigital.co.id',
+                'password' => Hash::make('password123'),
+                'phone' => '02188889999',
+                'npwp' => '01.234.567.8-901.000',
+                'source_information' => 'Sales',
+                'sales_id' => 2,
+
+                'province_code' => '31',
+                'city_code' => '3171',
+                'district_code' => '317105',
+                'village_code' => '3171051001',
+                'rt' => '003',
+                'rw' => '004',
+                'postal_code' => '10220',
+                'latitude' => '-6.200000',
+                'longitude' => '106.816666',
+                'full_address' => 'Jl. Gatot Subroto No. 88, Jakarta',
+
+                'contact_name' => 'Budi Santoso',
+                'contact_email' => 'budi@mitradigital.co.id',
+                'contact_phone' => '081299998888',
+                'contact_position' => 'IT Manager',
+
+                'npwp_document_url' => 'docs/npwp_pt.pdf',
+                'nib_document_url' => 'docs/nib_pt.pdf',
+                'sk_document_url' => 'docs/sk_pt.pdf',
+
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
 
         DB::table('products')->insert([
             [

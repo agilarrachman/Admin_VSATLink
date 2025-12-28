@@ -1,22 +1,39 @@
 <?php
 
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
-});
-Route::get('/orders/show', function () {
-    return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
-});
-Route::get('/orders/customer', function () {
-    return view('orders.customer', ['management' => 'orders', 'page' => 'order-management']);
-});
-Route::get('/order-confirmation', function () {
-    return view('orders.confirmation', ['management' => 'orders', 'page' => 'order-confirmation']);
-});
-Route::get('/sign-in', function () {
-    return view('signin');
-});
-Route::get('/profile', function () {
-    return view('profile', ['management' => 'profile', 'page' => 'profile']);
+Route::get('/login', [SalesController::class, 'signin'])->name('login');
+Route::post('/signin', [SalesController::class, 'authenticate']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [SalesController::class, 'index']);
+    Route::post('/signout', [SalesController::class, 'signout']);
+    Route::post('/profile', [SalesController::class, 'profile']);
+
+    Route::middleware('role:Super Admin,Sales Admin')->group(function () {
+        Route::get('/orders', function () {
+            return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
+        });
+        Route::get('/orders/show', function () {
+            return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
+        });
+        Route::get('/orders/customer', function () {
+            return view('orders.customer', ['management' => 'orders', 'page' => 'order-management']);
+        });
+        Route::get('/order-confirmation', function () {
+            return view('orders.confirmation', ['management' => 'orders', 'page' => 'order-confirmation']);
+        });
+    });
+
+    Route::middleware('role:Super Admin, Logistic Admin')->group(function () {
+        Route::get('/logistics', function () {
+            return view('logistics.index', ['management' => 'logistics', 'page' => 'logistic-management']);
+        });
+    });
+
+    Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {
+        Route::get('/service-activation', function () {
+            return view('service-activation.index', ['management' => 'service-activation', 'page' => 'service-activation-management']);
+        });
+    });
 });

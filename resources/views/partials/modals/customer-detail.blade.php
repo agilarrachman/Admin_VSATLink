@@ -12,15 +12,20 @@
                 <p class="fw-bold text-primary">Informasi Perusahaan</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
+                        <label for="customer_type" class="form-label">Jenis Customer</label>
+                        <input class="form-control" type="text" id="customer_type" name="customer_type"
+                            value="PT." readonly />
+                    </div>
+                    <div class="mb-3 col-md-6">
                         <label for="username" class="form-label">Username</label>
                         <input class="form-control" type="text" name="username" id="username" value="agilarrachman"
                             readonly />
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="company_name" class="form-label">Nama Perusahaan</label>
-                        <input class="form-control" type="text" id="company_name" name="company_name"
-                            value="PT. VSATLink Indonesia" readonly />
-                    </div>
+                        <label for="name" class="form-label">Nama Perusahaan</label>
+                        <input class="form-control" type="text" id="name" name="name"
+                            value="VSATLink Indonesia" readonly />
+                    </div>                    
                     <div class="mb-3 col-md-6">
                         <label for="fullname" class="form-label">Nama Pejabat yang Berwenang</label>
                         <input class="form-control" type="text" id="fullname" name="fullname" value="Agil ArRachman"
