@@ -9,4 +9,9 @@ class OrderContact extends Model
 {
     /** @use HasFactory<\Database\Factories\OrderContactFactory> */
     use HasFactory;
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

@@ -9,4 +9,9 @@ class ActivationAddress extends Model
 {
     /** @use HasFactory<\Database\Factories\ActivationAddressFactory> */
     use HasFactory;
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
