@@ -310,6 +310,11 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'Pesanan Dilengkapi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'Pesanan Dibayar',
                 'created_at' => now(),
                 'updated_at' => now(),
