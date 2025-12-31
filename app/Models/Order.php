@@ -85,4 +85,11 @@ class Order extends Model
         return self::latest()
             ->get();
     }
+    
+    public static function getAllConfirmationOrders()
+    {
+        return self::where('current_status_id', 1)
+            ->latest()
+            ->get();
+    }
 }

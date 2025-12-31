@@ -20,225 +20,28 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>VSL6637373</td>
-                            <td>Albert Cook</td>
-                            <td>VSATLink Aurora</td>
-                            <td>11 November 2025</td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#orderModal">
-                                    <i class="bx bx-receipt me-2"></i> Lihat
-                                </button></td>
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#customerModal">
-                                    <i class="bx bx-user me-2"></i> Lihat
-                                </button></td>
-                            <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirmOrderModal">Konfirmasi</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#cancelOrderModal">Batalkan</button>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td>{{ $order->unique_order }}</td>
+                                <td>{{ $order->customer->name }}</td>
+                                <td>{{ $order->product->name }}</td>
+                                <td>{{ $order->created_at->translatedFormat('d M Y, H:i') }}</td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#orderModal">
+                                        <i class="bx bx-receipt me-2"></i> Lihat
+                                    </button></td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#customerModal">
+                                        <i class="bx bx-user me-2"></i> Lihat
+                                    </button></td>
+                                <td>
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                        data-target="#confirmOrderModal">Konfirmasi</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#cancelOrderModal">Batalkan</button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

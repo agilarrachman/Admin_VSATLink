@@ -25,7 +25,7 @@
                                 <td>{{ $order->unique_order }}</td>
                                 <td>{{ $order->customer->name }}</td>
                                 <td>{{ $order->product->name }}</td>
-                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->created_at->translatedFormat('d M Y, H:i') }}</td>
                                 <td>{{ $order->total_cost ? 'Rp' . number_format($order->total_cost, 0, ',', '.') : '-' }}</td>
                                 @php($badge = $order->statusBadge())
                                 <td><span class="badge me-1 {{ $badge['class'] }}">{{ $badge['label'] }}</span></td>

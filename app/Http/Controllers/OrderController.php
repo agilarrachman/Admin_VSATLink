@@ -20,6 +20,15 @@ class OrderController extends Controller
         ]);
     }
 
+    public function indexConfirmation()
+    {
+        return view('orders.confirmation', [
+            'management' => 'orders',
+            'page' => 'order-confirmation',
+            'orders' => Order::getAllConfirmationOrders()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
