@@ -19,4 +19,11 @@ class OrderStatusHistory extends Model
     {
         return $this->belongsTo(OrderStatus::class);
     }
+
+    public static function getLatestStatusOrder($order)
+    {
+        return self::where('order_id', $order)
+            ->latest()
+            ->first();
+    }
 }

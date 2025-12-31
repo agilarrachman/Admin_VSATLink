@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\OrderStatusHistory;
 
 class OrderController extends Controller
 {
@@ -50,7 +51,12 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.show', [
+            'management' => 'orders',
+            'page' => 'order-management',
+            'order' => $order,
+            'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id)
+        ]);
     }
 
     /**
