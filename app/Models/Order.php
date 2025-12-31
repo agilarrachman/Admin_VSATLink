@@ -10,6 +10,11 @@ class Order extends Model
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'unique_order';
+    }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -22,7 +27,7 @@ class Order extends Model
 
     public function order_statuses()
     {
-        return $this->belongsTo(OrderStatus::class);
+        return $this->belongsTo(OrderStatus::class, 'current_status_id');
     }
 
     public function order_status_histories()
@@ -43,5 +48,41 @@ class Order extends Model
     public function activation_address()
     {
         return $this->belongsTo(ActivationAddress::class);
+    }
+
+    public function statusBadge(): array
+    {
+        return match ($this->current_status_id) {
+            1 => [
+                'label' => 'Menunggu Konfirmasi',
+                'class' => 'bg-label-secondary',
+            ],
+            2 => [
+                'label' => 'Pesanan Dikonfirmasi',
+                'class' => 'bg-label-secondary',
+            ],
+            3 => [
+                'label' => 'Belum Dibayar',
+                'class' => 'bg-label-warning',
+            ],
+            7 => [
+                'label' => 'Selesai',
+                'class' => 'bg-label-success',
+            ],
+            8 => [
+                'label' => 'Dibatalkan',
+                'class' => 'bg-label-danger',
+            ],
+            default => [
+                'label' => 'Sedang Diproses',
+                'class' => 'bg-label-info',
+            ],
+        };
+    }
+
+    public static function getAllOrders()
+    {
+        return self::latest()
+            ->get();
     }
 }

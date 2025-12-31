@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [SalesController::class, 'profile']);
 
     Route::middleware('role:Super Admin,Sales Admin')->group(function () {
-        Route::get('/orders', function () {
-            return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
-        });
+        Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/orders/show', function () {
             return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
         });

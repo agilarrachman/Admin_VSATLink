@@ -20,6 +20,35 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td>{{ $order->unique_order }}</td>
+                                <td>{{ $order->customer->name }}</td>
+                                <td>{{ $order->product->name }}</td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->total_cost ? 'Rp' . number_format($order->total_cost, 0, ',', '.') : '-' }}</td>
+                                @php($badge = $order->statusBadge())
+                                <td><span class="badge me-1 {{ $badge['class'] }}">{{ $badge['label'] }}</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i>
+                                                Lihat Detail Pesanan</a>
+                                            <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                                Lihat Informasi Customer</a>
+                                            <a class="dropdown-item" href="javascript:void(0);"><i
+                                                    class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        {{-- Dummy Data Start --}}
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
@@ -34,9 +63,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i>
+                                            Lihat Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            Lihat Informasi Customer</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
                             </td>
@@ -55,9 +87,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat
+                                            Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            Lihat Informasi Customer</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
                             </td>
@@ -76,9 +111,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat
+                                            Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            Lihat Informasi Customer</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
                             </td>
@@ -97,9 +135,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat
+                                            Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            Lihat Informasi Customer</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
                             </td>
@@ -118,9 +159,12 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat
+                                            Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            Lihat Informasi Customer</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
                             </td>
@@ -139,13 +183,18 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i> Lihat Detail Pesanan</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i> Lihat Informasi Customer</a>                                        
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i>
+                                            Lihat
+                                            Detail Pesanan</a>
+                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            Lihat Informasi Customer</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
+                        {{-- Dummy Data End --}}
                     </tbody>
                 </table>
             </div>
