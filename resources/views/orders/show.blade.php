@@ -27,7 +27,7 @@
                         <div class="summary my-3">
                             <div class="d-flex justify-content-between">
                                 <h4>Jenis Pengiriman</h4>
-                                <p class="summary text-right">JNE</p>
+                                <p class="summary text-right">{{ $order->shipping ? $order->shipping : '-' }}</p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h4>Harga</h4>
@@ -42,11 +42,15 @@
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h4>Biaya Instalasi</h4>
+                                <h4>Biaya Layanan Instalasi</h4>
                                 <p class="summary text-right">
-                                    {{ $order->installation_service_cost == 0 && $order->installation_transport_cost == 0
-                                        ? '-'
-                                        : 'Rp ' . number_format($order->installation_service_cost + $order->installation_transport_cost, 0, ',', '.') }}
+                                    {{ $order->installation_service_cost ? 'Rp' . number_format($order->installation_service_cost, 0, ',', '.') : '-' }}
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h4>Biaya Transport Instalasi</h4>
+                                <p class="summary text-right">                                    
+                                    {{ $order->installation_transport_cost ? 'Rp' . number_format($order->installation_transport_cost, 0, ',', '.') : '-' }}
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between">
