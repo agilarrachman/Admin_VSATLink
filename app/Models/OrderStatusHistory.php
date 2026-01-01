@@ -28,4 +28,11 @@ class OrderStatusHistory extends Model
             ->latest()
             ->first();
     }
+
+    public static function canceledOrder($order)
+    {
+        return self::where('order_id', $order)
+            ->where('order_status_id', 8)
+            ->first();
+    }
 }

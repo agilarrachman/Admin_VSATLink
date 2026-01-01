@@ -119,4 +119,22 @@ class Order extends Model
 
         return $order;
     }
+
+    public static function cancelOrder($user, $orderId, $reason)
+    {
+        $order = self::findOrFail($orderId);        
+
+        DB::transaction(function () use ($user, $order, $reason) {
+            $order->current_status_id = 8;
+            $order->save();
+
+            $orderStatusHistory = OrderStatusHistory::create([
+                'order_status_id' => 8,
+                'order_id' => $order->id,
+                'note' => "Pesanan {$order->unique_order} dibatalkan oleh " . $user->name . " dengan alasan: " . $reason,
+            ]);
+        });
+
+        return $order;
+    }
 }

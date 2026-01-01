@@ -46,8 +46,9 @@
                                     <button type="button" class="btn btn-success btn-confirm" data-toggle="modal"
                                         data-target="#confirmOrderModal"
                                         data-order-id="{{ $order->id }}">Konfirmasi</button>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#cancelOrderModal">Batalkan</button>
+                                    <button type="button" class="btn btn-danger btn-cancel" data-toggle="modal"
+                                        data-target="#cancelOrderModal"
+                                        data-order-id="{{ $order->id }}">Batalkan</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -174,6 +175,11 @@
         $(document).on('click', '.btn-confirm', function() {
             let orderId = $(this).data('order-id');
             $('#confirmOrderModal').find('#order_id').val(orderId);
+        });
+
+        $(document).on('click', '.btn-cancel', function() {
+            let orderId = $(this).data('order-id');
+            $('#cancelOrderModal').find('#order_id').val(orderId);
         });
     </script>
 @endpush

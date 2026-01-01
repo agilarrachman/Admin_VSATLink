@@ -194,6 +194,43 @@ class OrderController extends Controller
         return back()->with('success', 'Pesanan berhasil dikonfirmasi.');
     }
 
+    public function cancel(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'reason' => 'required',
+        ]);
+
+        $order = Order::cancelOrder(Auth::user(), $request->order_id, $request->reason);
+        $history = OrderStatusHistory::canceledOrder($order->id);
+
+        $data = [
+            'customer_name' => $order->customer->name,
+            'sales_name' => $order->customer->sales->name,
+            'sales_phone' => $order->customer->sales->phone,
+            'unique_order'  => $order->unique_order,
+            'product_name'  => $order->product->name,
+            'reason'  => $history->note,
+            'updated_date' => $order->updated_at->translatedFormat('d F Y H:i'),
+        ];
+
+        $customerEmail = $order->customer->email;
+
+        Mail::send('emails.order-canceled', $data, function ($message) use ($customerEmail) {
+            $message->to($customerEmail)
+                ->subject('[NOTIFIKASI] Pesanan Anda Telah Dibatalkan');
+        });
+
+        if ($order->customer->customer_type !== 'Perorangan' && $order->customer->contact_email) {
+            Mail::send('emails.order-canceled', $data, function ($message) use ($order) {
+                $message->to($order->customer->contact_email)
+                    ->subject('[NOTIFIKASI] Pesanan Anda Telah Dibatalkan');
+            });
+        }
+
+        return back()->with('success', 'Pesanan berhasil dibatalkan.');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
