@@ -19,7 +19,8 @@ class OrderController extends Controller
         return view('orders.index', [
             'management' => 'orders',
             'page' => 'order-management',
-            'orders' => Order::getAllOrders()
+            'orders' => Order::getAllOrders(),
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
         ]);
     }
 
@@ -34,6 +35,7 @@ class OrderController extends Controller
             'management' => 'orders',
             'page' => 'order-confirmation',
             'orders' => Order::getAllConfirmationOrders(),
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'provinces' => $provinces,
             'cities' => $cities,
             'districts' => $districts,
@@ -66,6 +68,7 @@ class OrderController extends Controller
             'management' => 'orders',
             'page' => 'order-management',
             'order' => $order,
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id)
         ]);
     }
@@ -81,6 +84,7 @@ class OrderController extends Controller
             'management' => 'orders',
             'page' => 'order-management',
             'order' => $order,
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'provinces' => $provinces,
             'cities' => $cities,
             'districts' => $districts,

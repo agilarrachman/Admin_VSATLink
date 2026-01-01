@@ -92,4 +92,10 @@ class Order extends Model
             ->latest()
             ->get();
     }
+
+    public static function unconfirmedOrdersCount()
+    {
+        return self::where('current_status_id', 1)
+            ->count();
+    }
 }
