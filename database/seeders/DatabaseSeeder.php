@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'PT Mitra Digital Nusantara',
                 'company_representative_name' => 'Budi Santoso',
                 'customer_type' => 'PT.',
-                'email' => 'admin@mitradigital.co.id',
+                'email' => 'agilarrachman@apps.ipb.ac.id',
                 'password' => Hash::make('password123'),
                 'phone' => '02188889999',
                 'npwp' => '01.234.567.8-901.000',

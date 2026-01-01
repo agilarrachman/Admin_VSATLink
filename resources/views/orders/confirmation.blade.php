@@ -6,6 +6,14 @@
     <div class="container-xxl grow container-p-y">
         <div class="card">
             <h5 class="card-header">Order Management</h5>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
@@ -35,8 +43,9 @@
                                         <i class="bx bx-user me-2"></i> Lihat
                                     </button></td>
                                 <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                        data-target="#confirmOrderModal">Konfirmasi</button>
+                                    <button type="button" class="btn btn-success btn-confirm" data-toggle="modal"
+                                        data-target="#confirmOrderModal"
+                                        data-order-id="{{ $order->id }}">Konfirmasi</button>
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#cancelOrderModal">Batalkan</button>
                                 </td>
@@ -160,6 +169,11 @@
                     alert('Gagal mengambil data customer');
                 }
             });
+        });
+
+        $(document).on('click', '.btn-confirm', function() {
+            let orderId = $(this).data('order-id');
+            $('#confirmOrderModal').find('#order_id').val(orderId);
         });
     </script>
 @endpush

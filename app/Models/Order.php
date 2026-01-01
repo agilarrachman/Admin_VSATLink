@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -97,5 +98,25 @@ class Order extends Model
     {
         return self::where('current_status_id', 1)
             ->count();
+    }
+
+    public static function confirmOrder($user, $orderId, $serviceCost, $transportCost)
+    {
+        $order = self::findOrFail($orderId);
+
+        DB::transaction(function () use ($user, $order, $serviceCost, $transportCost) {
+            $order->installation_service_cost = $serviceCost;
+            $order->installation_transport_cost = $transportCost;
+            $order->current_status_id = 2;
+            $order->save();
+
+            OrderStatusHistory::create([
+                'order_status_id' => 2,
+                'order_id' => $order->id,
+                'note' => "Pesanan {$order->unique_order} dikonfirmasi oleh " . $user->name,
+            ]);
+        });
+
+        return $order;
     }
 }

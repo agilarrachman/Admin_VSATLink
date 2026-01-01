@@ -8,6 +8,9 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderStatusHistory;
 use Illuminate\Support\Facades\DB;
 use Laravolt\Indonesia\Facade as Indonesia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -151,6 +154,44 @@ class OrderController extends Controller
                 'contact_position' => $customer->contact_position,
             ] : null,
         ]);
+    }
+
+    public function confirm(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'service_cost' => 'required|numeric',
+            'transport_cost' => 'required|numeric',
+        ]);
+
+        $order = Order::confirmOrder(Auth::user(), $request->order_id, $request->service_cost, $request->transport_cost);
+
+        $data = [
+            'customer_name' => $order->customer->name,
+            'sales_name' => $order->customer->sales->name,
+            'sales_phone' => $order->customer->sales->phone,
+            'unique_order'  => $order->unique_order,
+            'product_name'  => $order->product->name,
+            'installation_service_cost'  => $order->installation_service_cost,
+            'installation_transport_cost'  => $order->installation_transport_cost,
+            'updated_date' => $order->updated_at->translatedFormat('d F Y H:i'),
+        ];
+
+        $customerEmail = $order->customer->email;
+
+        Mail::send('emails.order-confirmed', $data, function ($message) use ($customerEmail) {
+            $message->to($customerEmail)
+                ->subject('[NOTIFIKASI] Pesanan Anda Telah Dikonfirmasi');
+        });
+
+        if ($order->customer->customer_type !== 'Perorangan' && $order->customer->contact_email) {
+            Mail::send('emails.order-confirmed', $data, function ($message) use ($order) {
+                $message->to($order->customer->contact_email)
+                    ->subject('[NOTIFIKASI] Pesanan Anda Telah Dikonfirmasi');
+            });
+        }
+
+        return back()->with('success', 'Pesanan berhasil dikonfirmasi.');
     }
 
     /**

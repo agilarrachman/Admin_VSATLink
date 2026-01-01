@@ -10,6 +10,8 @@ class OrderStatusHistory extends Model
     /** @use HasFactory<\Database\Factories\OrderStatusHistoryFactory> */
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function order()
     {
         return $this->belongsTo(Order::class);

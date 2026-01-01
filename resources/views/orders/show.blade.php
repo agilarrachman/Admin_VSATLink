@@ -21,7 +21,7 @@
                                 </p>
                                 <h4 class="mb-0 fw-bold" style="font-size: 16px">{{ $order->product->name }}</h4>
                                 <p class="mb-0" style="font-size: 14px">Pesanan dibuat pada tanggal
-                                    {{ $order->created_at->translatedFormat('d M Y, H:i') }}</p>
+                                    {{ $order->created_at->translatedFormat('d F Y, H:i') }}</p>
                             </div>
                         </div>
                         <div class="summary my-3">
