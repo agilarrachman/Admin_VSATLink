@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderStatusHistory;
+use Illuminate\Support\Facades\DB;
+use Laravolt\Indonesia\Facade as Indonesia;
 
 class OrderController extends Controller
 {
@@ -23,10 +25,19 @@ class OrderController extends Controller
 
     public function indexConfirmation()
     {
+        $provinces = Indonesia::allProvinces();
+        $cities = Indonesia::allCities();
+        $districts = Indonesia::allDistricts();
+        $villages = DB::table('indonesia_villages')->get();
+
         return view('orders.confirmation', [
             'management' => 'orders',
             'page' => 'order-confirmation',
-            'orders' => Order::getAllConfirmationOrders()
+            'orders' => Order::getAllConfirmationOrders(),
+            'provinces' => $provinces,
+            'cities' => $cities,
+            'districts' => $districts,
+            'villages' => $villages
         ]);
     }
 
@@ -56,6 +67,24 @@ class OrderController extends Controller
             'page' => 'order-management',
             'order' => $order,
             'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id)
+        ]);
+    }
+
+    public function customer(Order $order)
+    {
+        $provinces = Indonesia::allProvinces();
+        $cities = Indonesia::allCities();
+        $districts = Indonesia::allDistricts();
+        $villages = DB::table('indonesia_villages')->get();
+
+        return view('orders.customer', [
+            'management' => 'orders',
+            'page' => 'order-management',
+            'order' => $order,
+            'provinces' => $provinces,
+            'cities' => $cities,
+            'districts' => $districts,
+            'villages' => $villages
         ]);
     }
 

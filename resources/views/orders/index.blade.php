@@ -38,7 +38,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}"><i class="bx bx-show me-1"></i>
                                                 Lihat Detail Pesanan</a>
-                                            <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                            <a class="dropdown-item" href="/orders/{{ $order->unique_order }}/customer"><i class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
                                             <a class="dropdown-item" href="javascript:void(0);"><i
                                                     class="bx bx-receipt me-1"></i> Unduh Invoice</a>

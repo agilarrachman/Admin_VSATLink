@@ -15,9 +15,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/order-confirmation', [OrderController::class, 'indexConfirmation']);
         Route::get('/orders/{order}', [OrderController::class, 'show']);
-        Route::get('/orders/customer', function () {
-            return view('orders.customer', ['management' => 'orders', 'page' => 'order-management']);
-        });
+        Route::get('/orders/{order}/customer', [OrderController::class, 'customer']);
     });
 
     Route::middleware('role:Super Admin, Logistic Admin')->group(function () {
