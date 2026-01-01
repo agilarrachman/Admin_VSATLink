@@ -15,7 +15,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/order-confirmation', [OrderController::class, 'indexConfirmation']);
         Route::get('/orders/{order}', [OrderController::class, 'show']);
-        Route::get('/orders/{order}/customer', [OrderController::class, 'customer']);
+        Route::get('/orders/{order}/data', [OrderController::class, 'data']);
+        Route::get('/orders/{order}/customer', [OrderController::class, 'customerShow']);
+        Route::get('/orders/{order}/customer/data', [OrderController::class, 'customerData']);
     });
 
     Route::middleware('role:Super Admin, Logistic Admin')->group(function () {

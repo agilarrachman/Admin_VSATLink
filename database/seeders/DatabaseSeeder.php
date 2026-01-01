@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'profile_picture' => 'profile_pictures/3.png',
                 'username' => 'salesadmin',
                 'name' => 'Dewi Lestari',
-                'email' => 'sales@vsatlink.co.id',
+                'email' => 'agilarrachman@apps.ipb.ac.id',
                 'password' => Hash::make('password123'),
                 'phone' => '6281332303211',
                 'gender' => 'Wanita',
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Agil ArRachman',
                 'company_representative_name' => null,
                 'customer_type' => 'Perorangan',
-                'email' => 'perorangan@example.com',
+                'email' => 'agil.musthafa11@gmail.com',
                 'password' => Hash::make('password123'),
                 'phone' => '081234567890',
                 'npwp' => '00.000.000.0-000.000',
@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
                 'full_address' => 'Jl. Contoh No. 1, Bandung',
 
                 'contact_name' => 'Agil Arrachman',
-                'contact_email' => 'perorangan@example.com',
+                'contact_email' => 'agil.musthafa11@gmail.com',
                 'contact_phone' => '081234567890',
                 'contact_position' => 'Pemilik',
 
@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
                 'full_address' => 'Jl. Gatot Subroto No. 88, Jakarta',
 
                 'contact_name' => 'Budi Santoso',
-                'contact_email' => 'budi@mitradigital.co.id',
+                'contact_email' => 'agilaarrachman@gmail.com',
                 'contact_phone' => '081299998888',
                 'contact_position' => 'IT Manager',
 

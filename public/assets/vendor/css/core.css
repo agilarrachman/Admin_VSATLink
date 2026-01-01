@@ -19033,7 +19033,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
 }
 
 /* Adjustment Start */
-.product-image {
+.product_image {
     width: 80px;
     height: 80px;
     object-fit: cover;

@@ -24,7 +24,7 @@
                     <i class="menu-icon tf-icons bx bx-receipt"></i>
                     <div data-i18n="Dashboards">Orders</div>
                     @if ($unconfirmedOrdersCount > 0)
-                        <div class="badge bg-danger rounded-pill ms-auto" style="width: 23px;">
+                        <div class="badge bg-danger rounded-pill ms-auto d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
                             {{ $unconfirmedOrdersCount }}
                         </div>
                     @endif
@@ -39,7 +39,7 @@
                         <a href="/order-confirmation" class="menu-link">
                             <div data-i18n="Analytics">Confirm Orders</div>
                             @if ($unconfirmedOrdersCount > 0)
-                                <div class="badge bg-danger rounded-pill ms-auto" style="width: 23px;">
+                                <div class="badge bg-danger rounded-pill ms-auto d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
                                     {{ $unconfirmedOrdersCount }}
                                 </div>
                             @endif

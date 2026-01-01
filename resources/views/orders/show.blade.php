@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <p class="fw-bold text-primary">Rincian Pesanan</p>
                         <div class="d-flex items-start gap-4">
-                            <img class="product-image" src="/storage/{{ $order->product->image_url }}"
+                            <img class="product_image" src="/storage/{{ $order->product->image_url }}"
                                 alt="{{ $order->product->name }}" />
                             <div class="info w-full mb-3 mb-md-0">
                                 @php($badge = $order->statusBadge())

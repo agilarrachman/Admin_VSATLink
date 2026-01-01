@@ -9,7 +9,8 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Informasi Customer</h5>
                     <div class="card-body">
-                        <p class="fw-bold text-primary">Informasi {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : 'Saya' }}</p>
+                        <p class="fw-bold text-primary">Informasi
+                            {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : 'Saya' }}</p>
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label for="customer_type" class="form-label">Jenis Customer</label>
@@ -29,8 +30,10 @@
                             </div>
                             @if ($order->customer->customer_type != 'Perorangan')
                                 <div class="mb-3 col-md-6">
-                                    <label for="fullname" class="form-label">Nama Pejabat yang Berwenang</label>
-                                    <input class="form-control" type="text" id="fullname" name="fullname"
+                                    <label for="company_representative_name" class="form-label">Nama Pejabat yang
+                                        Berwenang</label>
+                                    <input class="form-control" type="text" id="company_representative_name"
+                                        name="company_representative_name"
                                         value="{{ $order->customer->company_representative_name }}" readonly />
                                 </div>
                             @endif
@@ -62,8 +65,8 @@
                                     value="{{ $order->customer->sales->name }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="role" class="form-label">Sumber Informasi</label>
-                                <input class="form-control" type="text" id="role" name="role"
+                                <label for="source_information" class="form-label">Sumber Informasi</label>
+                                <input class="form-control" type="text" id="source_information" name="source_information"
                                     value="{{ $order->customer->source_information }}" readonly />
                             </div>
                         </div>
