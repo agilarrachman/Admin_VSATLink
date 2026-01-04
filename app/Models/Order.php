@@ -11,6 +11,8 @@ class Order extends Model
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function getRouteKeyName()
     {
         return 'unique_order';
@@ -105,10 +107,11 @@ class Order extends Model
         $order = self::findOrFail($orderId);
 
         DB::transaction(function () use ($user, $order, $serviceCost, $transportCost) {
-            $order->installation_service_cost = $serviceCost;
-            $order->installation_transport_cost = $transportCost;
-            $order->current_status_id = 2;
-            $order->save();
+            $order->update([
+                'installation_service_cost'   => $serviceCost,
+                'installation_transport_cost' => $transportCost,
+                'current_status_id'           => 2,
+            ]);
 
             OrderStatusHistory::create([
                 'order_status_id' => 2,
