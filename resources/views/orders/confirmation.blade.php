@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($orders as $order)
+                        @forelse ($orders as $order)
                             <tr>
                                 <td>{{ $order->unique_order }}</td>
                                 <td>{{ $order->customer->name }}</td>
@@ -51,7 +51,14 @@
                                         data-order-id="{{ $order->id }}">Batalkan</button>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-4">
+                                    <i class="menu-icon tf-icons bx bx-receipt"></i>
+                                    Belum ada data pesanan
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
