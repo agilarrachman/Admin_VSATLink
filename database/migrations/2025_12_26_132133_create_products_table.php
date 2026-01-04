@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('slug', 255)->unique();
             $table->text('description');
+            $table->integer('device_weight')->default(0);
             $table->integer('otc_cost')->default(0);
             $table->integer('mrc_cost')->default(0);
             $table->integer('monthly_quota')->default(0);
