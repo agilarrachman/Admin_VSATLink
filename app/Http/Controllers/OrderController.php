@@ -30,20 +30,11 @@ class OrderController extends Controller
 
     public function indexConfirmation()
     {
-        $provinces = Indonesia::allProvinces();
-        $cities = Indonesia::allCities();
-        $districts = Indonesia::allDistricts();
-        $villages = DB::table('indonesia_villages')->get();
-
         return view('orders.confirmation', [
             'management' => 'orders',
             'page' => 'order-confirmation',
             'orders' => Order::getAllConfirmationOrders(),
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
-            'provinces' => $provinces,
-            'cities' => $cities,
-            'districts' => $districts,
-            'villages' => $villages
         ]);
     }
 
@@ -100,30 +91,18 @@ class OrderController extends Controller
 
     public function customerShow(Order $order)
     {
-        $provinces = Indonesia::allProvinces();
-        $cities = Indonesia::allCities();
-        $districts = Indonesia::allDistricts();
-        $villages = DB::table('indonesia_villages')->get();
 
         return view('orders.customer', [
             'management' => 'orders',
             'page' => 'order-management',
             'order' => $order,
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
-            'provinces' => $provinces,
-            'cities' => $cities,
-            'districts' => $districts,
-            'villages' => $villages
         ]);
     }
 
     public function customerData(Order $order)
     {
         $customer = $order->customer()->with('sales')->first();
-        $provinces = Indonesia::allProvinces();
-        $cities = Indonesia::allCities();
-        $districts = Indonesia::allDistricts();
-        $villages = DB::table('indonesia_villages')->get();
 
         return response()->json([
             'customer' => [
@@ -139,10 +118,10 @@ class OrderController extends Controller
                 'source_information' => $customer->source_information,
             ],
             'address' => [
-                'province' => $provinces->firstWhere('code', $customer->province_code)?->name,
-                'city' => $cities->firstWhere('code', $customer->city_code)?->name,
-                'district' => $districts->firstWhere('code', $customer->district_code)?->name,
-                'village' => $villages->firstWhere('code', $customer->village_code)?->name,
+                'province' => $customer->province()->name,
+                'city' => $customer->city()->name,
+                'district' => $customer->district()->name,
+                'village' => $customer->village()->name,
                 'rt' => $customer->rt,
                 'rw' => $customer->rw,
                 'postal_code' => $customer->postal_code,
