@@ -23,10 +23,10 @@ return new class extends Migration
             $table->string('npwp', 255);
             $table->enum('source_information', ['Media Sosial', 'Web', 'Sales']);
             $table->foreignId('sales_id')->references('id')->on('sales')->onDelete('cascade');
-            $table->string('province_code', 255);
-            $table->string('city_code', 255);
-            $table->string('district_code', 255);
-            $table->string('village_code', 255);
+            $table->string('province_id', 255)->references('id')->on('provinces')->onDelete('cascade');
+            $table->string('city_id', 255)->references('id')->on('cities')->onDelete('cascade');
+            $table->string('district_id', 255)->references('id')->on('districts')->onDelete('cascade');
+            $table->string('village_id', 255)->references('id')->on('villages')->onDelete('cascade');
             $table->string('rt', 255);
             $table->string('rw', 255);
             $table->string('postal_code', 255);

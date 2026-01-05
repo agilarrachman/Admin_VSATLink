@@ -77,25 +77,25 @@
                             <div class="mb-3 col-md-6">
                                 <label for="province" class="form-label">Provinsi</label>
                                 <input class="form-control" type="text" id="province" name="province"
-                                    value="{{ $provinces->firstWhere('code', $order->customer->province_code)->name ?? 'Tidak Ditemukan' }}"
+                                    value="{{ $order->customer->province()->name ?? '-' }}"
                                     readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="city" class="form-label">Kabupaten</label>
                                 <input class="form-control" type="text" id="city" name="city"
-                                    value="{{ $cities->firstWhere('code', $order->customer->city_code)->name ?? 'Tidak Ditemukan' }}"
+                                    value="{{ $order->customer->city()->name ?? '-' }}"
                                     readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="district" class="form-label">Kecamatan</label>
                                 <input class="form-control" type="text" id="district" name="district"
-                                    value="{{ $districts->firstWhere('code', $order->customer->district_code)->name ?? 'Tidak Ditemukan' }}"
+                                    value="{{ $order->customer->district()->name ?? '-' }}"
                                     readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="village" class="form-label">Kelurahan</label>
                                 <input class="form-control" type="text" id="village" name="village"
-                                    value="{{ $villages->firstWhere('code', $order->customer->village_code)->name ?? 'Tidak Ditemukan' }}"
+                                    value="{{ $order->customer->village()->name ?? '-' }}"
                                     readonly />
                             </div>
                             <div class="mb-3 col-md-4">
