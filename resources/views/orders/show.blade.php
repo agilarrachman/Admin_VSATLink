@@ -138,22 +138,22 @@
                             <div class="mb-3 col-md-6">
                                 <label for="province" class="form-label">Provinsi</label>
                                 <input class="form-control" type="text" id="province" name="province"
-                                    value="{{ $order->order_address?->province ?? '-' }}" readonly />
+                                    value="{{ $order->order_address->province()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="city" class="form-label">Kabupaten</label>
                                 <input class="form-control" type="text" id="city" name="city"
-                                    value="{{ $order->order_address?->city ?? '-' }}" readonly />
+                                    value="{{ $order->order_address->city()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="district" class="form-label">Kecamatan</label>
                                 <input class="form-control" type="text" id="district" name="district"
-                                    value="{{ $order->order_address?->district ?? '-' }}" readonly />
+                                    value="{{ $order->order_address->district()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="village" class="form-label">Kelurahan</label>
                                 <input class="form-control" type="text" id="village" name="village"
-                                    value="{{ $order->order_address?->village ?? '-' }}" readonly />
+                                    value="{{ $order->order_address->village()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label for="rt" class="form-label">RT</label>
@@ -168,7 +168,7 @@
                             <div class="mb-3 col-md-4">
                                 <label for="postal_code" class="form-label">Kode Pos</label>
                                 <input class="form-control" type="text" id="postal_code" name="postal_code"
-                                    value="{{ $order->order_address?->postal_code ?? '-' }}" readonly />
+                                    value="{{ $order->order_address->village()->postal_code ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3">
                                 <label for="full_address" class="form-label">Alamat Lengkap</label>
