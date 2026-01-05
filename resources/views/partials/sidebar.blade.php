@@ -23,7 +23,11 @@
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-receipt"></i>
                     <div data-i18n="Dashboards">Orders</div>
-                    <div class="badge bg-danger rounded-pill ms-auto">5</div>
+                    @if ($unconfirmedOrdersCount > 0)
+                        <div class="badge bg-danger rounded-pill ms-auto d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                            {{ $unconfirmedOrdersCount }}
+                        </div>
+                    @endif
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item {{ $page === 'order-management' ? 'active' : '' }}">
@@ -34,7 +38,11 @@
                     <li class="menu-item {{ $page === 'order-confirmation' ? 'active' : '' }}">
                         <a href="/order-confirmation" class="menu-link">
                             <div data-i18n="Analytics">Confirm Orders</div>
-                            <div class="badge bg-danger rounded-pill ms-auto">5</div>
+                            @if ($unconfirmedOrdersCount > 0)
+                                <div class="badge bg-danger rounded-pill ms-auto d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                                    {{ $unconfirmedOrdersCount }}
+                                </div>
+                            @endif
                         </a>
                     </li>
                 </ul>

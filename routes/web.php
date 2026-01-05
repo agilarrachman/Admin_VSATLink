@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,18 +12,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [SalesController::class, 'profile']);
 
     Route::middleware('role:Super Admin,Sales Admin')->group(function () {
-        Route::get('/orders', function () {
-            return view('orders.index', ['management' => 'orders', 'page' => 'order-management']);
-        });
-        Route::get('/orders/show', function () {
-            return view('orders.show', ['management' => 'orders', 'page' => 'order-management']);
-        });
-        Route::get('/orders/customer', function () {
-            return view('orders.customer', ['management' => 'orders', 'page' => 'order-management']);
-        });
-        Route::get('/order-confirmation', function () {
-            return view('orders.confirmation', ['management' => 'orders', 'page' => 'order-confirmation']);
-        });
+        Route::get('/orders', [OrderController::class, 'index']);
+        Route::get('/order-confirmation', [OrderController::class, 'indexConfirmation']);
+        Route::get('/orders/{order}', [OrderController::class, 'show']);
+        Route::get('/orders/{order}/data', [OrderController::class, 'data']);
+        Route::get('/orders/{order}/customer', [OrderController::class, 'customerShow']);
+        Route::get('/orders/{order}/customer/data', [OrderController::class, 'customerData']);
+        Route::post('/orders/confirm', [OrderController::class, 'confirm']);
+        Route::post('/orders/cancel', [OrderController::class, 'cancel']);
     });
 
     Route::middleware('role:Super Admin, Logistic Admin')->group(function () {

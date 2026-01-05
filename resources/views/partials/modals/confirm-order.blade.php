@@ -2,7 +2,8 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form action="">
+            <form action="/orders/confirm" method="POST">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold text-primary" id="confirmOrderModalLabel">
                         Konfirmasi Pesanan
@@ -17,6 +18,8 @@
                         Silakan masukkan rincian biaya yang akan dikenakan kepada pelanggan.
                         Pastikan nominal sudah sesuai sebelum melakukan konfirmasi.
                     </p>
+
+                    <input type="hidden" name="order_id" id="order_id">
 
                     <div class="input-form mb-3">
                         <label class="form-label">Biaya Layanan Instalasi</label>
@@ -37,7 +40,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Tutup
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" disabled>
                         Konfirmasi
                     </button>
                 </div>
@@ -47,21 +50,33 @@
 </div>
 
 <script>
-    document.querySelectorAll('.format-rupiah').forEach(input => {
+    const serviceInput = document.querySelector('[data-target="service_cost"]');
+    const transportInput = document.querySelector('[data-target="transport_cost"]');
+    const submitButton = document.querySelector('#confirmOrderModal button[type="submit"]');
+
+    function formatRupiah(input) {
+        let rawValue = input.value.replace(/\D/g, '');
+        const targetId = input.dataset.target;
+        document.getElementById(targetId).value = rawValue;
+
+        if (rawValue) {
+            input.value = rawValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        } else {
+            input.value = '';
+        }
+    }
+
+    function toggleSubmit() {
+        const serviceValue = document.getElementById('service_cost').value;
+        const transportValue = document.getElementById('transport_cost').value;
+
+        submitButton.disabled = !(serviceValue && transportValue);
+    }
+
+    [serviceInput, transportInput].forEach(input => {
         input.addEventListener('input', function() {
-            // Ambil angka saja
-            let rawValue = this.value.replace(/\D/g, '');
-
-            // Simpan ke input hidden (tanpa titik)
-            const targetId = this.dataset.target;
-            document.getElementById(targetId).value = rawValue;
-
-            // Format tampilan ribuan
-            if (rawValue) {
-                this.value = rawValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            } else {
-                this.value = '';
-            }
+            formatRupiah(this);
+            toggleSubmit();
         });
     });
 </script>

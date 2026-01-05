@@ -9,42 +9,36 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="fw-bold text-primary">Informasi Perusahaan</p>
+                <p class="fw-bold text-primary" id="label-info">Informasi</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="customer_type" class="form-label">Jenis Customer</label>
-                        <input class="form-control" type="text" id="customer_type" name="customer_type"
-                            value="PT." readonly />
+                        <input class="form-control" type="text" name="customer_type" id="customer_type" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="username" class="form-label">Username</label>
-                        <input class="form-control" type="text" name="username" id="username" value="agilarrachman"
-                            readonly />
+                        <input class="form-control" type="text" name="username" id="username" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="name" class="form-label">Nama Perusahaan</label>
-                        <input class="form-control" type="text" id="name" name="name"
-                            value="VSATLink Indonesia" readonly />
-                    </div>                    
-                    <div class="mb-3 col-md-6">
-                        <label for="fullname" class="form-label">Nama Pejabat yang Berwenang</label>
-                        <input class="form-control" type="text" id="fullname" name="fullname" value="Agil ArRachman"
-                            readonly />
+                        <label for="name" class="form-label" id="label-name">Nama</label>
+                        <input class="form-control" type="text" id="name" name="name" readonly />
+                    </div>
+                    <div class="mb-3 col-md-6 company-fields">
+                        <label for="company_representative_name" class="form-label">Nama Pejabat yang Berwenang</label>
+                        <input class="form-control" type="text" id="company_representative_name"
+                            name="company_representative_name" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="npwp" class="form-label">Nomor NPWP Perusahaan</label>
-                        <input class="form-control" type="text" id="npwp" name="npwp"
-                            value="01.000.013.1-093.000" readonly />
+                        <label for="npwp" class="form-label" id="label-npwp">Nomor NPWP</label>
+                        <input class="form-control" type="text" id="npwp" name="npwp" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="email" class="form-label">Email Perusahaan</label>
-                        <input class="form-control" type="text" id="email" name="email"
-                            value="agilarrachman@example.com" placeholder="agilarrachman@example.com" readonly />
+                        <label for="email" class="form-label" id="label-email">Email</label>
+                        <input class="form-control" type="text" id="email" name="email" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="phone" class="form-label">Nomor Telepon Perusahaan</label>
-                        <input type="number" class="form-control" id="phone" name="phone" value="081332303211"
-                            readonly />
+                        <label for="phone" class="form-label" id="label-phone">Nomor Telepon</label>
+                        <input type="number" class="form-control" id="phone" name="phone" readonly />
                     </div>
                 </div>
 
@@ -52,80 +46,74 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="sales" class="form-label">Sales Pendamping</label>
-                        <input class="form-control" type="text" id="sales" name="sales"
-                            value="Nasihuy Setiawan" readonly />
+                        <input class="form-control" type="text" id="sales" name="sales" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="role" class="form-label">Sumber Informasi</label>
-                        <input class="form-control" type="text" id="role" name="role" value="Media Sosial"
+                        <label for="source_information" class="form-label">Sumber Informasi</label>
+                        <input class="form-control" type="text" id="source_information" name="source_information"
                             readonly />
                     </div>
                 </div>
 
-                <p class="fw-bold text-primary">Alamat Perusahaan</p>
+                <p class="fw-bold text-primary" id="label-address">Alamat</p>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label for="province" class="form-label">Provinsi</label>
-                        <input class="form-control" type="text" id="province" name="province" value="Jawa Barat"
-                            readonly />
+                        <input class="form-control" type="text" id="province" name="province" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="city" class="form-label">Kabupaten</label>
-                        <input class="form-control" type="text" id="city" name="city" value="Kota Bogor"
-                            readonly />
+                        <input class="form-control" type="text" id="city" name="city" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="district" class="form-label">Kecamatan</label>
-                        <input class="form-control" type="text" id="district" name="district"
-                            value="Bogor Tengah" readonly />
+                        <input class="form-control" type="text" id="district" name="district" readonly />
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="village" class="form-label">Kelurahan</label>
-                        <input class="form-control" type="text" id="village" name="village" value="Tegallega"
-                            readonly />
+                        <input class="form-control" type="text" id="village" name="village" readonly />
                     </div>
                     <div class="mb-3 col-md-4">
                         <label for="rt" class="form-label">RT</label>
-                        <input class="form-control" type="text" id="rt" name="rt" value="3"
-                            readonly />
+                        <input class="form-control" type="text" id="rt" name="rt" readonly />
                     </div>
                     <div class="mb-3 col-md-4">
                         <label for="rw" class="form-label">RW</label>
-                        <input class="form-control" type="text" id="rw" name="rw" value="4"
-                            readonly />
+                        <input class="form-control" type="text" id="rw" name="rw" readonly />
                     </div>
                     <div class="mb-3 col-md-4">
                         <label for="postal_code" class="form-label">Kode Pos</label>
-                        <input class="form-control" type="text" id="postal_code" name="postal_code"
-                            value="12345" readonly />
+                        <input class="form-control" type="text" id="postal_code" name="postal_code" readonly />
                     </div>
                     <div class="mb-3">
                         <label for="full_address" class="form-label">Alamat Lengkap</label>
-                        <textarea name="full_address" id="full_address" class="form-control" style="min-height: 160px;">Jalan Sudirman No 19</textarea>
+                        <textarea name="full_address" id="full_address" class="form-control" style="min-height: 160px;"></textarea>
                     </div>
                 </div>
-                
-                <p class="fw-bold text-primary">Narahubung Perusahaan</p>
-                <div class="row">
-                    <div class="mb-3 col-md-6">
-                        <label for="contact_name" class="form-label">Nama Narahubung</label>
-                        <input class="form-control" type="text" id="contact_name" name="contact_name"
-                            value="Agil Musthafa" readonly />
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="contact_email" class="form-label">Email Narahubung</label>
-                        <input class="form-control" type="text" id="contact_email" name="contact_email"
-                            value="agilarrachman@example.com" readonly />
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="contact_phone" class="form-label">Nomor Telepon Narahubung</label>
-                        <input type="number" class="form-control" id="contact_phone" name="contact_phone"
-                            value="081332303211" readonly />
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="contact_position" class="form-label">Jabatan Narahubung</label>
-                        <input class="form-control" type="text" id="contact_position" name="contact_position"
-                            value="Head of Finance" readonly />
+
+                <div class="contact-fields" id="contact-fields">
+                    <p class="fw-bold text-primary">Narahubung Perusahaan</p>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="contact_name" class="form-label">Nama Narahubung</label>
+                            <input class="form-control" type="text" id="contact_name" name="contact_name"
+                                readonly />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="contact_email" class="form-label">Email Narahubung</label>
+                            <input class="form-control" type="text" id="contact_email" name="contact_email"
+                                readonly />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="contact_phone" class="form-label">Nomor Telepon Narahubung</label>
+                            <input type="number" class="form-control" id="contact_phone" name="contact_phone"
+                                readonly />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="contact_position" class="form-label">Jabatan Narahubung</label>
+                            <input class="form-control" type="text" id="contact_position" name="contact_position"
+                                readonly />
+                        </div>
                     </div>
                 </div>
             </div>

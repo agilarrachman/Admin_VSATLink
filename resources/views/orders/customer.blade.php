@@ -9,37 +9,51 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Informasi Customer</h5>
                     <div class="card-body">
-                        <p class="fw-bold text-primary">Informasi Perusahaan</p>
+                        <p class="fw-bold text-primary">Informasi
+                            {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : 'Saya' }}</p>
                         <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="customer_type" class="form-label">Jenis Customer</label>
+                                <input class="form-control" type="text" name="customer_type" id="customer_type"
+                                    value="{{ $order->customer->customer_type }}" readonly />
+                            </div>
                             <div class="mb-3 col-md-6">
                                 <label for="username" class="form-label">Username</label>
                                 <input class="form-control" type="text" name="username" id="username"
-                                    value="agilarrachman" readonly />
+                                    value="{{ $order->customer->username }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="company_name" class="form-label">Nama Perusahaan</label>
-                                <input class="form-control" type="text" id="company_name" name="company_name"
-                                    value="PT. VSATLink Indonesia" readonly />
+                                <label for="name" class="form-label">Nama
+                                    {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : 'Lengkap' }}</label>
+                                <input class="form-control" type="text" id="name" name="name"
+                                    value="{{ $order->customer->name }}" readonly />
                             </div>
+                            @if ($order->customer->customer_type != 'Perorangan')
+                                <div class="mb-3 col-md-6">
+                                    <label for="company_representative_name" class="form-label">Nama Pejabat yang
+                                        Berwenang</label>
+                                    <input class="form-control" type="text" id="company_representative_name"
+                                        name="company_representative_name"
+                                        value="{{ $order->customer->company_representative_name }}" readonly />
+                                </div>
+                            @endif
                             <div class="mb-3 col-md-6">
-                                <label for="fullname" class="form-label">Nama Pejabat yang Berwenang</label>
-                                <input class="form-control" type="text" id="fullname" name="fullname"
-                                    value="Agil ArRachman" readonly />
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="npwp" class="form-label">Nomor NPWP Perusahaan</label>
+                                <label for="npwp" class="form-label">Nomor NPWP
+                                    {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : '' }}</label>
                                 <input class="form-control" type="text" id="npwp" name="npwp"
-                                    value="01.000.013.1-093.000" readonly />
+                                    value="{{ $order->customer->npwp }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Email Perusahaan</label>
+                                <label for="email" class="form-label">Email
+                                    {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : '' }}</label>
                                 <input class="form-control" type="text" id="email" name="email"
-                                    value="agilarrachman@example.com" placeholder="agilarrachman@example.com" readonly />
+                                    value="{{ $order->customer->email }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="phone" class="form-label">Nomor Telepon Perusahaan</label>
+                                <label for="phone" class="form-label">Nomor Telepon
+                                    {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : '' }}</label>
                                 <input type="number" class="form-control" id="phone" name="phone"
-                                    value="081332303211" readonly />
+                                    value="{{ $order->customer->phone }}" readonly />
                             </div>
                         </div>
 
@@ -48,81 +62,89 @@
                             <div class="mb-3 col-md-6">
                                 <label for="sales" class="form-label">Sales Pendamping</label>
                                 <input class="form-control" type="text" id="sales" name="sales"
-                                    value="Nasihuy Setiawan" readonly />
+                                    value="{{ $order->customer->sales->name }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="role" class="form-label">Sumber Informasi</label>
-                                <input class="form-control" type="text" id="role" name="role"
-                                    value="Media Sosial" readonly />
+                                <label for="source_information" class="form-label">Sumber Informasi</label>
+                                <input class="form-control" type="text" id="source_information" name="source_information"
+                                    value="{{ $order->customer->source_information }}" readonly />
                             </div>
                         </div>
 
-                        <p class="fw-bold text-primary">Alamat Perusahaan</p>
+                        <p class="fw-bold text-primary">Alamat
+                            {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : 'Saya' }}</p>
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label for="province" class="form-label">Provinsi</label>
-                                <input class="form-control" type="text" id="province" name="province" value="Jawa Barat"
+                                <input class="form-control" type="text" id="province" name="province"
+                                    value="{{ $provinces->firstWhere('code', $order->customer->province_code)->name ?? 'Tidak Ditemukan' }}"
                                     readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="city" class="form-label">Kabupaten</label>
-                                <input class="form-control" type="text" id="city" name="city" value="Kota Bogor"
+                                <input class="form-control" type="text" id="city" name="city"
+                                    value="{{ $cities->firstWhere('code', $order->customer->city_code)->name ?? 'Tidak Ditemukan' }}"
                                     readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="district" class="form-label">Kecamatan</label>
                                 <input class="form-control" type="text" id="district" name="district"
-                                    value="Bogor Tengah" readonly />
+                                    value="{{ $districts->firstWhere('code', $order->customer->district_code)->name ?? 'Tidak Ditemukan' }}"
+                                    readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="village" class="form-label">Kelurahan</label>
                                 <input class="form-control" type="text" id="village" name="village"
-                                    value="Tegallega" readonly />
+                                    value="{{ $villages->firstWhere('code', $order->customer->village_code)->name ?? 'Tidak Ditemukan' }}"
+                                    readonly />
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label for="rt" class="form-label">RT</label>
-                                <input class="form-control" type="text" id="rt" name="rt" value="3"
-                                    readonly />
+                                <input class="form-control" type="text" id="rt" name="rt"
+                                    value="{{ $order->customer->rt }}" readonly />
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label for="rw" class="form-label">RW</label>
-                                <input class="form-control" type="text" id="rw" name="rw" value="4"
-                                    readonly />
+                                <input class="form-control" type="text" id="rw" name="rw"
+                                    value="{{ $order->customer->rw }}" readonly />
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label for="postal_code" class="form-label">Kode Pos</label>
                                 <input class="form-control" type="text" id="postal_code" name="postal_code"
-                                    value="12345" readonly />
+                                    value="{{ $order->customer->postal_code }}" readonly />
                             </div>
                             <div class="mb-3">
                                 <label for="full_address" class="form-label">Alamat Lengkap</label>
-                                <textarea name="full_address" id="full_address" class="form-control" style="min-height: 160px;">Jalan Sudirman No 19</textarea>
+                                <textarea name="full_address" id="full_address" class="form-control" style="min-height: 160px;">{{ $order->customer->full_address }}</textarea>
                             </div>
                         </div>
 
-                        <p class="fw-bold text-primary">Narahubung Perusahaan</p>
-                        <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label for="contact_name" class="form-label">Nama Narahubung</label>
-                                <input class="form-control" type="text" id="contact_name" name="contact_name"
-                                    value="Agil Musthafa" readonly />
+                        @if ($order->customer->customer_type != 'Perorangan')
+                            <p class="fw-bold text-primary">Narahubung Perusahaan</p>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="contact_name" class="form-label">Nama Narahubung</label>
+                                    <input class="form-control" type="text" id="contact_name" name="contact_name"
+                                        value="{{ $order->customer->contact_name }}" readonly />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="contact_email" class="form-label">Email Narahubung</label>
+                                    <input class="form-control" type="text" id="contact_email" name="contact_email"
+                                        value="{{ $order->customer->contact_email }}" readonly />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="contact_phone" class="form-label">Nomor Telepon Narahubung</label>
+                                    <input type="number" class="form-control" id="contact_phone" name="contact_phone"
+                                        value="{{ $order->customer->contact_phone }}" readonly />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="contact_position" class="form-label">Jabatan Narahubung</label>
+                                    <input class="form-control" type="text" id="contact_position"
+                                        name="contact_position" value="{{ $order->customer->contact_position }}"
+                                        readonly />
+                                </div>
                             </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="contact_email" class="form-label">Email Narahubung</label>
-                                <input class="form-control" type="text" id="contact_email" name="contact_email"
-                                    value="agilarrachman@example.com" readonly />
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="contact_phone" class="form-label">Nomor Telepon Narahubung</label>
-                                <input type="number" class="form-control" id="contact_phone" name="contact_phone"
-                                    value="081332303211" readonly />
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="contact_position" class="form-label">Jabatan Narahubung</label>
-                                <input class="form-control" type="text" id="contact_position" name="contact_position"
-                                    value="Head of Finance" readonly />
-                            </div>
-                        </div>
+                        @endif
 
                         <div class="mt-2">
                             <button type="button" class="btn btn-outline-secondary"

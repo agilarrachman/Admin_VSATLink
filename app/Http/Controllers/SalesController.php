@@ -11,14 +11,7 @@ class SalesController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-
-        // Log info role user saat mengakses index
-        Log::info('User mengakses index', [
-            'id' => $user->id,
-            'username' => $user->username,
-            'role' => $user->role
-        ]);
+        $user = Auth::user();        
 
         if ($user->role === 'Super Admin') {
             Log::info('Redirect ke /orders');
