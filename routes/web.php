@@ -18,6 +18,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orders/{order}/data', [OrderController::class, 'data']);
         Route::get('/orders/{order}/customer', [OrderController::class, 'customerShow']);
         Route::get('/orders/{order}/customer/data', [OrderController::class, 'customerData']);
+        Route::get('/download/npwp/{order}', [OrderController::class, 'npwpDownload']);
+        Route::get('/download/nib/{order}', [OrderController::class, 'nibDownload']);
+        Route::get('/download/sk/{order}', [OrderController::class, 'skDownload']);
         Route::post('/orders/confirm', [OrderController::class, 'confirm']);
         Route::post('/orders/cancel', [OrderController::class, 'cancel']);
     });

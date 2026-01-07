@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Customer;
 use App\Models\OrderStatusHistory;
 use Illuminate\Support\Facades\DB;
 use Laravolt\Indonesia\Facade as Indonesia;
@@ -134,6 +135,39 @@ class OrderController extends Controller
                 'contact_position' => $customer->contact_position,
             ] : null,
         ]);
+    }
+
+    public function npwpDownload(Order $order)
+    {
+        $customer = $order->customer()->first();
+        $customerUrl = config('app.customer_url');
+        $filename = basename($customer->npwp_document_url);
+
+        return redirect()->away(
+            $customerUrl . '/download/dokumen/' . $filename
+        );
+    }
+
+    public function nibDownload(Order $order)
+    {
+        $customer = $order->customer()->first();
+        $customerUrl = config('app.customer_url');
+        $filename = basename($customer->nib_document_url);
+
+        return redirect()->away(
+            $customerUrl . '/download/dokumen/' . $filename
+        );
+    }
+
+    public function skDownload(Order $order)
+    {
+        $customer = $order->customer()->first();
+        $customerUrl = config('app.customer_url');
+        $filename = basename($customer->sk_document_url);
+
+        return redirect()->away(
+            $customerUrl . '/download/dokumen/' . $filename
+        );
     }
 
     public function confirm(Request $request)

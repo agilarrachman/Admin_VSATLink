@@ -116,6 +116,37 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="document-fields" id="document-fields">
+                    <p class="fw-bold text-primary" id="label-document">Dokumen Legalitas</p>
+                    <div class="row">
+                        <div class="mb-3 col-md-6 d-flex flex-column">
+                            <label class="mb-2 font-medium">NPWP</label>
+                            <a href="#" target="_blank" class="btn btn-primary btn-download-npwp"
+                                style="width: fit-content">
+                                Unduh PDF
+                            </a>
+                        </div>
+                        <div class="company-fields col-md-6">
+                            <div class="mb-3 d-flex flex-column">
+                                <label class="mb-2 font-medium">NIB</label>
+                                <a href="#" target="_blank" class="btn btn-primary btn-download-nib"
+                                    style="width: fit-content">
+                                    Unduh PDF
+                                </a>
+                            </div>
+                        </div>
+                        <div class="company-fields">
+                            <div class="company-fields mb-3 d-flex flex-column">
+                                <label class="mb-2 font-medium">SK Kemenkumham Akta Pendirian</label>
+                                <a href="#" target="_blank" class="btn btn-primary btn-download-sk"
+                                    style="width: fit-content">
+                                    Unduh PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

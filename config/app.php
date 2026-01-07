@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'customer_url' => env('CUSTOMER_URL', ''),
 ];
