@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/download/sk/{order}', [OrderController::class, 'skDownload']);
         Route::post('/orders/confirm', [OrderController::class, 'confirm']);
         Route::post('/orders/cancel', [OrderController::class, 'cancel']);
+        Route::get('/download/invoice/{order}', [OrderController::class, 'downloadInvoice']);
     });
 
     Route::middleware('role:Super Admin, Logistic Admin')->group(function () {
