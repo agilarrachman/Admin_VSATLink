@@ -77,26 +77,22 @@
                             <div class="mb-3 col-md-6">
                                 <label for="province" class="form-label">Provinsi</label>
                                 <input class="form-control" type="text" id="province" name="province"
-                                    value="{{ $order->customer->province()->name ?? '-' }}"
-                                    readonly />
+                                    value="{{ $order->customer->province()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="city" class="form-label">Kabupaten</label>
                                 <input class="form-control" type="text" id="city" name="city"
-                                    value="{{ $order->customer->city()->name ?? '-' }}"
-                                    readonly />
+                                    value="{{ $order->customer->city()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="district" class="form-label">Kecamatan</label>
                                 <input class="form-control" type="text" id="district" name="district"
-                                    value="{{ $order->customer->district()->name ?? '-' }}"
-                                    readonly />
+                                    value="{{ $order->customer->district()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="village" class="form-label">Kelurahan</label>
                                 <input class="form-control" type="text" id="village" name="village"
-                                    value="{{ $order->customer->village()->name ?? '-' }}"
-                                    readonly />
+                                    value="{{ $order->customer->village()->name ?? '-' }}" readonly />
                             </div>
                             <div class="mb-3 col-md-4">
                                 <label for="rt" class="form-label">RT</label>
@@ -145,6 +141,33 @@
                                 </div>
                             </div>
                         @endif
+
+                        <p class="fw-bold text-primary">Dokumen Legalitas
+                            {{ $order->customer->customer_type != 'Perorangan' ? 'Perusahaan' : 'Saya' }}</p>
+                        <div class="row">
+                            <div class="mb-3 col-md-4 d-flex flex-column">
+                                <label class="mb-2 font-medium">NPWP</label>
+                                <a href="/download/npwp/{{ $order->unique_order }}" target="_blank"
+                                    class="btn btn-primary" style="width: fit-content">
+                                    Unduh PDF
+                                </a>
+                            </div>
+                            <div class="mb-3 col-md-4 d-flex flex-column">
+                                <label class="mb-2 font-medium">NIB</label>
+                                <a href="/download/nib/{{ $order->unique_order }}" target="_blank"
+                                    class="btn btn-primary" style="width: fit-content">
+                                    Unduh PDF
+                                </a>
+                            </div>
+
+                            <div class="mb-3 col-md-4 d-flex flex-column">
+                                <label class="mb-2 font-medium">SK Kemenkumham Akta Pendirian</label>
+                                <a href="/download/sk/{{ $order->unique_order }}" target="_blank"
+                                    class="btn btn-primary" style="width: fit-content">
+                                    Unduh PDF
+                                </a>
+                            </div>
+                        </div>
 
                         <div class="mt-2">
                             <button type="button" class="btn btn-outline-secondary"

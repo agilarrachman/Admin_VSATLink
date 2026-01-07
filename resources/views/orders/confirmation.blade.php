@@ -118,6 +118,15 @@
 
         $(document).on('click', '.btn-customer', function() {
             let orderId = $(this).data('order-id');
+            let modal = $('#customerModal');
+            
+            modal.data('order-id', orderId);
+            modal.find('.btn-download-npwp')
+                .attr('href', '/download/npwp/' + orderId);
+            modal.find('.btn-download-nib')
+                .attr('href', '/download/nib/' + orderId);
+            modal.find('.btn-download-sk')
+                .attr('href', '/download/sk/' + orderId);
 
             $.ajax({
                 url: '/orders/' + orderId + '/customer/data',
@@ -137,6 +146,7 @@
 
                         $('#label-address').text('Alamat Perusahaan');
                         $('.contact-fields').show();
+                        $('#label-document').text('Dokumen Legalitas Perusahaan');
                     } else {
                         $('#label-info').text('Informasi Saya');
                         $('#label-name').text('Nama Lengkap');
@@ -147,6 +157,7 @@
 
                         $('#label-address').text('Alamat Saya');
                         $('.contact-fields').hide();
+                        $('#label-document').text('Dokumen Legalitas Saya');
                     }
 
                     $('#customer_type').val(cs.customer_type);
