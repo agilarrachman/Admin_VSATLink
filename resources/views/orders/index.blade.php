@@ -43,8 +43,11 @@
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}/customer"><i
                                                     class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i
-                                                    class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                            @if ($order->invoice_document_url != null)
+                                                <a class="dropdown-item"
+                                                    href="/download/invoice/{{ $order->unique_order }}">
+                                                    <i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

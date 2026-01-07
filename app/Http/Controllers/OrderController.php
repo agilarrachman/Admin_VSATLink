@@ -6,12 +6,11 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\OrderStatusHistory;
-use Illuminate\Support\Facades\DB;
-use Laravolt\Indonesia\Facade as Indonesia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -211,12 +210,14 @@ class OrderController extends Controller
         return back()->with('success', 'Pesanan berhasil dibatalkan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
+    public function downloadInvoice(Order $order)
     {
-        //
+        $customerUrl = config('app.customer_url');
+        $filename = basename($order->invoice_document_url);
+        
+        return redirect()->away(
+            $customerUrl . '/download/invoice/' . $filename
+        );
     }
 
     /**
