@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string('payment_method', 255)->nullable();
             $table->boolean('payment_success')->default(false);
             $table->timestamp('payment_date')->nullable();
-            $table->string('payment_url', 255)->nullable();
+            $table->string('midtrans_order_id', 255)->nullable();
+            $table->string('payment_token', 255)->nullable();
             $table->string('invoice_document_url', 255)->nullable();
             $table->string('jne_tracking_number', 255)->nullable();
             $table->timestamps();
