@@ -95,6 +95,26 @@ class Order extends Model
         };
     }
 
+    public static function unconfirmedOrdersCount()
+    {
+        return self::where('current_status_id', 1)
+            ->count();
+    }
+
+    public static function logisticsExpeditionPendingCount()
+    {
+        return self::where('current_status_id', 4)
+            ->where('shipping', 'JNE')
+            ->count();
+    }
+    
+    public static function logisticsPickupPendingCount()
+    {
+        return self::where('current_status_id', 4)
+            ->where('shipping', 'Ambil Ditempat')
+            ->count();
+    }
+
     public static function getAllOrders()
     {
         return self::latest()
@@ -124,12 +144,6 @@ class Order extends Model
             ->get();
     }
 
-    public static function unconfirmedOrdersCount()
-    {
-        return self::where('current_status_id', 1)
-            ->count();
-    }
-
     public static function confirmOrder($user, $orderId, $serviceCost, $transportCost)
     {
         $order = self::findOrFail($orderId);
@@ -153,7 +167,7 @@ class Order extends Model
 
     public static function cancelOrder($user, $orderId, $reason)
     {
-        $order = self::findOrFail($orderId);        
+        $order = self::findOrFail($orderId);
 
         DB::transaction(function () use ($user, $order, $reason) {
             $order->current_status_id = 8;

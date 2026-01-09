@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sales;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
-class SalesController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();        
+        $user = Auth::user();
 
         if ($user->role === 'Super Admin') {
             // Log::info('Redirect ke /orders');
@@ -66,6 +65,17 @@ class SalesController extends Controller
 
     public function profile()
     {
-        return view('profile', ['management' => 'profile', 'page' => 'profile']);
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        
+        return view('profile', [
+            'management' => 'profile', 
+            'page' => 'profile',
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+        ]);
     }
 }

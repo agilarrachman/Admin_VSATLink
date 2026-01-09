@@ -12,19 +12,35 @@ class LogisticController extends Controller
      */
     public function indexExpedition()
     {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
         return view('logistics.index-expedition', [
             'management' => 'logistics',
             'page' => 'logistic-expedition',
             'orders' => Order::getAllExpeditionOrders(),
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
         ]);
     }
 
     public function indexPickup()
     {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
         return view('logistics.index-pickup', [
             'management' => 'logistics',
             'page' => 'logistic-pickup',
             'orders' => Order::getAllPickupOrders(),
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
         ]);
     }
 

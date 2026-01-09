@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Order;
-use App\Models\Sales;
+use App\Models\Admin;
 use Illuminate\Auth\Access\Response;
 
 class OrderPolicy
@@ -11,7 +11,7 @@ class OrderPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(Sales $sales): bool
+    public function viewAny(Admin $admin): bool
     {
         return false;
     }
@@ -19,7 +19,7 @@ class OrderPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(Sales $sales, Order $order): bool
+    public function view(Admin $admin, Order $order): bool
     {
         return false;
     }
@@ -27,7 +27,7 @@ class OrderPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(Sales $sales): bool
+    public function create(Admin $admin): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class OrderPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(Sales $sales, Order $order): bool
+    public function update(Admin $admin, Order $order): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class OrderPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(Sales $sales, Order $order): bool
+    public function delete(Admin $admin, Order $order): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class OrderPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(Sales $sales, Order $order): bool
+    public function restore(Admin $admin, Order $order): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class OrderPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(Sales $sales, Order $order): bool
+    public function forceDelete(Admin $admin, Order $order): bool
     {
         return false;
     }

@@ -1,16 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [SalesController::class, 'signin'])->name('login');
-Route::post('/signin', [SalesController::class, 'authenticate']);
+Route::get('/login', [AdminController::class, 'signin'])->name('login');
+Route::post('/signin', [AdminController::class, 'authenticate']);
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [SalesController::class, 'index']);
-    Route::post('/signout', [SalesController::class, 'signout']);
-    Route::post('/profile', [SalesController::class, 'profile']);
+    Route::get('/', [AdminController::class, 'index']);
+    Route::post('/signout', [AdminController::class, 'signout']);
+    Route::get('/profile', [AdminController::class, 'profile']);
     Route::get('/orders/{order}', [OrderController::class, 'show']);
     Route::get('/orders/{order}/customer', [OrderController::class, 'customerShow']);
     Route::get('/download/npwp/{order}', [OrderController::class, 'npwpDownload']);
