@@ -60,8 +60,8 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return view('orders.show', [
-            'management' => 'orders',
-            'page' => 'order-management',
+            'management' => 'general',
+            'page' => 'general',
             'order' => $order,
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id)
@@ -93,8 +93,8 @@ class OrderController extends Controller
     {
 
         return view('orders.customer', [
-            'management' => 'orders',
-            'page' => 'order-management',
+            'management' => 'general',
+            'page' => 'general',
             'order' => $order,
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
         ]);

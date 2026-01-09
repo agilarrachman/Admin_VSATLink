@@ -56,13 +56,13 @@
                     <div class="badge bg-danger rounded-pill ms-auto">5</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="/logistics" class="menu-link">
+                    <li class="menu-item {{ $page === 'logistic-expedition' ? 'active' : '' }}">
+                        <a href="/logistics/expedition" class="menu-link">
                             <div data-i18n="Analytics">Expedition Orders</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="/" class="menu-link">
+                    <li class="menu-item {{ $page === 'logistic-pickup' ? 'active' : '' }}">
+                        <a href="/logistics/pickup" class="menu-link">
                             <div data-i18n="Analytics">Pickup Orders</div>
                         </a>
                     </li>

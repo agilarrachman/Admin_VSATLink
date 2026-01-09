@@ -14,21 +14,21 @@ class SalesController extends Controller
         $user = Auth::user();        
 
         if ($user->role === 'Super Admin') {
-            Log::info('Redirect ke /orders');
+            // Log::info('Redirect ke /orders');
             return redirect('/orders');
         } elseif ($user->role === 'Sales Admin') {
-            Log::info('Redirect ke /orders');
+            // Log::info('Redirect ke /orders');
             return redirect('/orders');
         } elseif ($user->role === 'Logistic Admin') {
-            Log::info('Redirect ke /logistics');
-            return redirect('/logistics');
+            // Log::info('Redirect ke /logistics');
+            return redirect('/logistics/expedition');
         } elseif ($user->role === 'Service Activation Admin') {
-            Log::info('Redirect ke /service-activation');
+            // Log::info('Redirect ke /service-activation');
             return redirect('/service-activation');
         } else {
-            Log::warning('Role tidak dikenal, redirect ke /login', [
-                'role' => $user->role
-            ]);
+            // Log::warning('Role tidak dikenal, redirect ke /login', [
+            //     'role' => $user->role
+            // ]);
             return redirect('/login');
         }
     }

@@ -68,8 +68,20 @@ class Order extends Model
                 'label' => 'Belum Dibayar',
                 'class' => 'bg-label-warning',
             ],
+            4 => [
+                'label' => 'Sudah Dibayar',
+                'class' => 'bg-label-info',
+            ],
+            5 => [
+                'label' => 'Dikirim',
+                'class' => 'bg-label-info',
+            ],
+            6 => [
+                'label' => 'Siap Diambil',
+                'class' => 'bg-label-info',
+            ],
             7 => [
-                'label' => 'Selesai',
+                'label' => 'Diterima',
                 'class' => 'bg-label-success',
             ],
             8 => [
@@ -92,6 +104,22 @@ class Order extends Model
     public static function getAllConfirmationOrders()
     {
         return self::where('current_status_id', 1)
+            ->latest()
+            ->get();
+    }
+
+    public static function getAllExpeditionOrders()
+    {
+        return self::whereIn('current_status_id', [4, 5, 6, 7])
+            ->where('shipping', 'JNE')
+            ->latest()
+            ->get();
+    }
+
+    public static function getAllPickupOrders()
+    {
+        return self::whereIn('current_status_id', [4, 5, 6, 7])
+            ->where('shipping', 'Ambil Ditempat')
             ->latest()
             ->get();
     }
