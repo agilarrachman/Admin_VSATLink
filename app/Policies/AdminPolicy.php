@@ -2,16 +2,15 @@
 
 namespace App\Policies;
 
-use App\Models\Sales;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Auth\Access\Response;
 
-class SalesPolicy
+class AdminPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Admin $admin): bool
     {
         return false;
     }
@@ -19,7 +18,7 @@ class SalesPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Sales $sales): bool
+    public function view(Admin $admin): bool
     {
         return false;
     }
@@ -27,7 +26,7 @@ class SalesPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(Admin $admin): bool
     {
         return false;
     }
@@ -35,7 +34,7 @@ class SalesPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Sales $sales): bool
+    public function update(Admin $admin): bool
     {
         return false;
     }
@@ -43,7 +42,7 @@ class SalesPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Sales $sales): bool
+    public function delete(Admin $admin): bool
     {
         return false;
     }
@@ -51,7 +50,7 @@ class SalesPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Sales $sales): bool
+    public function restore(Admin $admin): bool
     {
         return false;
     }
@@ -59,7 +58,7 @@ class SalesPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Sales $sales): bool
+    public function forceDelete(Admin $admin): bool
     {
         return false;
     }

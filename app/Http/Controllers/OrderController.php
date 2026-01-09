@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Customer;
 use App\Models\OrderStatusHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
@@ -20,21 +18,35 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
         return view('orders.index', [
             'management' => 'orders',
             'page' => 'order-management',
             'orders' => Order::getAllOrders(),
+
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
         ]);
     }
 
     public function indexConfirmation()
     {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
         return view('orders.confirmation', [
             'management' => 'orders',
             'page' => 'order-confirmation',
             'orders' => Order::getAllConfirmationOrders(),
+
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
         ]);
     }
 
@@ -59,12 +71,19 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
         return view('orders.show', [
-            'management' => 'orders',
-            'page' => 'order-management',
+            'management' => 'general',
+            'page' => 'general',
             'order' => $order,
+            'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id),
+
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
-            'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id)
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
         ]);
     }
 
@@ -91,12 +110,18 @@ class OrderController extends Controller
 
     public function customerShow(Order $order)
     {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
 
         return view('orders.customer', [
-            'management' => 'orders',
-            'page' => 'order-management',
+            'management' => 'general',
+            'page' => 'general',
             'order' => $order,
+
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
         ]);
     }
 
@@ -248,7 +273,7 @@ class OrderController extends Controller
     {
         $customerUrl = config('app.customer_url');
         $filename = basename($order->invoice_document_url);
-        
+
         return redirect()->away(
             $customerUrl . '/download/invoice/' . $filename
         );

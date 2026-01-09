@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        DB::table('sales')->insert([
+        DB::table('admins')->insert([
             [
                 'profile_picture' => 'profile_pictures/1.png',
                 'username' => 'superadmin',
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
                 'profile_picture' => 'profile_pictures/2.png',
                 'username' => 'logisticadmin',
                 'name' => 'Andi Pratama',
-                'email' => 'logistic@vsatlink.co.id',
+                'email' => 'agilarrachman@apps.ipb.ac.id',
                 'password' => Hash::make('password123'),
                 'phone' => '6281333333333',
                 'gender' => 'Pria',

@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\ActivationAddress;
-use App\Models\Sales;
+use App\Models\Admin;
 use Illuminate\Auth\Access\Response;
 
 class ActivationAddressPolicy
@@ -11,7 +11,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(Sales $sales): bool
+    public function viewAny(Admin $admin): bool
     {
         return false;
     }
@@ -19,7 +19,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(Sales $sales, ActivationAddress $activationAddress): bool
+    public function view(Admin $admin, ActivationAddress $activationAddress): bool
     {
         return false;
     }
@@ -27,7 +27,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(Sales $sales): bool
+    public function create(Admin $admin): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(Sales $sales, ActivationAddress $activationAddress): bool
+    public function update(Admin $admin, ActivationAddress $activationAddress): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(Sales $sales, ActivationAddress $activationAddress): bool
+    public function delete(Admin $admin, ActivationAddress $activationAddress): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(Sales $sales, ActivationAddress $activationAddress): bool
+    public function restore(Admin $admin, ActivationAddress $activationAddress): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class ActivationAddressPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(Sales $sales, ActivationAddress $activationAddress): bool
+    public function forceDelete(Admin $admin, ActivationAddress $activationAddress): bool
     {
         return false;
     }

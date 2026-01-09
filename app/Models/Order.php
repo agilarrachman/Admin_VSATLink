@@ -68,8 +68,20 @@ class Order extends Model
                 'label' => 'Belum Dibayar',
                 'class' => 'bg-label-warning',
             ],
+            4 => [
+                'label' => 'Sudah Dibayar',
+                'class' => 'bg-label-info',
+            ],
+            5 => [
+                'label' => 'Dikirim',
+                'class' => 'bg-label-info',
+            ],
+            6 => [
+                'label' => 'Siap Diambil',
+                'class' => 'bg-label-info',
+            ],
             7 => [
-                'label' => 'Selesai',
+                'label' => 'Diterima',
                 'class' => 'bg-label-success',
             ],
             8 => [
@@ -81,6 +93,26 @@ class Order extends Model
                 'class' => 'bg-label-info',
             ],
         };
+    }
+
+    public static function unconfirmedOrdersCount()
+    {
+        return self::where('current_status_id', 1)
+            ->count();
+    }
+
+    public static function logisticsExpeditionPendingCount()
+    {
+        return self::where('current_status_id', 4)
+            ->where('shipping', 'JNE')
+            ->count();
+    }
+    
+    public static function logisticsPickupPendingCount()
+    {
+        return self::where('current_status_id', 4)
+            ->where('shipping', 'Ambil Ditempat')
+            ->count();
     }
 
     public static function getAllOrders()
@@ -96,10 +128,20 @@ class Order extends Model
             ->get();
     }
 
-    public static function unconfirmedOrdersCount()
+    public static function getAllExpeditionOrders()
     {
-        return self::where('current_status_id', 1)
-            ->count();
+        return self::whereIn('current_status_id', [4, 5, 6, 7])
+            ->where('shipping', 'JNE')
+            ->latest()
+            ->get();
+    }
+
+    public static function getAllPickupOrders()
+    {
+        return self::whereIn('current_status_id', [4, 5, 6, 7])
+            ->where('shipping', 'Ambil Ditempat')
+            ->latest()
+            ->get();
     }
 
     public static function confirmOrder($user, $orderId, $serviceCost, $transportCost)
@@ -125,7 +167,7 @@ class Order extends Model
 
     public static function cancelOrder($user, $orderId, $reason)
     {
-        $order = self::findOrFail($orderId);        
+        $order = self::findOrFail($orderId);
 
         DB::transaction(function () use ($user, $order, $reason) {
             $order->current_status_id = 8;

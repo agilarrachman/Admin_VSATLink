@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone', 255);
             $table->string('npwp', 255);
             $table->enum('source_information', ['Media Sosial', 'Web', 'Sales']);
-            $table->foreignId('sales_id')->references('id')->on('sales')->onDelete('cascade');
+            $table->foreignId('sales_id')->references('id')->on('admins')->onDelete('cascade');
             $table->string('province_id', 255)->references('id')->on('provinces')->onDelete('cascade');
             $table->string('city_id', 255)->references('id')->on('cities')->onDelete('cascade');
             $table->string('district_id', 255)->references('id')->on('districts')->onDelete('cascade');
