@@ -107,7 +107,7 @@ class Order extends Model
             ->where('shipping', 'JNE')
             ->count();
     }
-    
+
     public static function logisticsPickupPendingCount()
     {
         return self::where('current_status_id', 4)
@@ -173,12 +173,28 @@ class Order extends Model
             $order->current_status_id = 8;
             $order->save();
 
-            $orderStatusHistory = OrderStatusHistory::create([
+            OrderStatusHistory::create([
                 'order_status_id' => 8,
                 'order_id' => $order->id,
                 'note' => "Pesanan {$order->unique_order} dibatalkan oleh " . $user->name . " dengan alasan: " . $reason,
             ]);
         });
+
+        return $order;
+    }
+
+    public static function storeSN($orderId, $modemSN, $adaptorSN, $bucSN, $lnbSN, $routerSN, $antenaSN)
+    {
+        $order = self::findOrFail($orderId);
+
+        $order->update([
+            'modem_sn' => $modemSN,
+            'adaptor_sn' => $adaptorSN,
+            'buc_sn' => $bucSN,
+            'lnb_sn' => $lnbSN,
+            'router_sn' => $routerSN,
+            'antena_sn' => $antenaSN,
+        ]);
 
         return $order;
     }

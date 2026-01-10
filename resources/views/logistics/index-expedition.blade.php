@@ -6,6 +6,14 @@
     <div class="container-xxl grow container-p-y">
         <div class="card">
             <h5 class="card-header">Logistic Management</h5>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
@@ -21,6 +29,19 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                         @forelse ($orders as $order)
+                            @php
+                                $snFilled =
+                                    $order->modem_sn &&
+                                    $order->adaptor_sn &&
+                                    $order->buc_sn &&
+                                    $order->lnb_sn &&
+                                    $order->antena_sn;
+
+                                if (!is_null($order->product->access_point)) {
+                                    $snFilled = $snFilled && $order->router_sn;
+                                }
+                            @endphp
+
                             <tr>
                                 <td>{{ $order->unique_order }}</td>
                                 <td>{{ $order->jne_tracking_number ?? '-' }}</td>
@@ -43,10 +64,19 @@
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}/customer">
                                                 <i class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
-                                            <button type="button" class="dropdown-item btn-input-sn" data-toggle="modal"
-                                                data-target="#inputSNModal" data-order-id="{{ $order->unique_order }}">
-                                                <i class="bx bx-barcode me-1"></i>
-                                                Input Serial Number</button>
+                                            @if ($snFilled)
+                                                <a class="dropdown-item"
+                                                    href="/logistics/edit-sn/{{ $order->unique_order }}">
+                                                    <i class="bx bx-barcode me-1"></i>
+                                                    Edit Serial Number
+                                                </a>
+                                            @else
+                                                <a class="dropdown-item"
+                                                    href="/logistics/input-sn/{{ $order->unique_order }}">
+                                                    <i class="bx bx-barcode me-1"></i>
+                                                    Input Serial Number
+                                                </a>
+                                            @endif
                                             <button type="button" class="dropdown-item btn-request-pickup"
                                                 data-order-id="{{ $order->unique_order }}">
                                                 <i class="bx bxs-truck me-1"></i>
@@ -79,41 +109,4 @@
             </div>
         </div>
     </div>
-
-    @include('partials.modals.input-sn')
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).on('click', '.btn-input-sn', function() {
-            let orderId = $(this).data('order-id');
-
-            $.ajax({
-                url: '/orders/' + orderId + '/data',
-                type: 'GET',
-                success: function(res) {
-                    let o = res.order;
-                    let a = res.address;
-                    let sn = res.serial_number;
-
-                    if (o.withRouter == true) {
-                        $('#input-router').show();
-                    } else {
-                        $('#input-router').hide();
-                    }
-
-                    $('#product_image').attr('src', '/storage/' + o.product_image);
-                    $('#product_image').attr('alt', o.product_name);
-                    $('#unique_order').text('Order ID: ' + o.unique_order);
-                    $('#product_name').text(o.product_name);
-                    $('#created_at').text('Pesanan dibuat pada ' + o.created_at);
-
-                    $('#inputSNModal').find('#order_id').val(o.id);
-                },
-                error: function() {
-                    alert('Gagal mengambil data order');
-                }
-            });
-        });
-    </script>
-@endpush

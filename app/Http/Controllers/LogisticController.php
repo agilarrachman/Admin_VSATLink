@@ -44,20 +44,68 @@ class LogisticController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function inputSN(Order $order)
     {
-        //
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+        return view('logistics.input-sn', [
+            'management' => 'general',
+            'page' => 'general',
+            'order' => $order,
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function storeSN(Request $request, Order $order)
     {
-        //
+        $request->validate(
+            [
+                'modem_sn'   => 'required|min:6|max:20|unique:orders,modem_sn',
+                'adaptor_sn' => 'required|min:6|max:20|unique:orders,adaptor_sn',
+                'buc_sn'     => 'required|min:6|max:20|unique:orders,buc_sn',
+                'lnb_sn'     => 'required|min:6|max:20|unique:orders,lnb_sn',
+                'router_sn'  => 'nullable|min:6|max:20|unique:orders,router_sn',
+                'antena_sn'  => 'required|min:6|max:20|unique:orders,antena_sn',
+            ],
+            [
+                '*.unique'   => 'Serial number sudah digunakan.',
+                '*.required' => 'Serial number wajib diisi.',
+                '*.min'      => 'Serial number minimal :min karakter.',
+                '*.max'      => 'Serial number maksimal :max karakter.',
+            ]
+        );
+
+        Order::storeSN($order->id, $request->modem_sn, $request->adaptor_sn, $request->buc_sn, $request->lnb_sn, $request->router_sn, $request->antena_sn,);
+
+        if ($order->shipping === 'JNE') {
+            return redirect('/logistics/expedition')->with('success', 'Serial number perangkat berhasil disimpan.');
+        }
+
+        if ($order->shipping === 'Ambil Ditempat') {
+            return redirect('/logistics/pickup')->with('success', 'Serial number perangkat berhasil disimpan.');
+        }
+    }
+
+    public function editSN(Order $order)
+    {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+        return view('logistics.edit-sn', [
+            'management' => 'general',
+            'page' => 'general',
+            'order' => $order,
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+        ]);
     }
 
     /**

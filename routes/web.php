@@ -30,7 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('role:Super Admin, Logistic Admin')->group(function () {
         Route::get('/logistics/expedition', [LogisticController::class, 'indexExpedition']);
         Route::get('/logistics/pickup', [LogisticController::class, 'indexPickup']);
-        Route::post('/logistics/input-sn', [LogisticController::class, 'inputSN']);
+        Route::get('/logistics/input-sn/{order}', [LogisticController::class, 'inputSN']);
+        Route::post('/logistics/store-sn/{order}', [LogisticController::class, 'storeSN']);
+        Route::get('/logistics/edit-sn/{order}', [LogisticController::class, 'editSN']);
+        Route::post('/logistics/update-sn/{order}', [LogisticController::class, 'updateSN']);
     });
 
     Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {
