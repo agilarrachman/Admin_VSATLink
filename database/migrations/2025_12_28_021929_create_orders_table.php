@@ -37,6 +37,12 @@ return new class extends Migration
             $table->string('proof_of_delivery_image_url', 255)->nullable();
             $table->string('packing_list_document_url', 255)->nullable();
             $table->string('delivery_note_document_url', 255)->nullable();
+            $table->string('modem_sn', 255)->nullable();
+            $table->string('router_sn', 255)->nullable();
+            $table->string('buc_sn', 255)->nullable();
+            $table->string('lnb_sn', 255)->nullable();
+            $table->string('antena_sn', 255)->nullable();
+            $table->string('adaptor_sn', 255)->nullable();
             $table->timestamps();
         });
     }

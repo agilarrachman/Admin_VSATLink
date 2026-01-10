@@ -41,10 +41,10 @@
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}/customer">
                                                 <i class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
-                                            <a class="dropdown-item" href="javascript:void(0)">
+                                            <button type="button" class="dropdown-item btn-input-sn" data-toggle="modal"
+                                                data-target="#inputSNModal" data-order-id="{{ $order->unique_order }}">
                                                 <i class="bx bx-barcode me-1"></i>
-                                                Input Serial Number
-                                            </a>
+                                                Input Serial Number</button>
                                             <a class="dropdown-item" href="javascript:void(0)">
                                                 <i class="bx bx-package me-1"></i>
                                                 Cetak Dokumen Packing List
@@ -70,4 +70,41 @@
             </div>
         </div>
     </div>
+
+    @include('partials.modals.input-sn')
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).on('click', '.btn-input-sn', function() {
+            let orderId = $(this).data('order-id');
+
+            $.ajax({
+                url: '/orders/' + orderId + '/data',
+                type: 'GET',
+                success: function(res) {
+                    let o = res.order;
+                    let a = res.address;
+                    let sn = res.serial_number;
+
+                    if (o.withRouter == true) {
+                        $('#input-router').show();
+                    } else {
+                        $('#input-router').hide();
+                    }
+
+                    $('#product_image').attr('src', '/storage/' + o.product_image);
+                    $('#product_image').attr('alt', o.product_name);
+                    $('#unique_order').text('Order ID: ' + o.unique_order);
+                    $('#product_name').text(o.product_name);
+                    $('#created_at').text('Pesanan dibuat pada ' + o.created_at);
+
+                    $('#inputSNModal').find('#order_id').val(o.id);
+                },
+                error: function() {
+                    alert('Gagal mengambil data order');
+                }
+            });
+        });
+    </script>
+@endpush

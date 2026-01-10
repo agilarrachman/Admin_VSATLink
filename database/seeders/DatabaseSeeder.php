@@ -172,6 +172,7 @@ class DatabaseSeeder extends Seeder
                 'lnb' => 'LNB PLL Ku-Band',
                 'buc' => 'BUC 3W Ku-Band',
                 'modem' => 'Modem Hughes 2300 Series',
+                'adaptor' => 'Adaptor Modem Hughes 2300 Series',
                 'access_point' => 'Access Point Wi-Fi',
 
                 'performance_benefit_title' => 'Performa Premium',
@@ -209,6 +210,7 @@ class DatabaseSeeder extends Seeder
                 'lnb' => 'LNB PLL Ku-Band',
                 'buc' => 'BUC 3W Ku-Band',
                 'modem' => 'Modem Hughes 2300 Series',
+                'adaptor' => 'Adaptor Modem Hughes 2300 Series',
                 'access_point' => null,
 
                 'performance_benefit_title' => 'Internet Hemat',
@@ -246,6 +248,7 @@ class DatabaseSeeder extends Seeder
                 'lnb' => 'LNB PLL Ku-Band',
                 'buc' => 'BUC 6W Ku-Band',
                 'modem' => 'Modem Hughes 2010 Series',
+                'adaptor' => 'Adaptor Modem Hughes 2010 Series',
                 'access_point' => 'Access Point Industrial-grade',
 
                 'performance_benefit_title' => 'Performa Industri',
@@ -283,6 +286,7 @@ class DatabaseSeeder extends Seeder
                 'lnb' => 'LNB PLL Ku-Band',
                 'buc' => 'BUC 3W Ku-Band',
                 'modem' => 'Modem Hughes 2300 Series',
+                'adaptor' => 'Adaptor Modem Hughes 2300 Series',
                 'access_point' => 'Access Point Wi-Fi',
 
                 'performance_benefit_title' => 'Area Terpencil',
