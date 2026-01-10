@@ -108,35 +108,33 @@ class LogisticController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
+    public function updateSN(Request $request, Order $order)
     {
-        //
-    }
+        $request->validate(
+            [
+                'modem_sn'   => 'required|min:6|max:20|unique:orders,modem_sn,' . $order->id,
+                'adaptor_sn' => 'required|min:6|max:20|unique:orders,adaptor_sn,' . $order->id,
+                'buc_sn'     => 'required|min:6|max:20|unique:orders,buc_sn,' . $order->id,
+                'lnb_sn'     => 'required|min:6|max:20|unique:orders,lnb_sn,' . $order->id,
+                'router_sn'  => 'nullable|min:6|max:20|unique:orders,router_sn,' . $order->id,
+                'antena_sn'  => 'required|min:6|max:20|unique:orders,antena_sn,' . $order->id,
+            ],
+            [
+                '*.unique'   => 'Serial number sudah digunakan.',
+                '*.required' => 'Serial number wajib diisi.',
+                '*.min'      => 'Serial number minimal :min karakter.',
+                '*.max'      => 'Serial number maksimal :max karakter.',
+            ]
+        );
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
+        Order::updateSN($order->id, $request->modem_sn, $request->adaptor_sn, $request->buc_sn, $request->lnb_sn, $request->router_sn, $request->antena_sn,);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
+        if ($order->shipping === 'JNE') {
+            return redirect('/logistics/expedition')->with('success', 'Serial number perangkat berhasil diperbarui.');
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
+        if ($order->shipping === 'Ambil Ditempat') {
+            return redirect('/logistics/pickup')->with('success', 'Serial number perangkat berhasil diperbarui.');
+        }
     }
 }

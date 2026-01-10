@@ -198,4 +198,20 @@ class Order extends Model
 
         return $order;
     }
+
+    public static function updateSN($orderId, $modemSN, $adaptorSN, $bucSN, $lnbSN, $routerSN, $antenaSN)
+    {
+        $order = self::findOrFail($orderId);
+
+        $order->update([
+            'modem_sn' => $modemSN,
+            'adaptor_sn' => $adaptorSN,
+            'buc_sn' => $bucSN,
+            'lnb_sn' => $lnbSN,
+            'router_sn' => $routerSN,
+            'antena_sn' => $antenaSN,
+        ]);
+
+        return $order;
+    }
 }

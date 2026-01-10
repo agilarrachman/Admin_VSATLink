@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Input Serial Number</h5>
+                    <h5 class="card-header">Edit Serial Number</h5>
                     <div class="card-body">
                         <p class="fw-bold text-primary">Rincian Pesanan</p>
                         <div class="d-flex items-start gap-4 mb-3">
@@ -24,7 +24,8 @@
                                     {{ $order->created_at->translatedFormat('d F Y, H:i') }}</p>
                             </div>
                         </div>
-                        <form action="/logistics/store-sn/{{ $order->unique_order }}" method="POST">
+                        <form action="/logistics/update-sn/{{ $order->unique_order }}" method="POST">
+                            @method('PUT')
                             @csrf
                             <p class="mb-3">
                                 Silakan masukkan seluruh serial number perangkat pada form di bawah ini untuk
@@ -36,7 +37,7 @@
                                 <div class="input-form mb-3 col-md-6">
                                     <label class="form-label">Modem Serial Number</label>
                                     <input type="text" class="form-control @error('modem_sn') is-invalid @enderror"
-                                        name="modem_sn" id="modem_sn" value="{{ old('modem_sn') }}"
+                                        name="modem_sn" id="modem_sn" value="{{ old('modem_sn', $order->modem_sn) }}"
                                         placeholder="Masukkan serial number (6-20 karakter)" data-required />
                                     @error('modem_sn')
                                         <div class="invalid-feedback">
@@ -48,7 +49,7 @@
                                 <div class="input-form mb-3 col-md-6">
                                     <label class="form-label">Adaptor Serial Number</label>
                                     <input type="text" class="form-control @error('adaptor_sn') is-invalid @enderror"
-                                        name="adaptor_sn" id="adaptor_sn" value="{{ old('adaptor_sn') }}"
+                                        name="adaptor_sn" id="adaptor_sn" value="{{ old('adaptor_sn', $order->adaptor_sn) }}"
                                         placeholder="Masukkan serial number (6-20 karakter)" data-required />
                                     @error('adaptor_sn')
                                         <div class="invalid-feedback">
@@ -60,7 +61,7 @@
                                 <div class="input-form mb-3 col-md-6">
                                     <label class="form-label">BUC Serial Number</label>
                                     <input type="text" class="form-control @error('buc_sn') is-invalid @enderror"
-                                        name="buc_sn" id="buc_sn" value="{{ old('buc_sn') }}"
+                                        name="buc_sn" id="buc_sn" value="{{ old('buc_sn', $order->buc_sn) }}"
                                         placeholder="Masukkan serial number (6-20 karakter)" data-required />
                                     @error('buc_sn')
                                         <div class="invalid-feedback">
@@ -72,7 +73,7 @@
                                 <div class="input-form mb-3 col-md-6">
                                     <label class="form-label">LNB Serial Number</label>
                                     <input type="text" class="form-control @error('lnb_sn') is-invalid @enderror"
-                                        name="lnb_sn" id="lnb_sn" value="{{ old('lnb_sn') }}"
+                                        name="lnb_sn" id="lnb_sn" value="{{ old('lnb_sn', $order->lnb_sn) }}"
                                         placeholder="Masukkan serial number (6-20 karakter)" data-required />
                                     @error('lnb_sn')
                                         <div class="invalid-feedback">
@@ -85,7 +86,8 @@
                                     <div class="input-form mb-3 col-md-6">
                                         <label class="form-label">Router Serial Number</label>
                                         <input type="text" class="form-control @error('router_sn') is-invalid @enderror"
-                                            name="router_sn" id="router_sn" value="{{ old('router_sn') }}"
+                                            name="router_sn" id="router_sn"
+                                            value="{{ old('router_sn', $order->router_sn) }}"
                                             placeholder="Masukkan serial number (6-20 karakter)" data-required />
                                         @error('router_sn')
                                             <div class="invalid-feedback">
@@ -98,7 +100,7 @@
                                 <div class="input-form mb-3 col-md-6">
                                     <label class="form-label">Antena Serial Number</label>
                                     <input type="text" class="form-control @error('antena_sn') is-invalid @enderror"
-                                        name="antena_sn" id="antena_sn" value="{{ old('antena_sn') }}"
+                                        name="antena_sn" id="antena_sn" value="{{ old('antena_sn', $order->antena_sn) }}"
                                         placeholder="Masukkan serial number (6-20 karakter)" data-required />
                                     @error('antena_sn')
                                         <div class="invalid-feedback">

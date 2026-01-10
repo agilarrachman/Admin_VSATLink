@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/logistics/input-sn/{order}', [LogisticController::class, 'inputSN']);
         Route::post('/logistics/store-sn/{order}', [LogisticController::class, 'storeSN']);
         Route::get('/logistics/edit-sn/{order}', [LogisticController::class, 'editSN']);
-        Route::post('/logistics/update-sn/{order}', [LogisticController::class, 'updateSN']);
+        Route::put('/logistics/update-sn/{order}', [LogisticController::class, 'updateSN']);
     });
 
     Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {

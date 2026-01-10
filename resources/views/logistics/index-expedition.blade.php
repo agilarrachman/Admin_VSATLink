@@ -60,28 +60,36 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}">
                                                 <i class="bx bx-show me-1"></i>
-                                                Lihat Detail Pesanan</a>
+                                                Lihat Detail Pesanan
+                                            </a>
+
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}/customer">
                                                 <i class="bx bx-user me-1"></i>
-                                                Lihat Informasi Customer</a>
-                                            @if ($snFilled)
-                                                <a class="dropdown-item"
-                                                    href="/logistics/edit-sn/{{ $order->unique_order }}">
-                                                    <i class="bx bx-barcode me-1"></i>
-                                                    Edit Serial Number
-                                                </a>
-                                            @else
-                                                <a class="dropdown-item"
-                                                    href="/logistics/input-sn/{{ $order->unique_order }}">
-                                                    <i class="bx bx-barcode me-1"></i>
-                                                    Input Serial Number
-                                                </a>
+                                                Lihat Informasi Customer
+                                            </a>
+
+                                            @if ($order->current_status_id <= 4)
+                                                @if ($snFilled)
+                                                    <a class="dropdown-item"
+                                                        href="/logistics/edit-sn/{{ $order->unique_order }}">
+                                                        <i class="bx bx-barcode me-1"></i>
+                                                        Edit Serial Number
+                                                    </a>
+
+                                                    <button type="button" class="dropdown-item btn-request-pickup"
+                                                        data-order-id="{{ $order->unique_order }}">
+                                                        <i class="bx bxs-truck me-1"></i>
+                                                        Request Pickup
+                                                    </button>
+                                                @else
+                                                    <a class="dropdown-item"
+                                                        href="/logistics/input-sn/{{ $order->unique_order }}">
+                                                        <i class="bx bx-barcode me-1"></i>
+                                                        Input Serial Number
+                                                    </a>
+                                                @endif
                                             @endif
-                                            <button type="button" class="dropdown-item btn-request-pickup"
-                                                data-order-id="{{ $order->unique_order }}">
-                                                <i class="bx bxs-truck me-1"></i>
-                                                Request Pickup
-                                            </button>
+
                                             @if ($order->current_status_id >= 5 && $order->current_status_id < 8)
                                                 <a class="dropdown-item" href="javascript:void(0)">
                                                     <i class="bx bx-package me-1"></i>
@@ -93,6 +101,7 @@
                                                 </a>
                                             @endif
                                         </div>
+
                                     </div>
                                 </td>
                             </tr>

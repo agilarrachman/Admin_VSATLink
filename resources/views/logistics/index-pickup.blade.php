@@ -62,23 +62,25 @@
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}/customer">
                                                 <i class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
-                                            @if ($snFilled)
-                                                <a class="dropdown-item"
-                                                    href="/logistics/edit-sn/{{ $order->unique_order }}">
-                                                    <i class="bx bx-barcode me-1"></i>
-                                                    Edit Serial Number
-                                                </a>
-                                            @else
-                                                <a class="dropdown-item"
-                                                    href="/logistics/input-sn/{{ $order->unique_order }}">
-                                                    <i class="bx bx-barcode me-1"></i>
-                                                    Input Serial Number
-                                                </a>
+                                            @if ($order->current_status_id <= 4)
+                                                @if ($snFilled)
+                                                    <a class="dropdown-item"
+                                                        href="/logistics/edit-sn/{{ $order->unique_order }}">
+                                                        <i class="bx bx-barcode me-1"></i>
+                                                        Edit Serial Number
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">
+                                                        <i class="bx bx-package me-1"></i>
+                                                        Siap Diambil
+                                                    </a>
+                                                @else
+                                                    <a class="dropdown-item"
+                                                        href="/logistics/input-sn/{{ $order->unique_order }}">
+                                                        <i class="bx bx-barcode me-1"></i>
+                                                        Input Serial Number
+                                                    </a>
+                                                @endif
                                             @endif
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="bx bx-package me-1"></i>
-                                                Siap Diambil
-                                            </a>
                                             @if ($order->current_status_id >= 6 && $order->current_status_id < 8)
                                                 <a class="dropdown-item" href="javascript:void(0)">
                                                     <i class="bx bx-check-circle me-1"></i>
