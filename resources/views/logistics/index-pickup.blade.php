@@ -47,12 +47,24 @@
                                                 Input Serial Number</button>
                                             <a class="dropdown-item" href="javascript:void(0)">
                                                 <i class="bx bx-package me-1"></i>
-                                                Cetak Dokumen Packing List
+                                                Siap Diambil
                                             </a>
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="bx bx-receipt me-1"></i>
-                                                Cetak Dokumen Surat Jalan
-                                            </a>
+                                            @if ($order->current_status_id >= 6 && $order->current_status_id < 8)
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="bx bx-check-circle me-1"></i>
+                                                    Sudah Diambil
+                                                </a>
+                                            @endif
+                                            @if ($order->current_status_id >= 5 && $order->current_status_id < 8)
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="bx bx-package me-1"></i>
+                                                    Cetak Dokumen Packing List
+                                                </a>
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="bx bx-receipt me-1"></i>
+                                                    Cetak Dokumen Surat Jalan
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

@@ -47,14 +47,21 @@
                                                 data-target="#inputSNModal" data-order-id="{{ $order->unique_order }}">
                                                 <i class="bx bx-barcode me-1"></i>
                                                 Input Serial Number</button>
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="bx bx-package me-1"></i>
-                                                Cetak Dokumen Packing List
-                                            </a>
-                                            <a class="dropdown-item" href="javascript:void(0)">
-                                                <i class="bx bx-receipt me-1"></i>
-                                                Cetak Dokumen Surat Jalan
-                                            </a>
+                                            <button type="button" class="dropdown-item btn-request-pickup"
+                                                data-order-id="{{ $order->unique_order }}">
+                                                <i class="bx bxs-truck me-1"></i>
+                                                Request Pickup
+                                            </button>
+                                            @if ($order->current_status_id >= 5 && $order->current_status_id < 8)
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="bx bx-package me-1"></i>
+                                                    Cetak Dokumen Packing List
+                                                </a>
+                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                    <i class="bx bx-receipt me-1"></i>
+                                                    Cetak Dokumen Surat Jalan
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
