@@ -76,11 +76,14 @@
                                                         Edit Serial Number
                                                     </a>
 
-                                                    <button type="button" class="dropdown-item btn-request-pickup"
-                                                        data-order-id="{{ $order->unique_order }}">
-                                                        <i class="bx bxs-truck me-1"></i>
-                                                        Request Pickup
-                                                    </button>
+                                                    <form action="/logistics/request-pickup/{{ $order->unique_order }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item">
+                                                            <i class="bx bxs-truck me-1"></i>
+                                                            Request Pickup
+                                                        </button>
+                                                    </form>
                                                 @else
                                                     <a class="dropdown-item"
                                                         href="/logistics/input-sn/{{ $order->unique_order }}">
@@ -91,13 +94,17 @@
                                             @endif
 
                                             @if ($order->current_status_id >= 5 && $order->current_status_id < 8)
-                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                <a class="dropdown-item"
+                                                    href="{{ asset('storage/' . $order->packing_list_document_url) }}"
+                                                    download="{{ 'PACKING LIST-' . $order->unique_order . '.pdf' }}">
                                                     <i class="bx bx-package me-1"></i>
-                                                    Cetak Dokumen Packing List
+                                                    Unduh Dokumen Packing List
                                                 </a>
-                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                <a class="dropdown-item"
+                                                    href="{{ asset('storage/' . $order->delivery_note_document_url) }}"
+                                                    download="{{ 'SURAT JALAN-' . $order->unique_order . '.pdf' }}">
                                                     <i class="bx bx-receipt me-1"></i>
-                                                    Cetak Dokumen Surat Jalan
+                                                    Unduh Dokumen Surat Jalan
                                                 </a>
                                             @endif
                                         </div>

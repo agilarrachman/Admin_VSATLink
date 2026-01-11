@@ -124,4 +124,8 @@ return [
     ],
 
     'customer_url' => env('CUSTOMER_URL', ''),
+
+    'url_jne' => env('API_URL_JNE_PROD', ''),
+    'username_jne' => env('API_USERNAME_JNE_PROD', ''),
+    'api_key_jne' => env('API_KEY_JNE_PROD', ''),
 ];

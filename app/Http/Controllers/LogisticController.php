@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LogisticController extends Controller
 {
@@ -136,5 +137,43 @@ class LogisticController extends Controller
         if ($order->shipping === 'Ambil Ditempat') {
             return redirect('/logistics/pickup')->with('success', 'Serial number perangkat berhasil diperbarui.');
         }
+    }
+
+    public function requestPickup(Order $order)
+    {
+        Order::requestPickup($order->id);
+
+        return redirect('/logistics/expedition')->with('success', 'Permintaan pickup ke ekspedisi berhasil dibuat dan dokumen logistik telah digenerate.');
+    }
+
+    public function readyPickup(Order $order)
+    {
+        Order::readyPickup($order->id);
+        $order->refresh();
+
+        $data = [
+            'customer_name' => $order->customer->name,
+            'sales_name' => $order->customer->sales->name,
+            'sales_phone' => $order->customer->sales->phone,
+            'unique_order'  => $order->unique_order,
+            'product_name'  => $order->product->name,
+            'updated_date' => $order->updated_at->translatedFormat('d F Y H:i'),
+        ];
+
+        $customerEmail = $order->customer->email;
+
+        Mail::send('emails.ready-pickup', $data, function ($message) use ($customerEmail) {
+            $message->to($customerEmail)
+                ->subject('[NOTIFIKASI] Pesanan Anda Siap Diambil');
+        });
+
+        if ($order->customer->customer_type !== 'Perorangan' && $order->customer->contact_email) {
+            Mail::send('emails.ready-pickup', $data, function ($message) use ($order) {
+                $message->to($order->customer->contact_email)
+                    ->subject('[NOTIFIKASI] Pesanan Anda Siap Diambil');
+            });
+        }
+
+        return redirect('/logistics/pickup')->with('success', 'Berhasil memperbarui status pesanan siap diambil customer dan dokumen logistik telah digenerate.');
     }
 }
