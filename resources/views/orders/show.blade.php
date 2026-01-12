@@ -90,14 +90,13 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $order_status->order_status_id == 5 ? 'active' : '' }}
-                                                {{ $order_status->order_status_id >= 6 ? 'completed' : '' }}">
+                                    class="step {{ $order_status->order_status_id >= 5 ? 'completed' : '' }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 6)
+                                        @if ($order_status->order_status_id >= 5)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
-                                    <h5>Pengiriman</h5>
+                                    <h5>{{ $order->shipping == 'JNE' ? 'Pengiriman' : 'Siap Diambil' }}</h5>
                                 </div>
 
                                 <div class="step {{ $order_status->order_status_id >= 7 ? 'completed' : '' }}">
