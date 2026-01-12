@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 
@@ -363,5 +364,24 @@ class Order extends Model
             'order_id' => $order->id,
             'note' => "Pesanan {$order->unique_order} telah siap diambil customer.",
         ]);
+    }
+
+    public static function confirmPickup($orderId, $receiverName)
+    {
+        $order = self::findOrFail($orderId);
+
+        $order->update([
+            'current_status_id' => 7,
+        ]);
+
+        $timestamp = Carbon::now()->translatedFormat('d F Y H:i');
+
+        OrderStatusHistory::create([
+            'order_status_id' => 7,
+            'order_id' => $order->id,
+            'note' => "Pesanan {$order->unique_order} telah diterima oleh {$receiverName} pada {$timestamp}.",
+        ]);
+
+        return $order;
     }
 }

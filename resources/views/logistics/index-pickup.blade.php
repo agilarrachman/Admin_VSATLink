@@ -14,6 +14,13 @@
                 </div>
             @endif
 
+            @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show mx-3" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
@@ -87,10 +94,11 @@
                                                 @endif
                                             @endif
                                             @if ($order->current_status_id >= 6 && $order->current_status_id < 8)
-                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                <button type="button" class="dropdown-item btn-confirm-pickup"
+                                                    data-toggle="modal" data-target="#confirmPickupModal"
+                                                    data-order-id="{{ $order->id }}">
                                                     <i class="bx bx-check-circle me-1"></i>
-                                                    Sudah Diambil
-                                                </a>
+                                                    Sudah Diambil</button>
                                             @endif
                                             @if ($order->current_status_id >= 5 && $order->current_status_id < 8)
                                                 <a class="dropdown-item"
@@ -123,4 +131,15 @@
             </div>
         </div>
     </div>
+
+    @include('partials.modals.confirm-pickup')
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).on('click', '.btn-confirm-pickup', function() {
+            let orderId = $(this).data('order-id');
+            $('#confirmPickupModal').find('#order_id').val(orderId);
+        });
+    </script>
+@endpush

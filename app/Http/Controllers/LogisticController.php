@@ -176,4 +176,16 @@ class LogisticController extends Controller
 
         return redirect('/logistics/pickup')->with('success', 'Berhasil memperbarui status pesanan siap diambil customer dan dokumen logistik telah digenerate.');
     }
+
+    public function confirmPickup(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'receiver_name' => 'required',
+        ]);
+
+        Order::confirmPickup($request->order_id, $request->receiver_name);
+
+        return back()->with('success', 'Pesanan berhasil dikonfirmasi sebagai telah diterima.');
+    }
 }

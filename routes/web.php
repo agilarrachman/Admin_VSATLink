@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/logistics/update-sn/{order}', [LogisticController::class, 'updateSN']);
         Route::post('/logistics/request-pickup/{order}', [LogisticController::class, 'requestPickup']);
         Route::post('/logistics/ready-pickup/{order}', [LogisticController::class, 'readyPickup']);
+        Route::post('/logistics/confirm-pickup', [LogisticController::class, 'confirmPickup']);
     });
 
     Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {
