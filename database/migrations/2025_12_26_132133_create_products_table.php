@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('lnb', 255);
             $table->string('buc', 255);
             $table->string('modem', 255);
+            $table->string('adaptor', 255);
             $table->string('access_point', 255)->nullable();
             $table->string('performance_benefit_title', 255);
             $table->text('performance_benefit_description');            

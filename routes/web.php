@@ -16,11 +16,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/download/npwp/{order}', [OrderController::class, 'npwpDownload']);
     Route::get('/download/nib/{order}', [OrderController::class, 'nibDownload']);
     Route::get('/download/sk/{order}', [OrderController::class, 'skDownload']);
+    Route::get('/orders/{order}/data', [OrderController::class, 'data']);
 
     Route::middleware('role:Super Admin,Sales Admin')->group(function () {
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/order-confirmation', [OrderController::class, 'indexConfirmation']);
-        Route::get('/orders/{order}/data', [OrderController::class, 'data']);
         Route::get('/orders/{order}/customer/data', [OrderController::class, 'customerData']);
         Route::post('/orders/confirm', [OrderController::class, 'confirm']);
         Route::post('/orders/cancel', [OrderController::class, 'cancel']);
@@ -30,6 +30,13 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('role:Super Admin, Logistic Admin')->group(function () {
         Route::get('/logistics/expedition', [LogisticController::class, 'indexExpedition']);
         Route::get('/logistics/pickup', [LogisticController::class, 'indexPickup']);
+        Route::get('/logistics/input-sn/{order}', [LogisticController::class, 'inputSN']);
+        Route::post('/logistics/store-sn/{order}', [LogisticController::class, 'storeSN']);
+        Route::get('/logistics/edit-sn/{order}', [LogisticController::class, 'editSN']);
+        Route::put('/logistics/update-sn/{order}', [LogisticController::class, 'updateSN']);
+        Route::post('/logistics/request-pickup/{order}', [LogisticController::class, 'requestPickup']);
+        Route::post('/logistics/ready-pickup/{order}', [LogisticController::class, 'readyPickup']);
+        Route::post('/logistics/confirm-pickup', [LogisticController::class, 'confirmPickup']);
     });
 
     Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {

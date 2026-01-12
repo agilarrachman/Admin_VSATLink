@@ -94,16 +94,26 @@ class OrderController extends Controller
 
         return response()->json([
             'order' => [
+                'id' => $order->id,
                 'unique_order' => $order->unique_order,
                 'product_image' => $product->image_url,
                 'product_name' => $product->name,
                 'product_cost' => 'Rp' . number_format($order->product_cost, 0, ',', '.'),
                 'created_at' => $order->created_at->translatedFormat('d F Y, H:i'),
+                'withRouter' => $order->product->access_point ? true : false,
             ],
             'address' => [
                 'google_maps_url' => $activation_address->google_maps_url,
                 'latitude' => $activation_address->latitude,
                 'longitude' => $activation_address->longitude,
+            ],
+            'serial_number' => [
+                'modem_sn' => $order->modem_sn,
+                'adaptor_sn' => $order->adaptor_sn,
+                'buc_sn' => $order->buc_sn,
+                'lnb_sn' => $order->lnb_sn,
+                'router_sn' => $order->router_sn,
+                'antena_sn' => $order->antena_sn,
             ],
         ]);
     }

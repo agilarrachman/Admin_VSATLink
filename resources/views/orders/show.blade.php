@@ -49,7 +49,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h4>Biaya Transport Instalasi</h4>
-                                <p class="summary text-right">                                    
+                                <p class="summary text-right">
                                     {{ $order->installation_transport_cost ? 'Rp' . number_format($order->installation_transport_cost, 0, ',', '.') : '-' }}
                                 </p>
                             </div>
@@ -67,8 +67,8 @@
                         </div>
 
                         <p class="fw-bold text-primary">Status Pesanan</p>
-                        <div class="status mb-4">
-                            <div class="order-steps">
+                        <div class="status d-flex flex-column align-items-center mb-4">
+                            <div class="order-steps w-100">
                                 <div class="step {{ $order_status->order_status_id > 1 ? 'completed' : 'active' }}">
                                     <div class="circle">
                                         @if ($order_status->order_status_id > 1)
@@ -108,9 +108,13 @@
                                     <h5>Selesai</h5>
                                 </div>
                             </div>
-                            <h4 class="mt-3 text-center">
+                            <h4 class="my-3 text-center">
                                 {{ $order_status->note }}
                             </h4>
+                            @if ($order->current_status_id == 7 && !empty($order->proof_of_delivery_image_url))
+                                <img src="{{ config('app.customer_url') }}/storage/{{ $order->proof_of_delivery_image_url }}"
+                                    class="rounded" alt="proof_of_delivery_image">
+                            @endif
                         </div>
 
                         <p class="fw-bold text-primary">Narahubung Pesanan</p>

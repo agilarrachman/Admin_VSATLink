@@ -33,10 +33,17 @@ return new class extends Migration
             $table->string('midtrans_order_id', 255)->nullable();
             $table->string('payment_token', 255)->nullable();
             $table->string('invoice_document_url', 255)->nullable();
+            $table->string('modem_sn', 255)->nullable();
+            $table->string('router_sn', 255)->nullable();
+            $table->string('buc_sn', 255)->nullable();
+            $table->string('lnb_sn', 255)->nullable();
+            $table->string('antena_sn', 255)->nullable();
+            $table->string('adaptor_sn', 255)->nullable();
             $table->string('jne_tracking_number', 255)->nullable();
-            $table->string('proof_of_delivery_image_url', 255)->nullable();
+            $table->string('packing_list_id', 255)->nullable();
             $table->string('packing_list_document_url', 255)->nullable();
             $table->string('delivery_note_document_url', 255)->nullable();
+            $table->string('proof_of_delivery_image_url', 255)->nullable();
             $table->timestamps();
         });
     }
