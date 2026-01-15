@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('activation_notas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('current_status_id')->references('id')->on('activation_statuses')->onDelete('cascade');
+            $table->timestamp('installation_date')->nullable();
+            $table->timestamp('activation_date')->nullable();
+            $table->string('activation_document_url', 255)->nullable();
+            $table->boolean('is_ttd')->default(false);
             $table->timestamps();
         });
     }

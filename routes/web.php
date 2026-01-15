@@ -42,11 +42,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware('role:Super Admin, Service Operation Admin')->group(function () {
         Route::get('/service-activations', [ActivationNotaController::class, 'index']);
+        Route::get('/service-activations/detail/{nota}', [ActivationNotaController::class, 'show']);
         Route::get('/service-activations/provisioning', [ActivationNotaController::class, 'createProvisioning']);
         Route::post('/service-activations/provisioning', [ActivationNotaController::class, 'storeProvisioning']);
-        Route::get('/service-activations/provisioning/{order}/edit', [ActivationNotaController::class, 'editProvisioning']);
+        Route::get('/service-activations/provisioning/{nota}/edit', [ActivationNotaController::class, 'editProvisioning']);
         Route::get('/service-activations/technical-data', [ActivationNotaController::class, 'createTechnicalData']);
         Route::post('/service-activations/technical-data', [ActivationNotaController::class, 'storeTechnicalData']);
-        Route::get('/service-activations/technical-data/{order}/edit', [ActivationNotaController::class, 'editTechnicalData']);
+        Route::get('/service-activations/technical-data/{nota}/edit', [ActivationNotaController::class, 'editTechnicalData']);
+        Route::get('/service-activations/verification', [ActivationNotaController::class, 'createVerification']);
+        Route::post('/service-activations/verification', [ActivationNotaController::class, 'storeVerification']);
+        Route::get('/service-activations/verification/{nota}/edit', [ActivationNotaController::class, 'editVerification']);
     });
 });

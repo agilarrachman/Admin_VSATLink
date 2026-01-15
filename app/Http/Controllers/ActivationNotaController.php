@@ -37,7 +37,7 @@ class ActivationNotaController extends Controller
 
         return view('service-activations.create-provisioning', [
             'management' => 'service-activation',
-            'page' => 'all-activations',
+            'page' => 'general',
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
@@ -50,9 +50,24 @@ class ActivationNotaController extends Controller
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
 
-        return view('service-activations.technical-data', [
+        return view('service-activations.create-technical-data', [
             'management' => 'service-activation',
-            'page' => 'all-activations',
+            'page' => 'general',
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+        ]);
+    }
+
+    public function createVerification()
+    {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+        return view('service-activations.create-verification', [
+            'management' => 'service-activation',
+            'page' => 'general',
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
@@ -71,9 +86,22 @@ class ActivationNotaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ActivationNota $activationNota)
+    public function show(ActivationNota $nota)
     {
-        //
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+        return view('orders.show', [
+            'management' => 'general',
+            'page' => 'general',
+            // 'order' => $order,
+            // 'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id),
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+        ]);
     }
 
     /**

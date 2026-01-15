@@ -1,0 +1,133 @@
+@extends('layouts.app')
+
+@section('title', 'Admin VSATLink | Order Management')
+
+@section('content')
+    <div class="container-xxl grow container-p-y">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <h5 class="card-header">Detail Pesanan</h5>
+                    <div class="card-body">
+                        <p class="fw-bold text-primary">Rincian Pesanan</p>
+                        <div class="d-flex items-start gap-4">
+                            <img class="product_image" src="/storage/{{ $order->product->image_url }}"
+                                alt="{{ $order->product->name }}" />
+                            <div class="info w-full mb-3 mb-md-0">
+                                @php($badge = $order->statusBadge())
+                                <td><span class="badge me-1 mb-1 {{ $badge['class'] }}">{{ $badge['label'] }}</span></td>
+                                <p class="mb-0" style="font-size: 14px">
+                                    Kode Pesanan: {{ $order->unique_order }}
+                                </p>
+                                <h4 class="mb-0 fw-bold" style="font-size: 16px">{{ $order->product->name }}</h4>
+                                <p class="mb-0" style="font-size: 14px">Pesanan dibuat pada tanggal
+                                    {{ $order->created_at->translatedFormat('d F Y, H:i') }}</p>
+                            </div>
+                        </div>                    
+
+                        <p class="fw-bold text-primary">Status Aktivasi</p>
+                        <div class="status d-flex flex-column align-items-center mb-4">
+                            <div class="order-steps w-100">
+                                <div class="step {{ $order_status->order_status_id > 1 ? 'completed' : 'active' }}">
+                                    <div class="circle">
+                                        @if ($order_status->order_status_id > 1)
+                                            <i class="bx bx-check"></i>
+                                        @endif
+                                    </div>
+                                    <h5>Konfirmasi</h5>
+                                </div>
+
+                                <div
+                                    class="step {{ $order_status->order_status_id == 3 ? 'active' : '' }}
+                                                {{ $order_status->order_status_id >= 4 ? 'completed' : '' }}">
+                                    <div class="circle">
+                                        @if ($order_status->order_status_id >= 4)
+                                            <i class="bx bx-check"></i>
+                                        @endif
+                                    </div>
+                                    <h5>Pembayaran</h5>
+                                </div>
+
+                                <div
+                                    class="step {{ $order_status->order_status_id >= 5 ? 'completed' : '' }}">
+                                    <div class="circle">
+                                        @if ($order_status->order_status_id >= 5)
+                                            <i class="bx bx-check"></i>
+                                        @endif
+                                    </div>
+                                    <h5>{{ $order->shipping == 'JNE' ? 'Pengiriman' : 'Siap Diambil' }}</h5>
+                                </div>
+
+                                <div class="step {{ $order_status->order_status_id >= 7 ? 'completed' : '' }}">
+                                    <div class="circle">
+                                        @if ($order_status->order_status_id >= 7)
+                                            <i class="bx bx-check"></i>
+                                        @endif
+                                    </div>
+                                    <h5>Selesai</h5>
+                                </div>
+                            </div>
+                            <h4 class="my-3 text-center">
+                                {{ $order_status->note }}
+                            </h4>
+                            @if ($order->current_status_id == 7 && !empty($order->proof_of_delivery_image_url))
+                                <img src="{{ config('app.customer_url') }}/storage/{{ $order->proof_of_delivery_image_url }}"
+                                    class="rounded" alt="proof_of_delivery_image">
+                            @endif
+                        </div>
+
+                        <p class="fw-bold text-primary">Narahubung Pesanan</p>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="contact_name" class="form-label">Nama Lengkap</label>
+                                <input class="form-control" type="text" id="contact_name" name="contact_name"
+                                    value="{{ $order->order_contact?->name ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="contact_email" class="form-label">Email</label>
+                                <input class="form-control" type="text" id="contact_email" name="contact_email"
+                                    value="{{ $order->order_contact?->email ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="contact_phone" class="form-label">Nomor Telepon</label>
+                                <input type="text" class="form-control" id="contact_phone" name="contact_phone"
+                                    value="{{ $order->order_contact?->phone ?? '-' }}" readonly />
+                            </div>
+                        </div>                        
+
+                        <p class="fw-bold text-primary">Lokasi Instalasi dan Aktivasi</p>
+                        <div id="map" class="w-full rounded-lg mb-3" style="height: 350px;"></div>
+                        <div class="mb-3">
+                            <label for="full_address" class="form-label">Link Google Maps</label>
+                            <a href="{{ $order->activation_address?->google_maps_url ?? '-' }}"
+                                class="form-control px-3 py-2">
+                                {{ $order->activation_address?->google_maps_url ?? '-' }}
+                            </a>
+                        </div>
+
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="history.back()">Kembali</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === Script Preview Map Start ===
+        const lat = {{ $order->activation_address?->latitude ?? -6.602234321160505 }};
+        const lng = {{ $order->activation_address?->longitude ?? 106.80913996183654 }};
+        const map = L.map('map').setView([lat, lng], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([lat, lng])
+            .addTo(map)
+            .openPopup();
+        // === Script Preview Map End ===
+    </script>
+@endsection

@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Admin VSATLink | Order Management')
+@section('title', 'Admin VSATLink | Service Activations')
 
 @section('content')
     <div class="container-xxl grow container-p-y">
         <div class="card">
-            <h5 class="card-header">Order Management</h5>
+            <h5 class="card-header">Service Activations Management</h5>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
@@ -34,19 +42,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -55,24 +63,24 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -100,19 +108,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -121,24 +129,24 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -166,19 +174,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -187,24 +195,24 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -232,19 +240,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -253,7 +261,7 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
                                                 Input Data Provisioning
                                             </a>
@@ -261,7 +269,7 @@
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
                                                 Input Data Teknis
                                             </a>
@@ -270,7 +278,7 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -298,19 +306,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -319,24 +327,24 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -364,19 +372,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -385,24 +393,24 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -430,19 +438,19 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show">
+                                        <a class="dropdown-item" href="/service-activations/show">
                                             <i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi
                                         </a>
 
-                                        <a class="dropdown-item" href="/orders/customer">
+                                        <a class="dropdown-item" href="/service-activations/customer">
                                             <i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer
                                         </a>
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/schedule">
+                                            <a class="dropdown-item" href="/service-activations/schedule">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
                                             </a>
@@ -451,24 +459,24 @@
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/provisioning">
+                                            <a class="dropdown-item" href="/service-activations/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/orders/technical">
+                                            <a class="dropdown-item" href="/service-activations/technical-data">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' &&
                                                     auth()->user()->position === 'Provisioning Service Activation'))
-                                            <a class="dropdown-item" href="/orders/verify">
+                                            <a class="dropdown-item" href="/service-activations/verification">
                                                 <i class="bx bx-check-shield me-1"></i>
                                                 Verifikasi Layanan Aktif
                                             </a>
@@ -497,9 +505,9 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/orders/show"><i class="bx bx-show me-1"></i>
+                                        <a class="dropdown-item" href="/service-activations/show"><i class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi</a>
-                                        <a class="dropdown-item" href="/orders/customer"><i class="bx bx-user me-1"></i>
+                                        <a class="dropdown-item" href="/service-activations/customer"><i class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i
                                                 class="bx bx-receipt me-1"></i> Unduh SPA</a>

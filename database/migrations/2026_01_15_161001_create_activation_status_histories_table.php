@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('activation_status_histories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('activation_status_id')->references('id')->on('activation_statuses')->onDelete('cascade');
+            $table->foreignId('activation_nota_id')->references('id')->on('activation_notas')->onDelete('cascade')->nullable();
+            $table->string('note', 255)->nullable();
             $table->timestamps();
         });
     }

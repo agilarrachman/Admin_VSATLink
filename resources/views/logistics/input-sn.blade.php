@@ -37,7 +37,7 @@
                                     <label class="form-label">Modem Serial Number</label>
                                     <input type="text" class="form-control @error('modem_sn') is-invalid @enderror"
                                         name="modem_sn" id="modem_sn" value="{{ old('modem_sn') }}"
-                                        placeholder="Masukkan serial number (6-20 karakter)" data-required />
+                                        placeholder="Masukkan serial number (6-20 karakter)" required />
                                     @error('modem_sn')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -49,7 +49,7 @@
                                     <label class="form-label">Adaptor Serial Number</label>
                                     <input type="text" class="form-control @error('adaptor_sn') is-invalid @enderror"
                                         name="adaptor_sn" id="adaptor_sn" value="{{ old('adaptor_sn') }}"
-                                        placeholder="Masukkan serial number (6-20 karakter)" data-required />
+                                        placeholder="Masukkan serial number (6-20 karakter)" required />
                                     @error('adaptor_sn')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -61,7 +61,7 @@
                                     <label class="form-label">BUC Serial Number</label>
                                     <input type="text" class="form-control @error('buc_sn') is-invalid @enderror"
                                         name="buc_sn" id="buc_sn" value="{{ old('buc_sn') }}"
-                                        placeholder="Masukkan serial number (6-20 karakter)" data-required />
+                                        placeholder="Masukkan serial number (6-20 karakter)" required />
                                     @error('buc_sn')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -73,7 +73,7 @@
                                     <label class="form-label">LNB Serial Number</label>
                                     <input type="text" class="form-control @error('lnb_sn') is-invalid @enderror"
                                         name="lnb_sn" id="lnb_sn" value="{{ old('lnb_sn') }}"
-                                        placeholder="Masukkan serial number (6-20 karakter)" data-required />
+                                        placeholder="Masukkan serial number (6-20 karakter)" required />
                                     @error('lnb_sn')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -86,7 +86,7 @@
                                         <label class="form-label">Router Serial Number</label>
                                         <input type="text" class="form-control @error('router_sn') is-invalid @enderror"
                                             name="router_sn" id="router_sn" value="{{ old('router_sn') }}"
-                                            placeholder="Masukkan serial number (6-20 karakter)" data-required />
+                                            placeholder="Masukkan serial number (6-20 karakter)" required />
                                         @error('router_sn')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -99,7 +99,7 @@
                                     <label class="form-label">Antena Serial Number</label>
                                     <input type="text" class="form-control @error('antena_sn') is-invalid @enderror"
                                         name="antena_sn" id="antena_sn" value="{{ old('antena_sn') }}"
-                                        placeholder="Masukkan serial number (6-20 karakter)" data-required />
+                                        placeholder="Masukkan serial number (6-20 karakter)" required />
                                     @error('antena_sn')
                                         <div class="invalid-feedback">
                                             {{ $message }}

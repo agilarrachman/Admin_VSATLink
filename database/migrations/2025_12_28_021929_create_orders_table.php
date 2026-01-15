@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('current_status_id')->references('id')->on('order_statuses')->onDelete('cascade');
             $table->foreignId('order_contact_id')->nullable()->references('id')->on('order_contacts')->onDelete('cascade');
             $table->foreignId('order_address_id')->nullable()->references('id')->on('order_addresses')->onDelete('cascade');
+            $table->foreignId('activation_nota_id')->references('id')->on('activation_notas')->onDelete('cascade')->nullable();
             $table->foreignId('activation_address_id')->references('id')->on('activation_addresses')->onDelete('cascade')->nullable();
             $table->string('unique_order')->unique();
             $table->enum('shipping', ['Ambil Ditempat', 'JNE'])->nullable();
