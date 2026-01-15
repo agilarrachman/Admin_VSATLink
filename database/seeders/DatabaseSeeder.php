@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password123'),
                 'phone' => '6281444444444',
                 'gender' => 'Pria',
-                'role' => 'Installation Coordinator',
+                'role' => 'Service Operation Admin',
                 'division' => 'Service Operations',
                 'position' => 'Installation Coordinator',
                 'created_at' => now(),
@@ -78,13 +78,13 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'profile_picture' => 'profile_pictures/4.png',
-                'username' => 'provisioningofficer',
+                'username' => 'provisioningadmin',
                 'name' => 'Dimas Saputra',
                 'email' => 'provisioning@vsatlink.co.id',
                 'password' => Hash::make('password123'),
                 'phone' => '6281555555555',
                 'gender' => 'Pria',
-                'role' => 'Provisioning Admin',
+                'role' => 'Service Operation Admin',
                 'division' => 'Service Operations',
                 'position' => 'Provisioning Service Activation',
                 'created_at' => now(),
@@ -362,5 +362,48 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+
+        // DB::table('activation_statuses')->insert([
+        //     [
+        //         'name' => 'Belum Dijadwalkan',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Sudah Dijadwalkan',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Siap Instalasi',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Teknisi Dalam Perjalanan',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Teknisi Tiba Di Lokasi',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Request Aktivasi',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'Aktivasi Terverifikasi',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        //     [
+        //         'name' => 'SPA Ditandatangani',
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ],
+        // ]);
     }
 }

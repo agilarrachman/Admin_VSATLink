@@ -12,22 +12,15 @@ class AdminController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->role === 'Super Admin') {
-            // Log::info('Redirect ke /orders');
+        if ($user->role === 'Super Admin') {        
             return redirect('/orders');
         } elseif ($user->role === 'Sales Admin') {
-            // Log::info('Redirect ke /orders');
             return redirect('/orders');
         } elseif ($user->role === 'Logistic Admin') {
-            // Log::info('Redirect ke /logistics');
             return redirect('/logistics/expedition');
-        } elseif ($user->role === 'Service Activation Admin') {
-            // Log::info('Redirect ke /service-activation');
-            return redirect('/service-activation');
+        } elseif ($user->role === 'Service Operation Admin') {
+            return redirect('/service-activations');
         } else {
-            // Log::warning('Role tidak dikenal, redirect ke /login', [
-            //     'role' => $user->role
-            // ]);
             return redirect('/login');
         }
     }

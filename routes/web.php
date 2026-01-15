@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\OrderController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AdminController::class, 'signin'])->name('login');
@@ -39,9 +40,19 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/logistics/confirm-pickup', [LogisticController::class, 'confirmPickup']);
     });
 
-    Route::middleware('role:Super Admin, Service Activation Admin')->group(function () {
-        Route::get('/service-activation', function () {
-            return view('service-activation.index', ['management' => 'service-activation', 'page' => 'service-activation-management']);
+    Route::middleware('role:Super Admin, Service Operation Admin')->group(function () {
+        Route::get('/service-activations', function () {
+            $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+            $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+            return view('service-activations.index', [
+                'management' => 'service-activation',
+                'page' => 'all-activations',
+                'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+                'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+                'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+                'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            ]);
         });
     });
 });

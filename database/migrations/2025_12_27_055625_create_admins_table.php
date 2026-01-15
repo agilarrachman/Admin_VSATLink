@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password', 255);
             $table->string('phone', 255);
             $table->enum('gender', ['Pria', 'Wanita']);
-            $table->enum('role', ['Super Admin', 'Sales Admin', 'Logistic Admin', 'Service Activation Admin']);
+            $table->enum('role', ['Super Admin', 'Sales Admin', 'Logistic Admin', 'Service Operation Admin']);
             $table->string('division', 255);
             $table->string('position', 255);
             $table->rememberToken();

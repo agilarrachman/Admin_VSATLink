@@ -83,37 +83,17 @@
                 </ul>
             </li>
         @endif
-        @if (auth()->user()->role === 'Super Admin' || auth()->user()->role === 'Service Activation Admin')
+        @if (auth()->user()->role === 'Super Admin' || auth()->user()->role === 'Service Operation Admin')
             <li class="menu-item {{ $management === 'service-activation' ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-broadcast"></i>
-                    <div data-i18n="Service Activation">Service Activation</div>
+                    <div data-i18n="Service Activation">Service Activations</div>
                     <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">5</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="/service-activation" class="menu-link">
+                    <li class="menu-item {{ $page === 'all-activations' ? 'active' : '' }}">
+                        <a href="/service-activations" class="menu-link">
                             <div data-i18n="All Activations">All Activations</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/service-activation/scheduling" class="menu-link">
-                            <div data-i18n="Installation Scheduling">Installation Scheduling</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/service-activation/provisioning" class="menu-link">
-                            <div data-i18n="Provisioning">Provisioning</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/service-activation/technical-data" class="menu-link">
-                            <div data-i18n="Technical Data & Crosspole">Technical Data</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/service-activation/verification" class="menu-link">
-                            <div data-i18n="Activation Verification">Activation Verification</div>
                         </a>
                     </li>
                 </ul>
