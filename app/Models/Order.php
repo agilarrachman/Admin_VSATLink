@@ -370,8 +370,19 @@ class Order extends Model
     {
         $order = self::findOrFail($orderId);
 
+        $activationNota = ActivationNota::create([
+            'current_status_id' => 1,
+        ]);
+
+        ActivationStatusHistory::create([
+            'activation_status_id' => 1,
+            'activation_nota_id' => $activationNota->id,
+            'note' => "Pesanan {$order->unique_order} siap dilakukan penjadwalan instalasi dan aktivasi.",
+        ]);
+
         $order->update([
-            'current_status_id' => 7,
+            'activation_nota_id' => $activationNota->id,
+            'current_status_id'  => 7,
         ]);
 
         $timestamp = Carbon::now()->translatedFormat('d F Y H:i');
