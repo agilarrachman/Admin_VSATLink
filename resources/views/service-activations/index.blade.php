@@ -28,6 +28,79 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
+                        @forelse ($activationNotas as $activationNota)
+                            <tr>
+                                <td>{{ $activationNota->order->unique_order }}</td>
+                                <td>{{ $activationNota->order->customer->name }}</td>
+                                <td>{{ $activationNota->order->product->name }}</td>
+                                <td>{{ $activationNota->installation_date?->translatedFormat('d M Y, H:i') ?? '-' }}</td>
+                                <td>{{ $activationNota->online_date?->translatedFormat('d M Y, H:i') ?? '-' }}</td>
+                                </td>
+                                @php($badge = $activationNota->statusBadge())
+                                <td><span class="badge me-1 {{ $badge['class'] }}">{{ $badge['label'] }}</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="/service-activations/{{ $activationNota->id }}"><i
+                                                    class="bx bx-show me-1"></i>
+                                                Lihat Detail Aktivasi</a>
+                                            <a class="dropdown-item"
+                                                href="/service-activations/{{ $activationNota->id }}/customer"><i
+                                                    class="bx bx-user me-1"></i>
+                                                Lihat Informasi Customer</a>
+                                            @if (auth()->user()->role === 'Super Admin' ||
+                                                    (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
+                                                <a class="dropdown-item" href="/service-activations/schedule">
+                                                    <i class="bx bx-calendar-plus me-1"></i>
+                                                    Jadwalkan Instalasi
+                                                </a>
+                                            @endif
+                                            @if (auth()->user()->role === 'Super Admin' ||
+                                                    (auth()->user()->role === 'Service Operation Admin' &&
+                                                        auth()->user()->position === 'Provisioning Service Activation'))
+                                                <a class="dropdown-item" href="/service-activations/provisioning">
+                                                    <i class="bx bx-cog me-1"></i>
+                                                    Input Data Provisioning
+                                                </a>
+                                            @endif
+                                            @if (auth()->user()->role === 'Super Admin' ||
+                                                    (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
+                                                <a class="dropdown-item" href="/service-activations/technical-data">
+                                                    <i class="bx bx-wrench me-1"></i>
+                                                    Input Data Teknis
+                                                </a>
+                                            @endif
+                                            @if (auth()->user()->role === 'Super Admin' ||
+                                                    (auth()->user()->role === 'Service Operation Admin' &&
+                                                        auth()->user()->position === 'Provisioning Service Activation'))
+                                                <a class="dropdown-item" href="/service-activations/verification">
+                                                    <i class="bx bx-check-shield me-1"></i>
+                                                    Verifikasi Layanan Aktif
+                                                </a>
+                                            @endif
+                                            @if ($activationNota->activation_document_url != null)
+                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                    <i class="bx bx-file me-1"></i>
+                                                    Unduh SPA
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-4">
+                                    <i class="menu-icon tf-icons bx bx-broadcast"></i>
+                                    Belum ada data nota aktivasi
+                                </td>
+                            </tr>
+                        @endforelse
                         <tr>
                             <td>VSL6637373</td>
                             <td>Albert Cook</td>
@@ -505,9 +578,11 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="/service-activations/show"><i class="bx bx-show me-1"></i>
+                                        <a class="dropdown-item" href="/service-activations/show"><i
+                                                class="bx bx-show me-1"></i>
                                             Lihat Detail Aktivasi</a>
-                                        <a class="dropdown-item" href="/service-activations/customer"><i class="bx bx-user me-1"></i>
+                                        <a class="dropdown-item" href="/service-activations/customer"><i
+                                                class="bx bx-user me-1"></i>
                                             Lihat Informasi Customer</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i
                                                 class="bx bx-receipt me-1"></i> Unduh SPA</a>

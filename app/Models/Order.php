@@ -18,6 +18,10 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'payment_date' => 'datetime',
+    ];
+
     public function getRouteKeyName()
     {
         return 'unique_order';
@@ -51,6 +55,11 @@ class Order extends Model
     public function order_address()
     {
         return $this->belongsTo(OrderAddress::class);
+    }
+
+    public function activation_nota()
+    {
+        return $this->belongsTo(ActivationNota::class);
     }
 
     public function activation_address()

@@ -20,6 +20,8 @@ class ActivationNotaController extends Controller
         return view('service-activations.index', [
             'management' => 'service-activation',
             'page' => 'all-activations',
+            'activationNotas' => ActivationNota::getAllActivationNotas(),
+
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
