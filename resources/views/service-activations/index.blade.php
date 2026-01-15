@@ -255,7 +255,7 @@
                                                     auth()->user()->position === 'Provisioning Service Activation'))
                                             <a class="dropdown-item" href="/orders/provisioning">
                                                 <i class="bx bx-cog me-1"></i>
-                                                Lengkapi Data Provisioning
+                                                Input Data Provisioning
                                             </a>
                                         @endif
 
@@ -263,7 +263,7 @@
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
                                             <a class="dropdown-item" href="/orders/technical">
                                                 <i class="bx bx-wrench me-1"></i>
-                                                Lengkapi Data Teknis
+                                                Input Data Teknis
                                             </a>
                                         @endif
 

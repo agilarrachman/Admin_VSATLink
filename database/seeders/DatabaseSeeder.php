@@ -363,47 +363,47 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        // DB::table('activation_statuses')->insert([
-        //     [
-        //         'name' => 'Belum Dijadwalkan',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'Sudah Dijadwalkan',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'Siap Instalasi',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'Teknisi Dalam Perjalanan',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'Teknisi Tiba Di Lokasi',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'Request Aktivasi',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'Aktivasi Terverifikasi',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        //     [
-        //         'name' => 'SPA Ditandatangani',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ],
-        // ]);
+        DB::table('activation_statuses')->insert([
+            [
+                'name' => 'Belum Dijadwalkan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Sudah Dijadwalkan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Siap Instalasi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknisi Dalam Perjalanan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Teknisi Tiba Di Lokasi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Request Aktivasi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Aktivasi Terverifikasi',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'SPA Ditandatangani',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }

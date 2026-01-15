@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\ActivationNotaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\OrderController;
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AdminController::class, 'signin'])->name('login');
@@ -41,18 +41,12 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware('role:Super Admin, Service Operation Admin')->group(function () {
-        Route::get('/service-activations', function () {
-            $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
-            $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
-
-            return view('service-activations.index', [
-                'management' => 'service-activation',
-                'page' => 'all-activations',
-                'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
-                'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
-                'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
-                'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
-            ]);
-        });
+        Route::get('/service-activations', [ActivationNotaController::class, 'index']);
+        Route::get('/service-activations/provisioning', [ActivationNotaController::class, 'createProvisioning']);
+        Route::post('/service-activations/provisioning', [ActivationNotaController::class, 'storeProvisioning']);
+        Route::get('/service-activations/provisioning/{order}/edit', [ActivationNotaController::class, 'editProvisioning']);
+        Route::get('/service-activations/technical-data', [ActivationNotaController::class, 'createTechnicalData']);
+        Route::post('/service-activations/technical-data', [ActivationNotaController::class, 'storeTechnicalData']);
+        Route::get('/service-activations/technical-data/{order}/edit', [ActivationNotaController::class, 'editTechnicalData']);
     });
 });
