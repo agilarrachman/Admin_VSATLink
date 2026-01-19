@@ -41,30 +41,34 @@ class ActivationNota extends Model
                 'class' => 'bg-label-danger',
             ],
             2 => [
+                'label' => 'Jadwal Ditolak',
+                'class' => 'bg-label-danger',
+            ],
+            3 => [
                 'label' => 'Sudah Dijadwalkan',
                 'class' => 'bg-label-warning',
             ],
-            3 => [
+            4 => [
                 'label' => 'Siap Instalasi',
                 'class' => 'bg-label-info',
             ],
-            4 => [
+            5 => [
                 'label' => 'Teknisi Dalam Perjalanan',
                 'class' => 'bg-label-info',
             ],
-            5 => [
+            6 => [
                 'label' => 'Teknisi Tiba Di Lokasi',
                 'class' => 'bg-label-info',
             ],
-            6 => [
+            7 => [
                 'label' => 'Request Aktivasi',
                 'class' => 'bg-label-secondary',
             ],
-            7 => [
+            8 => [
                 'label' => 'Aktivasi Terverifikasi',
                 'class' => 'bg-label-success',
             ],
-            8 => [
+            9 => [
                 'label' => 'SPA Ditandatangani',
                 'class' => 'bg-label-success',
             ]
