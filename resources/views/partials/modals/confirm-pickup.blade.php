@@ -22,7 +22,7 @@
 
                     <div class="input-form mb-3">
                         <label class="form-label">Nama Penerima</label>
-                        <input type="text" class="form-control format-rupiah" name="receiver_name" id="receiver_name"
+                        <input type="text" class="form-control" name="receiver_name" id="receiver_name"
                             placeholder="Masukkan Nama Penerima" />
                     </div>
                 </div>

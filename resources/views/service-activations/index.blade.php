@@ -55,10 +55,12 @@
                                                 Lihat Informasi Customer</a>
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                                <a class="dropdown-item" href="/service-activations/schedule">
+                                                <button type="button" class="dropdown-item btn-input-installation-schedule"
+                                                    data-toggle="modal" data-target="#inputInstallationSchedule"
+                                                    data-activation-id="{{ $nota->id }}">
                                                     <i class="bx bx-calendar-plus me-1"></i>
                                                     Jadwalkan Instalasi
-                                                </a>
+                                                </button>
                                             @endif
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' &&
@@ -127,10 +129,12 @@
 
                                         @if (auth()->user()->role === 'Super Admin' ||
                                                 (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                            <a class="dropdown-item" href="/service-activations/schedule">
+                                            <button type="button" class="dropdown-item btn-input-installation-schedule"
+                                                data-toggle="modal" data-target="#inputInstallationSchedule"
+                                                data-activation-id="1">
                                                 <i class="bx bx-calendar-plus me-1"></i>
                                                 Jadwalkan Instalasi
-                                            </a>
+                                            </button>
                                         @endif
 
                                         @if (auth()->user()->role === 'Super Admin' ||
@@ -595,4 +599,14 @@
             </div>
         </div>
     </div>
+    @include('partials.modals.input-installation-schedule')
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).on('click', '.btn-input-installation-schedule', function() {
+            let activationNotaId = $(this).data('activation-id');
+            $('#inputInstallationSchedule').find('#activationNota_id').val(activationNotaId);
+        });
+    </script>
+@endpush
