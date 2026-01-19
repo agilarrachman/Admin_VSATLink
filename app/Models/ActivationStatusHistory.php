@@ -21,4 +21,11 @@ class ActivationStatusHistory extends Model
     {
         return $this->belongsTo(ActivationStatus::class);
     }
+
+    public static function getLatestStatusActivation($order)
+    {
+        return self::where('activation_nota_id', $order)
+            ->latest()
+            ->first();
+    }
 }

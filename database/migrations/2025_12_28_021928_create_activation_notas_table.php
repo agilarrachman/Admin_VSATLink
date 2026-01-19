@@ -27,12 +27,12 @@ return new class extends Migration
             $table->string('ip_lan', 255)->nullable();
             $table->string('subnet_mask_lan', 255)->nullable();
             $table->decimal('sqf', 5, 2)->nullable();
-            $table->decimal('esno', 5, 2)->nullable();            
+            $table->decimal('esno', 5, 2)->nullable();
             $table->enum('los', ['clear', 'obstructed'])->nullable();
-            $table->enum('antenna_diameter', ['1.2', '1.8'])->nullable();
+            $table->enum('antena_diameter', ['1.2', '1.8'])->nullable();
             $table->decimal('cn', 5, 2)->nullable();
             $table->string('esn_modem', 255)->nullable();
-            $table->enum('antenna_type', ['KU-BAND V61', 'KU-BAND V80'])->nullable();
+            $table->enum('antena_type', ['KU-BAND V61', 'KU-BAND V80'])->nullable();
             $table->text('technician_note')->nullable();
             $table->string('cacti_url', 255)->nullable();
             $table->enum('sensor_status', ['online', 'unstable', 'offline'])->nullable();

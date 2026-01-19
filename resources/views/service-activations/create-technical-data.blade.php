@@ -108,9 +108,9 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Diameter Antena</label>
-                                    <select name="antenna_diameter" class="form-select" required>
-                                        <option value="1.2" @selected(old('antenna_diameter') === '1.2')>1.2 m</option>
-                                        <option value="1.8" @selected(old('antenna_diameter') === '1.8')>1.8 m</option>
+                                    <select name="antena_diameter" class="form-select" required>
+                                        <option value="1.2" @selected(old('antena_diameter') === '1.2')>1.2 m</option>
+                                        <option value="1.8" @selected(old('antena_diameter') === '1.8')>1.8 m</option>
                                     </select>
                                 </div>
 
@@ -151,10 +151,10 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Antena</label>
-                                    <select name="antenna_type" class="form-select" required>
-                                        <option value="KU-BAND V61" @selected(old('antenna_type') === 'KU-BAND V61')>KU-BAND V61</option>
-                                        <option value="KU-BAND V80" @selected(old('antenna_type') === 'KU-BAND V80')>KU-BAND V80</option>
+                                    <label class="form-label">Jenis Antena</label>
+                                    <select name="antena_type" class="form-select" required>
+                                        <option value="KU-BAND V61" @selected(old('antena_type') === 'KU-BAND V61')>KU-BAND V61</option>
+                                        <option value="KU-BAND V80" @selected(old('antena_type') === 'KU-BAND V80')>KU-BAND V80</option>
                                     </select>
                                 </div>
 

@@ -46,7 +46,7 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item"
-                                                href="/service-activations/{{ $activationNota->id }}"><i
+                                                href="/service-activations/detail/{{ $activationNota->id }}"><i
                                                     class="bx bx-show me-1"></i>
                                                 Lihat Detail Aktivasi</a>
                                             <a class="dropdown-item"

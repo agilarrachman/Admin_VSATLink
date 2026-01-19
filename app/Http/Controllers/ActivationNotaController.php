@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActivationNota;
 use App\Http\Requests\StoreActivationNotaRequest;
 use App\Http\Requests\UpdateActivationNotaRequest;
+use App\Models\ActivationStatusHistory;
 use App\Models\Order;
 
 class ActivationNotaController extends Controller
@@ -93,11 +94,11 @@ class ActivationNotaController extends Controller
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
 
-        return view('orders.show', [
+        return view('service-activations.show', [
             'management' => 'general',
             'page' => 'general',
-            // 'order' => $order,
-            // 'order_status' => OrderStatusHistory::getLatestStatusOrder($order->id),
+            'nota' => $nota,
+            'activation_status' => ActivationStatusHistory::getLatestStatusActivation($nota->id),
 
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
