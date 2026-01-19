@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\ActivationNota;
 use App\Models\OrderStatusHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,7 @@ class OrderController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -47,6 +49,7 @@ class OrderController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -84,6 +87,7 @@ class OrderController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -132,6 +136,7 @@ class OrderController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 

@@ -27,6 +27,7 @@ class ActivationNotaController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -45,6 +46,7 @@ class ActivationNotaController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -60,6 +62,7 @@ class ActivationNotaController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -75,6 +78,7 @@ class ActivationNotaController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 
@@ -104,6 +108,7 @@ class ActivationNotaController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
     }
 

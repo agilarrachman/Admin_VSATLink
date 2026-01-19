@@ -76,4 +76,10 @@ class ActivationNota extends Model
         return self::latest()
             ->get();
     }
+
+    public static function activationSchedulePendingCount()
+    {
+        return self::where('current_status_id', 1)
+            ->count();
+    }
 }
