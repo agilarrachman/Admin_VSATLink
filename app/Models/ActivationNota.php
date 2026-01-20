@@ -52,7 +52,7 @@ class ActivationNota extends Model
             ],
             4 => [
                 'label' => 'Jadwal Dikonfirmasi',
-                'class' => 'bg-label-danger',
+                'class' => 'bg-label-warning',
             ],
             5 => [
                 'label' => 'Siap Instalasi',
@@ -94,6 +94,29 @@ class ActivationNota extends Model
     }
 
     public static function inputInstallationSchedule($activationNotaId, $installationDate, $installationSession)
+    {
+        $activationNota = self::findOrFail($activationNotaId);        
+
+        $activationNota->update([
+            'current_status_id'  => 2,
+            'installation_date' => $installationDate,
+            'installation_session' => $installationSession,
+        ]);
+
+        $timeRange = $installationSession === 'Pagi' ? '08.00 - 11.00' : '13.00 - 17.00';
+
+        ActivationStatusHistory::create([
+            'activation_status_id' => 2,
+            'activation_nota_id'   => $activationNota->id,
+            'note' => 'Jadwal instalasi diajukan pada '
+                . Carbon::parse($installationDate)->translatedFormat('d F Y')
+                . ' (' . $installationSession . ', ' . $timeRange . ')',
+        ]);
+
+        return $activationNota;
+    }
+
+    public static function editInstallationSchedule($activationNotaId, $installationDate, $installationSession)
     {
         $activationNota = self::findOrFail($activationNotaId);        
 

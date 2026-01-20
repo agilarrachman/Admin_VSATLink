@@ -118,4 +118,20 @@ class ActivationNotaController extends Controller
             'Jadwal instalasi berhasil diajukan dan menunggu konfirmasi.'
         );
     }
+
+    public function editInstallationSchedule(Request $request)
+    {
+        $request->validate([
+            'activation_nota_id' => 'required|exists:activation_notas,id',
+            'installation_date' => 'required',
+            'installation_session' => 'required|in:Pagi,Siang',
+        ]);
+
+        ActivationNota::editInstallationSchedule($request->activation_nota_id, $request->installation_date, $request->installation_session);
+
+        return back()->with(
+            'success',
+            'Jadwal instalasi berhasil diajukan dan menunggu konfirmasi.'
+        );
+    }
 }

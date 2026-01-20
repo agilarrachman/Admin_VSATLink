@@ -34,7 +34,9 @@
                                 <td>{{ $activationNota->order->customer->name }}</td>
                                 <td>{{ $activationNota->order->product->name }}</td>
                                 <td>
-                                    {{ $activationNota->installation_session . ' | ' . $activationNota->installation_date?->translatedFormat('d F Y') ?? '-' }}
+                                    {{ $activationNota->installation_session && $activationNota->installation_date
+                                        ? $activationNota->installation_session . ' | ' . $activationNota->installation_date->translatedFormat('d F Y')
+                                        : '-' }}
                                 </td>
                                 <td>{{ $activationNota->online_date?->translatedFormat('d M Y, H:i') ?? '-' }}</td>
                                 </td>
@@ -57,12 +59,25 @@
                                                 Lihat Informasi Customer</a>
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                                <button type="button" class="dropdown-item btn-input-installation-schedule"
-                                                    data-toggle="modal" data-target="#inputInstallationSchedule"
-                                                    data-activation-id="{{ $activationNota->id }}">
-                                                    <i class="bx bx-calendar-plus me-1"></i>
-                                                    Jadwalkan Instalasi
-                                                </button>
+                                                @if ($activationNota->current_status_id == 1)
+                                                    <button type="button"
+                                                        class="dropdown-item btn-input-installation-schedule"
+                                                        data-toggle="modal" data-target="#inputInstallationSchedule"
+                                                        data-activation-id="{{ $activationNota->id }}">
+                                                        <i class="bx bx-calendar-plus me-1"></i>
+                                                        Jadwalkan Instalasi
+                                                    </button>
+                                                @elseif ($activationNota->current_status_id > 1 && $activationNota->current_status_id <= 3)
+                                                    <button type="button"
+                                                        class="dropdown-item btn-edit-installation-schedule"
+                                                        data-bs-toggle="modal" data-bs-target="#editInstallationSchedule"
+                                                        data-activation-id="{{ $activationNota->id }}"
+                                                        data-installation-date="{{ optional($activationNota->installation_date)->format('Y-m-d') }}"
+                                                        data-installation-session="{{ $activationNota->installation_session }}">
+                                                        <i class="bx bx-calendar-plus me-1"></i>
+                                                        Ubah Jadwal Instalasi
+                                                    </button>
+                                                @endif
                                             @endif
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' &&
@@ -602,6 +617,7 @@
         </div>
     </div>
     @include('partials.modals.input-installation-schedule')
+    @include('partials.modals.edit-installation-schedule')
 @endsection
 
 @push('scripts')
@@ -609,6 +625,25 @@
         $(document).on('click', '.btn-input-installation-schedule', function() {
             let activationNotaId = $(this).data('activation-id');
             $('#inputInstallationSchedule').find('#activation_nota_id').val(activationNotaId);
+        });
+
+        $(document).on('click', '.btn-edit-installation-schedule', function() {
+            const activationNotaId = $(this).data('activation-id');
+            const installationDate = $(this).data('installation-date');
+            const installationSession = $(this).data('installation-session');
+
+            const modal = $('#editInstallationSchedule');
+
+            modal.find('#edit_installation_activation_nota_id').val(activationNotaId);
+            modal.find('#edit_installation_date').val(installationDate ?? '');
+
+            modal.find('#edit_installation_session_morning')
+                .prop('checked', installationSession === 'Pagi');
+
+            modal.find('#edit_installation_session_afternoon')
+                .prop('checked', installationSession === 'Siang');
+
+            modal.find('#edit_submit_btn').prop('disabled', !installationDate);
         });
     </script>
 @endpush

@@ -53,5 +53,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/service-activations/verification', [ActivationNotaController::class, 'storeVerification']);
         Route::get('/service-activations/verification/{nota}/edit', [ActivationNotaController::class, 'editVerification']);
         Route::post('/service-activations/input-installation-schedule', [ActivationNotaController::class, 'inputInstallationSchedule']);
+        Route::post('/service-activations/edit-installation-schedule', [ActivationNotaController::class, 'editInstallationSchedule']);
     });
 });

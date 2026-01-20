@@ -50,9 +50,20 @@
 
                                 <div
                                     class="step {{ $activation_status->activation_status_id >= 4 ? 'active' : '' }}
+                                                {{ $activation_status->activation_status_id >= 5 ? 'completed' : '' }}">
+                                    <div class="circle">
+                                        @if ($activation_status->activation_status_id >= 5)
+                                            <i class="bx bx-check"></i>
+                                        @endif
+                                    </div>
+                                    <h5>Data Provisioning</h5>
+                                </div>
+
+                                <div
+                                    class="step {{ $activation_status->activation_status_id >= 5 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id >= 7 ? 'completed' : '' }}">
                                     <div class="circle">
-                                        @if ($activation_status->activation_status_id >= 4)
+                                        @if ($activation_status->activation_status_id >= 7)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
