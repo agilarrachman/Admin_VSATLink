@@ -19,7 +19,7 @@
                         yang dimasukkan sudah benar sebelum dikonfirmasi.
                     </p>
 
-                    <input type="hidden" name="activationNota_id" id="activationNota_id">
+                    <input type="hidden" name="activation_nota_id" id="activation_nota_id">
 
                     <div class="input-form mb-3">
                         <label class="form-label">Tanggal</label>

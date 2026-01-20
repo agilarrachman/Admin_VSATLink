@@ -21,9 +21,15 @@
                                 </p>
                                 <h4 class="mb-0 fw-bold" style="font-size: 16px">{{ $nota->order->product->name }}</h4>
                                 <div class="d-flex align-items-center">
-                                    <i class="bx bx-calendar-plus me-1"></i>
+                                    <i class="bx bx-calendar me-1"></i>
                                     <p class="mb-0" style="font-size: 14px">
-                                        {{ $nota->installation_date ? 'Jadwal Instalasi pada tanggal ' . $nota->installation_date->translatedFormat('d F Y, H:i') : 'Belum dijadwalkan' }}
+                                        @if ($nota->installation_date)
+                                            Jadwal Instalasi pada tanggal
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
+                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                        @else
+                                            Belum dijadwalkan
+                                        @endif
                                     </p>
                                 </div>
                             </div>
@@ -33,9 +39,9 @@
                         <div class="status d-flex flex-column align-items-center mb-4">
                             <div class="activation-steps w-100">
                                 <div
-                                    class="step {{ $activation_status->activation_status_id > 1 ? 'completed' : 'active' }}">
+                                    class="step {{ $activation_status->activation_status_id >= 4 ? 'completed' : 'active' }}">
                                     <div class="circle">
-                                        @if ($activation_status->activation_status_id > 1)
+                                        @if ($activation_status->activation_status_id >= 4)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -43,8 +49,8 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $activation_status->activation_status_id == 3 ? 'active' : '' }}
-                                                {{ $activation_status->activation_status_id >= 4 ? 'completed' : '' }}">
+                                    class="step {{ $activation_status->activation_status_id >= 4 ? 'active' : '' }}
+                                                {{ $activation_status->activation_status_id >= 7 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 4)
                                             <i class="bx bx-check"></i>
@@ -53,7 +59,9 @@
                                     <h5>Perjalanan Teknisi</h5>
                                 </div>
 
-                                <div class="step {{ $activation_status->activation_status_id >= 5 ? 'completed' : '' }}">
+                                <div
+                                    class="step {{ $activation_status->activation_status_id >= 7 ? 'active' : '' }}
+                                                {{ $activation_status->activation_status_id >= 8 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 5)
                                             <i class="bx bx-check"></i>
@@ -62,7 +70,8 @@
                                     <h5>Proses Instalasi & Aktivasi</h5>
                                 </div>
 
-                                <div class="step {{ $activation_status->activation_status_id >= 7 ? 'completed' : '' }}">
+                                <div class="step {{ $activation_status->activation_status_id >= 8 ? 'active' : '' }}
+                                                {{ $activation_status->activation_status_id == 10 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 7)
                                             <i class="bx bx-check"></i>

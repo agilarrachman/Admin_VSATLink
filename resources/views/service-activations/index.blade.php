@@ -33,7 +33,9 @@
                                 <td>{{ $activationNota->order->unique_order }}</td>
                                 <td>{{ $activationNota->order->customer->name }}</td>
                                 <td>{{ $activationNota->order->product->name }}</td>
-                                <td>{{ $activationNota->installation_date?->translatedFormat('d M Y, H:i') ?? '-' }}</td>
+                                <td>
+                                    {{ $activationNota->installation_session . ' | ' . $activationNota->installation_date?->translatedFormat('d F Y') ?? '-' }}
+                                </td>
                                 <td>{{ $activationNota->online_date?->translatedFormat('d M Y, H:i') ?? '-' }}</td>
                                 </td>
                                 @php($badge = $activationNota->statusBadge())
@@ -57,7 +59,7 @@
                                                     (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
                                                 <button type="button" class="dropdown-item btn-input-installation-schedule"
                                                     data-toggle="modal" data-target="#inputInstallationSchedule"
-                                                    data-activation-id="{{ $nota->id }}">
+                                                    data-activation-id="{{ $activationNota->id }}">
                                                     <i class="bx bx-calendar-plus me-1"></i>
                                                     Jadwalkan Instalasi
                                                 </button>
@@ -606,7 +608,7 @@
     <script>
         $(document).on('click', '.btn-input-installation-schedule', function() {
             let activationNotaId = $(this).data('activation-id');
-            $('#inputInstallationSchedule').find('#activationNota_id').val(activationNotaId);
+            $('#inputInstallationSchedule').find('#activation_nota_id').val(activationNotaId);
         });
     </script>
 @endpush

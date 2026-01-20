@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivationNota;
-use App\Http\Requests\StoreActivationNotaRequest;
-use App\Http\Requests\UpdateActivationNotaRequest;
 use App\Models\ActivationStatusHistory;
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 class ActivationNotaController extends Controller
 {
@@ -83,14 +82,6 @@ class ActivationNotaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreActivationNotaRequest $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(ActivationNota $nota)
@@ -112,27 +103,19 @@ class ActivationNotaController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ActivationNota $activationNota)
+    public function inputInstallationSchedule(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'activation_nota_id' => 'required|exists:activation_notas,id',
+            'installation_date' => 'required',
+            'installation_session' => 'required|in:Pagi,Siang',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateActivationNotaRequest $request, ActivationNota $activationNota)
-    {
-        //
-    }
+        ActivationNota::inputInstallationSchedule($request->activation_nota_id, $request->installation_date, $request->installation_session);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ActivationNota $activationNota)
-    {
-        //
+        return back()->with(
+            'success',
+            'Jadwal instalasi berhasil diajukan dan menunggu konfirmasi.'
+        );
     }
 }
