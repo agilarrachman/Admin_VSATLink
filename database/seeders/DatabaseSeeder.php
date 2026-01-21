@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
                 'profile_picture' => 'profile_pictures/4.png',
                 'username' => 'installationcoordinator',
                 'name' => 'Rizky Pratama',
-                'email' => 'installation.coordinator@vsatlink.co.id',
+                'email' => 'agilarrachman@apps.ipb.ac.id',
                 'password' => Hash::make('password123'),
                 'phone' => '6281444444444',
                 'gender' => 'Pria',

@@ -72,7 +72,7 @@
                                                         class="dropdown-item btn-edit-installation-schedule"
                                                         data-bs-toggle="modal" data-bs-target="#editInstallationSchedule"
                                                         data-activation-id="{{ $activationNota->id }}"
-                                                        data-installation-date="{{ optional($activationNota->installation_date)->format('Y-m-d') }}"
+                                                        data-installation-date="{{ $activationNota->installation_date->format('Y-m-d') }}"
                                                         data-installation-session="{{ $activationNota->installation_session }}">
                                                         <i class="bx bx-calendar-plus me-1"></i>
                                                         Ubah Jadwal Instalasi
