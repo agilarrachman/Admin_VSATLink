@@ -131,7 +131,7 @@ class ActivationNotaController extends Controller
 
         return back()->with(
             'success',
-            'Jadwal instalasi berhasil diajukan dan menunggu konfirmasi.'
+            'Jadwal instalasi berhasil diperbarui.'
         );
     }
 }

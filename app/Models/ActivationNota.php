@@ -89,13 +89,13 @@ class ActivationNota extends Model
 
     public static function activationSchedulePendingCount()
     {
-        return self::where('current_status_id', 1)
+        return self::whereIn('current_status_id', [1, 3])
             ->count();
     }
 
     public static function inputInstallationSchedule($activationNotaId, $installationDate, $installationSession)
     {
-        $activationNota = self::findOrFail($activationNotaId);        
+        $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
             'current_status_id'  => 2,
@@ -118,23 +118,32 @@ class ActivationNota extends Model
 
     public static function editInstallationSchedule($activationNotaId, $installationDate, $installationSession)
     {
-        $activationNota = self::findOrFail($activationNotaId);        
+        $activationNota = self::findOrFail($activationNotaId);
 
-        $activationNota->update([
-            'current_status_id'  => 2,
-            'installation_date' => $installationDate,
+        $updateData = [
+            'installation_date'    => $installationDate,
             'installation_session' => $installationSession,
-        ]);
+        ];
 
-        $timeRange = $installationSession === 'Pagi' ? '08.00 - 11.00' : '13.00 - 17.00';
+        if ($activationNota->current_status_id == 3) {
+            $updateData['current_status_id'] = 4;
+        }
 
-        ActivationStatusHistory::create([
-            'activation_status_id' => 2,
-            'activation_nota_id'   => $activationNota->id,
-            'note' => 'Jadwal instalasi diajukan pada '
-                . Carbon::parse($installationDate)->translatedFormat('d F Y')
-                . ' (' . $installationSession . ', ' . $timeRange . ')',
-        ]);
+        $activationNota->update($updateData);
+
+        if ($activationNota->current_status_id == 3) {
+            $timeRange = $installationSession == 'Pagi'
+                ? '08.00 - 11.00'
+                : '13.00 - 17.00';
+
+            ActivationStatusHistory::create([
+                'activation_status_id' => 4,
+                'activation_nota_id'   => $activationNota->id,
+                'note' => 'Jadwal instalasi diperbarui menjadi pada '
+                    . Carbon::parse($installationDate)->translatedFormat('d F Y')
+                    . ' (' . $installationSession . ', ' . $timeRange . ')',
+            ]);
+        }
 
         return $activationNota;
     }
