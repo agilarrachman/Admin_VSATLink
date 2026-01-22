@@ -83,7 +83,8 @@
                                                     (auth()->user()->role === 'Service Operation Admin' &&
                                                         auth()->user()->position === 'Provisioning Service Activation'))
                                                 @if ($activationNota->current_status_id == 4)
-                                                    <a class="dropdown-item" href="/service-activations/provisioning/{{ $activationNota->id }}">
+                                                    <a class="dropdown-item"
+                                                        href="/service-activations/provisioning/{{ $activationNota->id }}">
                                                         <i class="bx bx-cog me-1"></i>
                                                         Input Data Provisioning
                                                     </a>
@@ -97,15 +98,29 @@
                                             @endif
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                                @if ($activationNota->current_status_id >= 5 && $activationNota->current_status_id < 7)
-                                                    <button type="button"
-                                                        class="dropdown-item btn-edit-installation-schedule"
-                                                        data-bs-toggle="modal" data-bs-target="#updateTechnicianStatus">
-                                                        <i class="bx bx-navigation me-1"></i>
-                                                        Update Status Perjalanan Teknisi
-                                                    </button>
+                                                @if ($activationNota->current_status_id == 5)
+                                                    <form
+                                                        action="/service-activations/technician-on-the-way/{{ $activationNota->id }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item" onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi Teknisi Dalam Perjalanan?')">
+                                                            <i class="bx bx-navigation me-1"></i>
+                                                            Teknisi Dalam Perjalanan
+                                                        </button>
+                                                    </form>
+                                                @elseif ($activationNota->current_status_id == 6)
+                                                    <form
+                                                        action="/service-activations/technician-arrived/{{ $activationNota->id }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item" onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi Teknisi Tiba Di Lokasi?')">
+                                                            <i class="bx bx-navigation me-1"></i>
+                                                            Teknisi Tiba Di Lokasi
+                                                        </button>
+                                                    </form>
                                                 @elseif ($activationNota->current_status_id == 7)
-                                                    <a class="dropdown-item" href="/service-activations/technical-data/{{ $activationNota->id }}">
+                                                    <a class="dropdown-item"
+                                                        href="/service-activations/technical-data/{{ $activationNota->id }}">
                                                         <i class="bx bx-wrench me-1"></i>
                                                         Input Data Teknis
                                                     </a>
@@ -121,7 +136,8 @@
                                                     (auth()->user()->role === 'Service Operation Admin' &&
                                                         auth()->user()->position === 'Provisioning Service Activation'))
                                                 @if ($activationNota->current_status_id == 8)
-                                                    <a class="dropdown-item" href="/service-activations/verification/{{ $activationNota->id }}">
+                                                    <a class="dropdown-item"
+                                                        href="/service-activations/verification/{{ $activationNota->id }}">
                                                         <i class="bx bx-check-shield me-1"></i>
                                                         Verifikasi Layanan Aktif
                                                     </a>

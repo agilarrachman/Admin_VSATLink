@@ -82,7 +82,7 @@
                                     class="step {{ $activation_status->activation_status_id >= 7 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id >= 8 ? 'completed' : '' }}">
                                     <div class="circle">
-                                        @if ($activation_status->activation_status_id >= 5)
+                                        @if ($activation_status->activation_status_id >= 8)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>

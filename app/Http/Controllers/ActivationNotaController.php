@@ -184,6 +184,14 @@ class ActivationNotaController extends Controller
             ->with('success', 'Data provisioning berhasil diperbarui.');
     }
 
+    public function technicianOnTheWay(ActivationNota $nota)
+    {
+        ActivationNota::technicianOnTheWay($nota->id);
+
+        return redirect('/service-activations/detail/' . $nota->id)
+            ->with('success', 'Status teknisi dalam perjalanan berhasil diperbarui.');
+    }
+
     public function createTechnicalData()
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
