@@ -31,6 +31,7 @@ return new class extends Migration
             $table->decimal('esno', 5, 2)->nullable();
             $table->enum('los', ['Bersih', 'Terhalang'])->nullable();
             $table->enum('antena_diameter', ['1.2', '1.8'])->nullable();
+            $table->string('lft_id', 255)->nullable();
             $table->decimal('cn', 5, 2)->nullable();
             $table->string('esn_modem', 255)->nullable();
             $table->enum('antena_type', ['KU-BAND V61', 'KU-BAND V80'])->nullable();

@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Input Data Teknis</h5>
+                    <h5 class="card-header">Edit Data Teknis</h5>
                     <div class="card-body">
                         <p class="fw-bold text-primary">Rincian Pesanan</p>
                         <div class="d-flex items-start gap-4 mb-3">
@@ -80,6 +80,8 @@
 
                         <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST">
                             @csrf
+                            @method('PUT')
+
                             <p class="fw-bold text-primary mb-0">Data Teknis dan Crosspole</p>
                             <p class="mb-3">
                                 Silakan lengkapi data teknis dan hasil pengukuran crosspole sesuai kondisi aktual di
@@ -89,8 +91,8 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">SQF</label>
-                                    <input type="number" name="sqf"
-                                        class="form-control @error('sqf') is-invalid @enderror" value="{{ old('sqf') }}"
+                                    <input type="number" step="0.01" name="sqf"
+                                        class="form-control @error('sqf') is-invalid @enderror" value="{{ old('sqf', $nota->sqf) }}"
                                         placeholder="Contoh: 78" required>
                                     @error('sqf')
                                         <div class="invalid-feedback">
@@ -101,9 +103,9 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">ESNO (dB)</label>
-                                    <input type="number" step="0.1" name="esno"
+                                    <input type="number" step="0.01" name="esno"
                                         class="form-control @error('esno') is-invalid @enderror"
-                                        value="{{ old('esno') }}" placeholder="12.5" required>
+                                        value="{{ old('esno', $nota->esno) }}" placeholder="12.5" required>
                                     @error('esno')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -115,8 +117,8 @@
                                     <label class="form-label">Line of Sight</label>
                                     <select name="los" class="form-select" required>
                                         <option value="">Pilih Line of Sight</option>
-                                        <option value="Bersih" @selected(old('los') === 'Bersih')>Bersih</option>
-                                        <option value="Terhalang" @selected(old('los') === 'obstructed')>Obstructed</option>
+                                        <option value="Bersih" @selected(old('los', $nota->los) === 'Bersih')>Bersih</option>
+                                        <option value="Terhalang" @selected(old('los', $nota->los) === 'Terhalang')>Terhalang</option>
                                     </select>
                                 </div>
 
@@ -124,8 +126,8 @@
                                     <label class="form-label">Diameter Antena</label>
                                     <select name="antena_diameter" class="form-select" required>
                                         <option value="">Pilih Diameter Antena</option>
-                                        <option value="1.2" @selected(old('antena_diameter') === '1.2')>1.2 m</option>
-                                        <option value="1.8" @selected(old('antena_diameter') === '1.8')>1.8 m</option>
+                                        <option value="1.2" @selected(old('antena_diameter', $nota->antena_diameter) === '1.2')>1.2 m</option>
+                                        <option value="1.8" @selected(old('antena_diameter', $nota->antena_diameter) === '1.8')>1.8 m</option>
                                     </select>
                                 </div>
 
@@ -133,7 +135,7 @@
                                     <label class="form-label">ID LFT (Crosspole)</label>
                                     <input type="text" name="lft_id"
                                         class="form-control @error('lft_id') is-invalid @enderror"
-                                        value="{{ old('lft_id') }}" placeholder="LFT-90231">
+                                        value="{{ old('lft_id', $nota->lft_id) }}" placeholder="LFT-90231">
                                     @error('lft_id')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -143,9 +145,9 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">C/N (dB)</label>
-                                    <input type="number" step="0.1" name="cn"
+                                    <input type="number" step="0.01" name="cn"
                                         class="form-control @error('cn') is-invalid @enderror"
-                                        value="{{ old('cn') }}" placeholder="Contoh: 14.5 (dB)">
+                                        value="{{ old('cn', $nota->cn) }}" placeholder="Contoh: 14.5 (dB)">
                                     @error('cn')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -157,7 +159,7 @@
                                     <label class="form-label">ESN Modem</label>
                                     <input type="text" name="esn_modem"
                                         class="form-control @error('esn_modem') is-invalid @enderror"
-                                        value="{{ old('esn_modem') }}" placeholder="Contoh: 15266359AV" required>
+                                        value="{{ old('esn_modem', $nota->esn_modem) }}" placeholder="Contoh: 15266359AV" required>
                                     @error('esn_modem')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -169,15 +171,15 @@
                                     <label class="form-label">Jenis Antena</label>
                                     <select name="antena_type" class="form-select" required>
                                         <option value="">Pilih Jenis Antena</option>
-                                        <option value="KU-BAND V61" @selected(old('antena_type') === 'KU-BAND V61')>KU-BAND V61</option>
-                                        <option value="KU-BAND V80" @selected(old('antena_type') === 'KU-BAND V80')>KU-BAND V80</option>
+                                        <option value="KU-BAND V61" @selected(old('antena_type', $nota->antena_type) === 'KU-BAND V61')>KU-BAND V61</option>
+                                        <option value="KU-BAND V80" @selected(old('antena_type', $nota->antena_type) === 'KU-BAND V80')>KU-BAND V80</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Catatan Teknisi (Opsional)</label>
                                     <textarea name="technician_note" class="form-control @error('technician_note') is-invalid @enderror" rows="3"
-                                        placeholder="Masukkan catatan jika ada">{{ old('technician_note') }}</textarea>
+                                        placeholder="Masukkan catatan jika ada">{{ old('technician_note', $nota->technician_note) }}</textarea>
                                     @error('technician_note')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -190,7 +192,7 @@
                                 Batal
                             </button>
                             <button type="submit" class="btn btn-primary">
-                                Ajukan Permintaan Aktivasi
+                                Simpan Perubahan
                             </button>
                         </form>
                     </div>

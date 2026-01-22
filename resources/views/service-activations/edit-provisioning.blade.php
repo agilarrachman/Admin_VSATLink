@@ -208,7 +208,7 @@
                             </div>
 
                             <button type="button" class="btn btn-secondary" onclick="history.back()">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </form>
 
                     </div>

@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/technical-data/{nota}', [ActivationNotaController::class, 'createTechnicalData']);
             Route::post('/technical-data/{nota}', [ActivationNotaController::class, 'storeTechnicalData']);
             Route::get('/technical-data/{nota}/edit', [ActivationNotaController::class, 'editTechnicalData']);
+            Route::put('/technical-data/{nota}', [ActivationNotaController::class, 'updateTechnicalData']);
             Route::get('/verification/{nota}', [ActivationNotaController::class, 'createVerification']);
             Route::post('/verification/{nota}', [ActivationNotaController::class, 'storeVerification']);
             Route::get('/verification/{nota}/edit', [ActivationNotaController::class, 'editVerification']);

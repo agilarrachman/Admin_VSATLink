@@ -55,17 +55,17 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'ao' => ['required', 'string', 'max:50'],
-                'sid' => ['required', 'string', 'max:50'],
-                'pe' => ['required', 'string', 'max:50'],
-                'interface' => ['required', 'string', 'max:50'],
-                'ip_wan' => ['required', 'ip'],
-                'ip_backhaul' => ['required', 'ip'],
-                'hub_type' => ['required', 'in:Mangoesky,iDirect'],
-                'nms_id' => ['required', 'string', 'max:50'],
-                'create_nms_date' => ['required', 'date'],
-                'ip_lan' => ['required', 'ip'],
-                'subnet_mask_lan' => ['required', 'string', 'max:50'],
+                'ao' => 'required|string|max:255',
+                'sid' => 'required|string|max:255',
+                'pe' => 'required|string|max:255',
+                'interface' => 'required|string|max:255',
+                'ip_wan' => 'required|ip',
+                'ip_backhaul' => 'required|ip',
+                'hub_type' => 'required|in:Mangoesky,iDirect',
+                'nms_id' => 'required|string|max:255',
+                'create_nms_date' => 'required|date',
+                'ip_lan' => 'required|ip',
+                'subnet_mask_lan' => 'required|string|max:255',
             ],
             [
                 'ao.required' => 'AO wajib diisi.',
@@ -130,17 +130,17 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'ao' => ['required', 'string', 'max:50'],
-                'sid' => ['required', 'string', 'max:50'],
-                'pe' => ['required', 'string', 'max:50'],
-                'interface' => ['required', 'string', 'max:50'],
-                'ip_wan' => ['required', 'ip'],
-                'ip_backhaul' => ['required', 'ip'],
-                'hub_type' => ['required', 'in:Mangoesky,iDirect'],
-                'nms_id' => ['required', 'string', 'max:50'],
-                'create_nms_date' => ['required', 'date'],
-                'ip_lan' => ['required', 'ip'],
-                'subnet_mask_lan' => ['required', 'string', 'max:50'],
+                'ao' => 'required|string|max:255',
+                'sid' => 'required|string|max:255',
+                'pe' => 'required|string|max:255',
+                'interface' => 'required|string|max:255',
+                'ip_wan' => 'required|ip',
+                'ip_backhaul' => 'required|ip',
+                'hub_type' => 'required|in:Mangoesky,iDirect',
+                'nms_id' => 'required|string|max:255',
+                'create_nms_date' => 'required|date',
+                'ip_lan' => 'required|ip',
+                'subnet_mask_lan' => 'required|string|max:255',
             ],
             [
                 'ao.required' => 'AO wajib diisi.',
@@ -200,7 +200,7 @@ class ActivationNotaController extends Controller
             ->with('success', 'Status teknisi berhasil diperbarui menjadi tiba di lokasi pelanggan.');
     }
 
-    public function createTechnicalData()
+    public function createTechnicalData(ActivationNota $nota)
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
@@ -208,12 +208,126 @@ class ActivationNotaController extends Controller
         return view('service-activations.create-technical-data', [
             'management' => 'service-activation',
             'page' => 'general',
+            'nota' => $nota,
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
             'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
         ]);
+    }
+
+    public function storeTechnicalData(Request $request, ActivationNota $nota)
+    {
+        $request->validate(
+            [
+                'sqf' => 'required|numeric|min:0',
+                'esno' => 'required|numeric|min:0',
+                'los' => 'required|in:Bersih,Terhalang',
+                'antena_diameter' => 'required|in:1.2,1.8',
+                'lft_id' => 'required|string|max:255',
+                'cn' => 'required|numeric|min:0',
+                'esn_modem' => 'required|string|max:255',
+                'antena_type' => 'required|in:KU-BAND V61,KU-BAND V80',
+                'technician_note' => 'nullable',
+            ],
+            [
+                'sqf.required' => 'SQF wajib diisi.',
+                'sqf.numeric'  => 'SQF harus berupa angka.',
+                'sqf.min'      => 'SQF tidak boleh kurang dari 0.',
+
+                'esno.required' => 'ESNO wajib diisi.',
+                'esno.numeric'  => 'ESNO harus berupa angka.',
+                'esno.min'      => 'ESNO tidak boleh bernilai negatif.',
+
+                'los.required' => 'Line of Sight wajib dipilih.',
+                'los.in'       => 'Line of Sight tidak valid.',
+
+                'antena_diameter.required' => 'Diameter antena wajib dipilih.',
+                'antena_diameter.in'       => 'Diameter antena tidak valid.',
+
+                'lft_id.max' => 'ID LFT maksimal 50 karakter.',
+
+                'cn.numeric' => 'C/N harus berupa angka.',
+                'cn.min'     => 'C/N tidak boleh bernilai negatif.',
+
+                'esn_modem.required' => 'ESN Modem wajib diisi.',
+                'esn_modem.max'      => 'ESN Modem maksimal 50 karakter.',
+
+                'antena_type.required' => 'Jenis antena wajib dipilih.',
+                'antena_type.in'       => 'Jenis antena tidak valid.',
+            ]
+        );
+
+        ActivationNota::storeTechnicalData($nota->id, $request->all());
+
+        return redirect('/service-activations/detail/' . $nota->id)
+            ->with('success', 'Data Teknis dan Crosspole berhasil disimpan.');
+    }
+
+    public function editTechnicalData(ActivationNota $nota)
+    {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+        return view('service-activations.edit-technical-data', [
+            'management' => 'service-activation',
+            'page' => 'general',
+            'nota' => $nota,
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+        ]);
+    }
+
+    public function updateTechnicalData(Request $request, ActivationNota $nota)
+    {
+        $request->validate(
+            [
+                'sqf' => 'required|numeric|min:0',
+                'esno' => 'required|numeric|min:0',
+                'los' => 'required|in:Bersih,Terhalang',
+                'antena_diameter' => 'required|in:1.2,1.8',
+                'lft_id' => 'required|string|max:255',
+                'cn' => 'required|numeric|min:0',
+                'esn_modem' => 'required|string|max:255',
+                'antena_type' => 'required|in:KU-BAND V61,KU-BAND V80',
+                'technician_note' => 'nullable',
+            ],
+            [
+                'sqf.required' => 'SQF wajib diisi.',
+                'sqf.numeric'  => 'SQF harus berupa angka.',
+                'sqf.min'      => 'SQF tidak boleh kurang dari 0.',
+
+                'esno.required' => 'ESNO wajib diisi.',
+                'esno.numeric'  => 'ESNO harus berupa angka.',
+                'esno.min'      => 'ESNO tidak boleh bernilai negatif.',
+
+                'los.required' => 'Line of Sight wajib dipilih.',
+                'los.in'       => 'Line of Sight tidak valid.',
+
+                'antena_diameter.required' => 'Diameter antena wajib dipilih.',
+                'antena_diameter.in'       => 'Diameter antena tidak valid.',
+
+                'lft_id.max' => 'ID LFT maksimal 50 karakter.',
+
+                'cn.numeric' => 'C/N harus berupa angka.',
+                'cn.min'     => 'C/N tidak boleh bernilai negatif.',
+
+                'esn_modem.required' => 'ESN Modem wajib diisi.',
+                'esn_modem.max'      => 'ESN Modem maksimal 50 karakter.',
+
+                'antena_type.required' => 'Jenis antena wajib dipilih.',
+                'antena_type.in'       => 'Jenis antena tidak valid.',
+            ]
+        );
+
+        ActivationNota::updateTechnicalData($nota->id, $request->all());
+
+        return redirect('/service-activations/detail/' . $nota->id)
+            ->with('success', 'Data Teknis dan Crosspole berhasil diperbarui.');
     }
 
     public function createVerification()

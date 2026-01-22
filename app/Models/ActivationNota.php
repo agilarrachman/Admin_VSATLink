@@ -235,4 +235,50 @@ class ActivationNota extends Model
 
         return $activationNota;
     }
+
+    public static function storeTechnicalData($activationNotaId, $RequestData)
+    {
+        $activationNota = self::findOrFail($activationNotaId);
+
+        $activationNota->update([
+            'current_status_id'  => 8,
+            'sqf' => $RequestData['sqf'],
+            'esno' => $RequestData['esno'],
+            'los' => $RequestData['los'],
+            'antena_diameter' => $RequestData['antena_diameter'],
+            'lft_id' => $RequestData['lft_id'],
+            'cn' => $RequestData['cn'],
+            'esn_modem' => $RequestData['esn_modem'],
+            'antena_type' => $RequestData['antena_type'],
+            'technician_note' => $RequestData['technician_note'] ?? null,
+        ]);
+
+        ActivationStatusHistory::create([
+            'activation_status_id' => 8,
+            'activation_nota_id'   => $activationNota->id,
+            'note' => 'Data teknis telah diinput dan permintaan aktivasi telah diajukan.'
+        ]);
+
+        return $activationNota;
+    }
+
+    public static function updateTechnicalData($activationNotaId, $RequestData)
+    {
+        $activationNota = self::findOrFail($activationNotaId);
+
+        $activationNota->update([
+            'current_status_id'  => 8,
+            'sqf' => $RequestData['sqf'],
+            'esno' => $RequestData['esno'],
+            'los' => $RequestData['los'],
+            'antena_diameter' => $RequestData['antena_diameter'],
+            'lft_id' => $RequestData['lft_id'],
+            'cn' => $RequestData['cn'],
+            'esn_modem' => $RequestData['esn_modem'],
+            'antena_type' => $RequestData['antena_type'],
+            'technician_note' => $RequestData['technician_note'] ?? null,
+        ]);
+
+        return $activationNota;
+    }
 }
