@@ -40,19 +40,21 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/logistics/confirm-pickup', [LogisticController::class, 'confirmPickup']);
     });
 
-    Route::middleware('role:Super Admin, Service Operation Admin')->group(function () {
-        Route::get('/service-activations', [ActivationNotaController::class, 'index']);
-        Route::get('/service-activations/detail/{nota}', [ActivationNotaController::class, 'show']);
-        Route::get('/service-activations/provisioning', [ActivationNotaController::class, 'createProvisioning']);
-        Route::post('/service-activations/provisioning', [ActivationNotaController::class, 'storeProvisioning']);
-        Route::get('/service-activations/provisioning/{nota}/edit', [ActivationNotaController::class, 'editProvisioning']);
-        Route::get('/service-activations/technical-data', [ActivationNotaController::class, 'createTechnicalData']);
-        Route::post('/service-activations/technical-data', [ActivationNotaController::class, 'storeTechnicalData']);
-        Route::get('/service-activations/technical-data/{nota}/edit', [ActivationNotaController::class, 'editTechnicalData']);
-        Route::get('/service-activations/verification', [ActivationNotaController::class, 'createVerification']);
-        Route::post('/service-activations/verification', [ActivationNotaController::class, 'storeVerification']);
-        Route::get('/service-activations/verification/{nota}/edit', [ActivationNotaController::class, 'editVerification']);
-        Route::post('/service-activations/input-installation-schedule', [ActivationNotaController::class, 'inputInstallationSchedule']);
-        Route::post('/service-activations/edit-installation-schedule', [ActivationNotaController::class, 'editInstallationSchedule']);
-    });
+    Route::middleware('role:Super Admin, Service Operation Admin')
+        ->prefix('service-activations')
+        ->group(function () {
+            Route::get('/', [ActivationNotaController::class, 'index']);
+            Route::get('/detail/{nota}', [ActivationNotaController::class, 'show']);
+            Route::post('/input-installation-schedule', [ActivationNotaController::class, 'inputInstallationSchedule']);
+            Route::post('/edit-installation-schedule', [ActivationNotaController::class, 'editInstallationSchedule']);
+            Route::get('/provisioning/{nota}', [ActivationNotaController::class, 'createProvisioning']);
+            Route::post('/provisioning/{nota}', [ActivationNotaController::class, 'storeProvisioning']);
+            Route::get('/provisioning/{nota}/edit', [ActivationNotaController::class, 'editProvisioning']);
+            Route::get('/technical-data/{nota}', [ActivationNotaController::class, 'createTechnicalData']);
+            Route::post('/technical-data/{nota}', [ActivationNotaController::class, 'storeTechnicalData']);
+            Route::get('/technical-data/{nota}/edit', [ActivationNotaController::class, 'editTechnicalData']);
+            Route::get('/verification/{nota}', [ActivationNotaController::class, 'createVerification']);
+            Route::post('/verification/{nota}', [ActivationNotaController::class, 'storeVerification']);
+            Route::get('/verification/{nota}/edit', [ActivationNotaController::class, 'editVerification']);
+        });
 });

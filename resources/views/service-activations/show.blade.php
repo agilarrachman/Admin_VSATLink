@@ -8,6 +8,14 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <h5 class="card-header">Detail Pesanan</h5>
+
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                     <div class="card-body">
                         <p class="fw-bold text-primary">Rincian Pesanan</p>
                         <div class="d-flex items-start gap-4 mb-3">
@@ -49,7 +57,7 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $activation_status->activation_status_id >= 4 ? 'active' : '' }}
+                                    class="step {{ $activation_status->activation_status_id == 4 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id >= 5 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 5)
@@ -81,7 +89,8 @@
                                     <h5>Proses Instalasi & Aktivasi</h5>
                                 </div>
 
-                                <div class="step {{ $activation_status->activation_status_id >= 8 ? 'active' : '' }}
+                                <div
+                                    class="step {{ $activation_status->activation_status_id >= 8 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id == 10 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 7)
@@ -233,7 +242,7 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Tanggal Pembuatan NMS</label>
                                 <input type="text" name="create_nms_date" class="form-control"
-                                    value="{{ $nota->create_nms_date ?? '-' }}" readonly>
+                                    value="{{ $nota->create_nms_date->translatedFormat('d F Y') ?? '-' }}" readonly>
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -340,8 +349,9 @@
                         </div>
 
                         <div class="mt-2">
-                            <button type="button" class="btn btn-outline-secondary"
-                                onclick="history.back()">Kembali</button>
+                            <a href="/service-activations" class="btn btn-outline-secondary">
+                                Kembali
+                            </a>
                         </div>
                     </div>
                 </div>

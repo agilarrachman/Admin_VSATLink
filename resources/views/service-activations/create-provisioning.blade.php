@@ -12,12 +12,27 @@
 
                         <p class="fw-bold text-primary">Rincian Pesanan</p>
                         <div class="d-flex items-start gap-4 mb-3">
-                            <img class="product_image" src="/storage/products/aurora.png" alt="Nama Produk" />
-                            <div class="info w-full">
-                                <span class="badge me-1 mb-1 bg-label-warning">Sudah Dijadwalkan</span>
-                                <p class="mb-0 fs-6">Kode Pesanan: VSL-30303030-0001</p>
-                                <h4 class="mb-0 fw-bold fs-6">VSATLink Aurora</h4>
-                                <p class="mb-0 fs-6">Pesanan dibuat pada tanggal 11 November 2003</p>
+                            <img class="product_image" src="/storage/{{ $nota->order->product->image_url }}"
+                                alt="{{ $nota->order->product->name }}" />
+                            <div class="info w-full mb-3 mb-md-0">
+                                @php($badge = $nota->statusBadge())
+                                <td><span class="badge me-1 mb-1 {{ $badge['class'] }}">{{ $badge['label'] }}</span></td>
+                                <p class="mb-0" style="font-size: 14px">
+                                    Kode Pesanan: {{ $nota->order->unique_order }}
+                                </p>
+                                <h4 class="mb-0 fw-bold" style="font-size: 16px">{{ $nota->order->product->name }}</h4>
+                                <div class="d-flex align-items-center">
+                                    <i class="bx bx-calendar me-1"></i>
+                                    <p class="mb-0" style="font-size: 14px">
+                                        @if ($nota->installation_date)
+                                            Jadwal Instalasi pada tanggal
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
+                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                        @else
+                                            Belum dijadwalkan
+                                        @endif
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
@@ -26,45 +41,47 @@
                             <div class="input-form mb-3 col-md-6">
                                 <label class="form-label">Modem Serial Number</label>
                                 <input type="text" class="form-control" name="modem_sn" id="modem_sn"
-                                    value="MDM66388383" readonly />
+                                    value="{{ $nota->order->modem_sn ?? '-' }}" readonly />
                             </div>
 
                             <div class="input-form mb-3 col-md-6">
                                 <label class="form-label">Adaptor Serial Number</label>
                                 <input type="text" class="form-control" name="adaptor_sn" id="adaptor_sn"
-                                    value="MDM66388383" readonly />
+                                    value="{{ $nota->order->adaptor_sn ?? '-' }}" readonly />
                             </div>
 
                             <div class="input-form mb-3 col-md-6">
                                 <label class="form-label">BUC Serial Number</label>
-                                <input type="text" class="form-control" name="buc_sn" id="buc_sn" value="MDM66388383"
-                                    readonly />
+                                <input type="text" class="form-control" name="buc_sn" id="buc_sn"
+                                    value="{{ $nota->order->buc_sn ?? '-' }}" readonly />
                             </div>
 
                             <div class="input-form mb-3 col-md-6">
                                 <label class="form-label">LNB Serial Number</label>
                                 <input type="text" class="form-control" name="lnb_sn" id="lnb_sn"
-                                    value="MDM66388383" />
+                                    value="{{ $nota->order->lnb_sn ?? '-' }}" />
                             </div>
 
-                            <div class="input-form mb-3 col-md-6">
-                                <label class="form-label">Router Serial Number</label>
-                                <input type="text" class="form-control" name="router_sn" id="router_sn"
-                                    value="MDM66388383" readonly />
-                            </div>
+                            @if ($nota->order->product->access_point != null)
+                                <div class="input-form mb-3 col-md-6">
+                                    <label class="form-label">Router Serial Number</label>
+                                    <input type="text" class="form-control" name="router_sn" id="router_sn"
+                                        value="{{ $nota->order->router_sn ?? '-' }}" readonly />
+                                </div>
+                            @endif
 
                             <div class="input-form mb-3 col-md-6">
                                 <label class="form-label">Antena Serial Number</label>
                                 <input type="text" class="form-control" name="antena_sn" id="antena_sn"
-                                    value="MDM66388383" readonly />
+                                    value="{{ $nota->order->antena_sn ?? '-' }}" readonly />
                             </div>
                         </div>
 
                         <hr class="pb-3">
 
-                        <form action="/" method="POST">
+                        <form action="/service-activations/provisioning/{{ $nota->id }}" method="POST">
                             @csrf
-                            
+
                             <p class="fw-bold text-primary mb-0">Data Resource & Infrastruktur</p>
                             <p class="mb-3">
                                 Data berikut digunakan untuk proses provisioning dan konfigurasi layanan di sistem jaringan

@@ -82,31 +82,63 @@
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' &&
                                                         auth()->user()->position === 'Provisioning Service Activation'))
-                                                <a class="dropdown-item" href="/service-activations/provisioning">
-                                                    <i class="bx bx-cog me-1"></i>
-                                                    Input Data Provisioning
-                                                </a>
+                                                @if ($activationNota->current_status_id == 4)
+                                                    <a class="dropdown-item" href="/service-activations/provisioning/{{ $activationNota->id }}">
+                                                        <i class="bx bx-cog me-1"></i>
+                                                        Input Data Provisioning
+                                                    </a>
+                                                @elseif ($activationNota->current_status_id >= 5)
+                                                    <a class="dropdown-item"
+                                                        href="/service-activations/provisioning/{{ $activationNota->id }}/edit">
+                                                        <i class="bx bx-cog me-1"></i>
+                                                        Edit Data Provisioning
+                                                    </a>
+                                                @endif
                                             @endif
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' && auth()->user()->position === 'Installation Coordinator'))
-                                                <a class="dropdown-item" href="/service-activations/technical-data">
-                                                    <i class="bx bx-wrench me-1"></i>
-                                                    Input Data Teknis
-                                                </a>
+                                                @if ($activationNota->current_status_id >= 5 && $activationNota->current_status_id < 7)
+                                                    <button type="button"
+                                                        class="dropdown-item btn-edit-installation-schedule"
+                                                        data-bs-toggle="modal" data-bs-target="#updateTechnicianStatus">
+                                                        <i class="bx bx-navigation me-1"></i>
+                                                        Update Status Perjalanan Teknisi
+                                                    </button>
+                                                @elseif ($activationNota->current_status_id == 7)
+                                                    <a class="dropdown-item" href="/service-activations/technical-data/{{ $activationNota->id }}">
+                                                        <i class="bx bx-wrench me-1"></i>
+                                                        Input Data Teknis
+                                                    </a>
+                                                @elseif ($activationNota->current_status_id >= 8)
+                                                    <a class="dropdown-item"
+                                                        href="/service-activations/technical-data/{{ $activationNota->id }}/edit">
+                                                        <i class="bx bx-wrench me-1"></i>
+                                                        Edit Data Teknis
+                                                    </a>
+                                                @endif
                                             @endif
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' &&
                                                         auth()->user()->position === 'Provisioning Service Activation'))
-                                                <a class="dropdown-item" href="/service-activations/verification">
-                                                    <i class="bx bx-check-shield me-1"></i>
-                                                    Verifikasi Layanan Aktif
-                                                </a>
-                                            @endif
-                                            @if ($activationNota->activation_document_url != null)
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    <i class="bx bx-file me-1"></i>
-                                                    Unduh SPA
-                                                </a>
+                                                @if ($activationNota->current_status_id == 8)
+                                                    <a class="dropdown-item" href="/service-activations/verification/{{ $activationNota->id }}">
+                                                        <i class="bx bx-check-shield me-1"></i>
+                                                        Verifikasi Layanan Aktif
+                                                    </a>
+                                                    @if ($activationNota->current_status_id >= 9)
+                                                        <a class="dropdown-item"
+                                                            href="/service-activations/verification/{{ $activationNota->id }}/edit">
+                                                            <i class="bx bx-check-shield me-1"></i>
+                                                            Edit Verifikasi Layanan Aktif
+                                                        </a>
+                                                    @endif
+                                                @endif
+                                                @if ($activationNota->activation_document_url != null && $activationNota->current_status_id >= 10)
+                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                        <i class="bx bx-file me-1"></i>
+                                                        Unduh SPA
+                                                    </a>
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
