@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/provisioning/{nota}', [ActivationNotaController::class, 'createProvisioning']);
             Route::post('/provisioning/{nota}', [ActivationNotaController::class, 'storeProvisioning']);
             Route::get('/provisioning/{nota}/edit', [ActivationNotaController::class, 'editProvisioning']);
+            Route::put('/provisioning/{nota}', [ActivationNotaController::class, 'updateProvisioning']);
             Route::get('/technical-data/{nota}', [ActivationNotaController::class, 'createTechnicalData']);
             Route::post('/technical-data/{nota}', [ActivationNotaController::class, 'storeTechnicalData']);
             Route::get('/technical-data/{nota}/edit', [ActivationNotaController::class, 'editTechnicalData']);

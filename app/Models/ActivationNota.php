@@ -176,4 +176,25 @@ class ActivationNota extends Model
 
         return $activationNota;
     }
+
+    public static function updateProvisioning($activationNotaId, $RequestData)
+    {
+        $activationNota = self::findOrFail($activationNotaId);
+
+        $activationNota->update([
+            'ao' => $RequestData['ao'],
+            'sid' => $RequestData['sid'],
+            'pe' => $RequestData['pe'],
+            'interface' => $RequestData['interface'],
+            'ip_wan' => $RequestData['ip_wan'],
+            'ip_backhaul' => $RequestData['ip_backhaul'],
+            'hub_type' => $RequestData['hub_type'],
+            'nms_id' => $RequestData['nms_id'],
+            'create_nms_date' => $RequestData['create_nms_date'],
+            'ip_lan' => $RequestData['ip_lan'],
+            'subnet_mask_lan' => $RequestData['subnet_mask_lan'],
+        ]);
+
+        return $activationNota;
+    }
 }
