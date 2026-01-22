@@ -216,4 +216,23 @@ class ActivationNota extends Model
 
         return $activationNota;
     }
+
+    public static function technicianArrived($activationNotaId)
+    {
+        $activationNota = self::findOrFail($activationNotaId);
+
+        $activationNota->update([
+            'current_status_id'  => 7,
+        ]);
+
+        $timestamp = Carbon::now()->translatedFormat('d F Y H:i');
+
+        ActivationStatusHistory::create([
+            'activation_status_id' => 7,
+            'activation_nota_id' => $activationNota->id,
+            'note' => "Teknisi telah tiba di lokasi pelanggan pada {$timestamp}.",
+        ]);
+
+        return $activationNota;
+    }
 }

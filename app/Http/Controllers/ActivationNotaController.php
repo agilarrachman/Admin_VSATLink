@@ -189,7 +189,15 @@ class ActivationNotaController extends Controller
         ActivationNota::technicianOnTheWay($nota->id);
 
         return redirect('/service-activations/detail/' . $nota->id)
-            ->with('success', 'Status teknisi dalam perjalanan berhasil diperbarui.');
+            ->with('success', 'Status teknisi berhasil diperbarui menjadi dalam perjalanan.');
+    }
+
+    public function technicianArrived(ActivationNota $nota)
+    {
+        ActivationNota::technicianArrived($nota->id);
+
+        return redirect('/service-activations/detail/' . $nota->id)
+            ->with('success', 'Status teknisi berhasil diperbarui menjadi tiba di lokasi pelanggan.');
     }
 
     public function createTechnicalData()

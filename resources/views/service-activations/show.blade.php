@@ -68,7 +68,7 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $activation_status->activation_status_id >= 5 ? 'active' : '' }}
+                                    class="step {{ $activation_status->activation_status_id == 5 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id >= 7 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 7)
@@ -79,10 +79,10 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $activation_status->activation_status_id >= 7 ? 'active' : '' }}
-                                                {{ $activation_status->activation_status_id >= 8 ? 'completed' : '' }}">
+                                    class="step {{ $activation_status->activation_status_id == 7 ? 'active' : '' }}
+                                                {{ $activation_status->activation_status_id >= 9 ? 'completed' : '' }}">
                                     <div class="circle">
-                                        @if ($activation_status->activation_status_id >= 8)
+                                        @if ($activation_status->activation_status_id >= 9)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -90,7 +90,7 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $activation_status->activation_status_id >= 8 ? 'active' : '' }}
+                                    class="step {{ $activation_status->activation_status_id == 9 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id == 10 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 7)
