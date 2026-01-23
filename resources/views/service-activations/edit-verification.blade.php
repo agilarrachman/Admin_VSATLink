@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Verifikasi Aktivasi Layanan</h5>
+                    <h5 class="card-header">Edit Verifikasi Aktivasi Layanan</h5>
 
                     <div class="card-body">
                         {{-- Rincian Pesanan --}}
@@ -81,8 +81,10 @@
                         <hr class="my-4">
 
                         {{-- Form Verifikasi --}}
-                        <form action="/service-activations/verification/{{ $nota->id }}" method="POST" enctype="multipart/form-data">
+                        <form action="/service-activations/verification/{{ $nota->id }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
 
                             <p class="fw-bold text-primary mb-0">Data Verifikasi Aktivasi</p>
                             <p class="mb-3">
@@ -95,7 +97,7 @@
                                     <label class="form-label">URL Cacti Monitoring</label>
                                     <input type="url" name="cacti_url"
                                         class="form-control @error('cacti_url') is-invalid @enderror"
-                                        value="{{ old('cacti_url') }}"
+                                        value="{{ old('cacti_url', $nota->cacti_url) }}"
                                         placeholder="Contoh: http://cacti.vsatlink.co.id/graph.php?id=123" required>
                                     @error('cacti_url')
                                         <div class="invalid-feedback">
@@ -108,9 +110,9 @@
                                     <label class="form-label">Status Sensor</label>
                                     <select name="sensor_status" class="form-select" required>
                                         <option value="">Pilih Status</option>
-                                        <option value="Online" @selected(old('sensor_status') === 'Online')>Online</option>
-                                        <option value="Tidak Stabil" @selected(old('sensor_status') === 'Tidak Stabil')>Tidak Stabil</option>
-                                        <option value="Offline" @selected(old('sensor_status') === 'Offline')>Offline</option>
+                                        <option value="Online" @selected(old('sensor_status', $nota->sensor_status) === 'Online')>Online</option>
+                                        <option value="Tidak Stabil" @selected(old('sensor_status', $nota->sensor_status) === 'Tidak Stabil')>Tidak Stabil</option>
+                                        <option value="Offline" @selected(old('sensor_status', $nota->sensor_status) === 'Offline')>Offline</option>
                                     </select>
                                 </div>
 
@@ -118,7 +120,7 @@
                                     <label class="form-label">Tanggal & Waktu Online</label>
                                     <input type="datetime-local"
                                         class="form-control @error('online_date') is-invalid @enderror"
-                                        value="{{ old('online_date') }}" name="online_date">
+                                        value="{{ old('online_date', $nota->online_date) }}" name="online_date">
                                     @error('online_date')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -126,19 +128,44 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-3 d-flex flex-column">
                                     <label class="form-label">Bukti Monitoring (Screenshot)</label>
-                                    <input type="file"
-                                        class="form-control @error('monitoring_capture') is-invalid @enderror"
-                                        name="monitoring_capture" accept="image/*" required>
-                                    <small class="text-muted">
-                                        Upload bukti sensor online dari Cacti / NMS
-                                    </small>
-                                    @error('monitoring_capture')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+
+                                    @if ($nota->monitoring_capture_url)
+                                        <div id="monitoring-view" class="d-flex align-items-center gap-2 mb-2">
+                                            <a href="{{ asset('storage/' . $nota->monitoring_capture_url) }}"
+                                                target="_blank" class="btn btn-primary" title="Lihat bukti monitoring">
+                                                <i class="bx bx-show me-1"></i> Lihat
+                                            </a>
+
+                                            <button type="button" class="btn btn-outline-primary px-2"
+                                                title="Ganti bukti monitoring" onclick="enableMonitoringEdit()">
+                                                <i class="bx bx-pencil"></i>
+                                            </button>
                                         </div>
-                                    @enderror
+
+                                        <small id="monitoring-info" class="text-muted mb-2">
+                                            Bukti monitoring yang telah diunggah sebelumnya.
+                                        </small>
+                                    @endif
+
+                                    <div id="monitoring-edit"
+                                        class="{{ $nota->monitoring_capture_url ? 'd-none' : '' }}">
+                                        <input type="file"
+                                            class="form-control @error('monitoring_capture') is-invalid @enderror"
+                                            name="monitoring_capture" accept="image/*"
+                                            {{ $nota->monitoring_capture_url ? '' : 'required' }}>
+
+                                        <small class="text-muted">
+                                            Upload bukti sensor online dari Cacti / NMS
+                                        </small>
+
+                                        @error('monitoring_capture')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -147,7 +174,7 @@
                                     Batal
                                 </button>
                                 <button type="submit" class="btn btn-primary">
-                                    Simpan
+                                    Simpan Perubahan
                                 </button>
                             </div>
                         </form>
@@ -158,3 +185,12 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function enableMonitoringEdit() {
+            document.getElementById('monitoring-view')?.classList.add('d-none');
+            document.getElementById('monitoring-info')?.classList.add('d-none');
+            document.getElementById('monitoring-edit')?.classList.remove('d-none');
+        }
+    </script>
+@endpush

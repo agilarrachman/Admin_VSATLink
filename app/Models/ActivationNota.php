@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ActivationNota extends Model
 {
@@ -149,23 +150,23 @@ class ActivationNota extends Model
         return $activationNota;
     }
 
-    public static function storeProvisioning($activationNotaId, $RequestData)
+    public static function storeProvisioning($activationNotaId, $requestData)
     {
         $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
             'current_status_id'  => 5,
-            'ao' => $RequestData['ao'],
-            'sid' => $RequestData['sid'],
-            'pe' => $RequestData['pe'],
-            'interface' => $RequestData['interface'],
-            'ip_wan' => $RequestData['ip_wan'],
-            'ip_backhaul' => $RequestData['ip_backhaul'],
-            'hub_type' => $RequestData['hub_type'],
-            'nms_id' => $RequestData['nms_id'],
-            'create_nms_date' => $RequestData['create_nms_date'],
-            'ip_lan' => $RequestData['ip_lan'],
-            'subnet_mask_lan' => $RequestData['subnet_mask_lan'],
+            'ao' => $requestData['ao'],
+            'sid' => $requestData['sid'],
+            'pe' => $requestData['pe'],
+            'interface' => $requestData['interface'],
+            'ip_wan' => $requestData['ip_wan'],
+            'ip_backhaul' => $requestData['ip_backhaul'],
+            'hub_type' => $requestData['hub_type'],
+            'nms_id' => $requestData['nms_id'],
+            'create_nms_date' => $requestData['create_nms_date'],
+            'ip_lan' => $requestData['ip_lan'],
+            'subnet_mask_lan' => $requestData['subnet_mask_lan'],
         ]);
 
         ActivationStatusHistory::create([
@@ -177,22 +178,22 @@ class ActivationNota extends Model
         return $activationNota;
     }
 
-    public static function updateProvisioning($activationNotaId, $RequestData)
+    public static function updateProvisioning($activationNotaId, $requestData)
     {
         $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
-            'ao' => $RequestData['ao'],
-            'sid' => $RequestData['sid'],
-            'pe' => $RequestData['pe'],
-            'interface' => $RequestData['interface'],
-            'ip_wan' => $RequestData['ip_wan'],
-            'ip_backhaul' => $RequestData['ip_backhaul'],
-            'hub_type' => $RequestData['hub_type'],
-            'nms_id' => $RequestData['nms_id'],
-            'create_nms_date' => $RequestData['create_nms_date'],
-            'ip_lan' => $RequestData['ip_lan'],
-            'subnet_mask_lan' => $RequestData['subnet_mask_lan'],
+            'ao' => $requestData['ao'],
+            'sid' => $requestData['sid'],
+            'pe' => $requestData['pe'],
+            'interface' => $requestData['interface'],
+            'ip_wan' => $requestData['ip_wan'],
+            'ip_backhaul' => $requestData['ip_backhaul'],
+            'hub_type' => $requestData['hub_type'],
+            'nms_id' => $requestData['nms_id'],
+            'create_nms_date' => $requestData['create_nms_date'],
+            'ip_lan' => $requestData['ip_lan'],
+            'subnet_mask_lan' => $requestData['subnet_mask_lan'],
         ]);
 
         return $activationNota;
@@ -236,21 +237,21 @@ class ActivationNota extends Model
         return $activationNota;
     }
 
-    public static function storeTechnicalData($activationNotaId, $RequestData)
+    public static function storeTechnicalData($activationNotaId, $requestData)
     {
         $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
             'current_status_id'  => 8,
-            'sqf' => $RequestData['sqf'],
-            'esno' => $RequestData['esno'],
-            'los' => $RequestData['los'],
-            'antena_diameter' => $RequestData['antena_diameter'],
-            'lft_id' => $RequestData['lft_id'],
-            'cn' => $RequestData['cn'],
-            'esn_modem' => $RequestData['esn_modem'],
-            'antena_type' => $RequestData['antena_type'],
-            'technician_note' => $RequestData['technician_note'] ?? null,
+            'sqf' => $requestData['sqf'],
+            'esno' => $requestData['esno'],
+            'los' => $requestData['los'],
+            'antena_diameter' => $requestData['antena_diameter'],
+            'lft_id' => $requestData['lft_id'],
+            'cn' => $requestData['cn'],
+            'esn_modem' => $requestData['esn_modem'],
+            'antena_type' => $requestData['antena_type'],
+            'technician_note' => $requestData['technician_note'] ?? null,
         ]);
 
         ActivationStatusHistory::create([
@@ -262,22 +263,87 @@ class ActivationNota extends Model
         return $activationNota;
     }
 
-    public static function updateTechnicalData($activationNotaId, $RequestData)
+    public static function updateTechnicalData($activationNotaId, $requestData)
     {
         $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
             'current_status_id'  => 8,
-            'sqf' => $RequestData['sqf'],
-            'esno' => $RequestData['esno'],
-            'los' => $RequestData['los'],
-            'antena_diameter' => $RequestData['antena_diameter'],
-            'lft_id' => $RequestData['lft_id'],
-            'cn' => $RequestData['cn'],
-            'esn_modem' => $RequestData['esn_modem'],
-            'antena_type' => $RequestData['antena_type'],
-            'technician_note' => $RequestData['technician_note'] ?? null,
+            'sqf' => $requestData['sqf'],
+            'esno' => $requestData['esno'],
+            'los' => $requestData['los'],
+            'antena_diameter' => $requestData['antena_diameter'],
+            'lft_id' => $requestData['lft_id'],
+            'cn' => $requestData['cn'],
+            'esn_modem' => $requestData['esn_modem'],
+            'antena_type' => $requestData['antena_type'],
+            'technician_note' => $requestData['technician_note'] ?? null,
         ]);
+
+        return $activationNota;
+    }
+
+    public static function storeVerification($activationNotaId, $requestData)
+    {
+        $activationNota = self::findOrFail($activationNotaId);
+        $path = $requestData['monitoring_capture']->store('monitoring_captures', 'public');
+
+        $activationNota->update([
+            'cacti_url' => $requestData['cacti_url'],
+            'sensor_status' => $requestData['sensor_status'],
+            'online_date' => $requestData['online_date'] ?? null,
+            'monitoring_capture_url' => $path,
+        ]);
+
+        if ($requestData['sensor_status'] != 'Offline') {
+            $activationNota->update([
+                'current_status_id'  => 9
+            ]);
+
+            ActivationStatusHistory::create([
+                'activation_status_id' => 9,
+                'activation_nota_id'   => $activationNota->id,
+                'note' => 'Aktivasi layanan telah diverifikasi dan dinyatakan aktif.'
+            ]);
+        }
+
+        return $activationNota;
+    }
+
+    public static function updateVerification($activationNotaId, $requestData)
+    {
+        $activationNota = self::findOrFail($activationNotaId);
+
+        $updateData = [
+            'cacti_url'     => $requestData['cacti_url'],
+            'sensor_status' => $requestData['sensor_status'],
+            'online_date'   => $requestData['online_date'] ?? null,
+        ];
+
+        if (isset($requestData['monitoring_capture'])) {
+            Storage::disk('public')->delete($activationNota->monitoring_capture_url);
+
+            $path = $requestData['monitoring_capture']
+                ->store('monitoring_captures', 'public');
+
+            $updateData['monitoring_capture_url'] = $path;
+        }
+
+        $activationNota->update($updateData);
+
+        $timestamp = Carbon::now()->translatedFormat('d F Y H:i');
+
+        if ($requestData['sensor_status'] != 'Offline') {
+            $activationNota->update([
+                'current_status_id'  => 9
+            ]);
+
+            ActivationStatusHistory::create([
+                'activation_status_id' => 9,
+                'activation_nota_id'   => $activationNota->id,
+                'note' => "Aktivasi layanan telah diverifikasi dan dinyatakan aktif pada {$timestamp}."
+            ]);
+        }
 
         return $activationNota;
     }

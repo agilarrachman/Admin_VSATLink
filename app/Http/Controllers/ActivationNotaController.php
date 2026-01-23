@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Mail;
 
 class ActivationNotaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
@@ -31,9 +28,6 @@ class ActivationNotaController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function createProvisioning(ActivationNota $nota)
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
@@ -330,7 +324,7 @@ class ActivationNotaController extends Controller
             ->with('success', 'Data Teknis dan Crosspole berhasil diperbarui.');
     }
 
-    public function createVerification()
+    public function createVerification(ActivationNota $nota)
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
@@ -338,6 +332,7 @@ class ActivationNotaController extends Controller
         return view('service-activations.create-verification', [
             'management' => 'service-activation',
             'page' => 'general',
+            'nota' => $nota,
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
@@ -346,9 +341,84 @@ class ActivationNotaController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function storeVerification(Request $request, ActivationNota $nota)
+    {
+        $request->validate(
+            [
+                'cacti_url' => 'required|url|max:255',
+                'sensor_status' => 'required|in:Online,Tidak Stabil,Offline',
+                'online_date' => 'nullable|date',
+                'monitoring_capture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            ],
+            [
+                'cacti_url.required' => 'URL Cacti Monitoring wajib diisi.',
+                'cacti_url.url' => 'Format URL Cacti tidak valid.',
+
+                'sensor_status.required' => 'Status sensor wajib dipilih.',
+                'sensor_status.in' => 'Status sensor tidak valid.',
+
+                'online_date.date' => 'Format tanggal & waktu online tidak valid.',
+
+                'monitoring_capture.required' => 'Bukti monitoring wajib diunggah.',
+                'monitoring_capture.image' => 'Bukti monitoring harus berupa gambar.',
+                'monitoring_capture.mimes' => 'Format gambar harus JPG atau PNG.',
+                'monitoring_capture.max' => 'Ukuran gambar maksimal 2MB.',
+            ]
+        );
+
+        ActivationNota::storeVerification($nota->id, $request->all());
+
+        return redirect('/service-activations/detail/' . $nota->id)
+            ->with('success', 'Verifikasi aktivasi berhasil disimpan.');
+    }
+
+    public function editVerification(ActivationNota $nota)
+    {
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+
+        return view('service-activations.edit-verification', [
+            'management' => 'service-activation',
+            'page' => 'general',
+            'nota' => $nota,
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+            'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+            'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
+            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+        ]);
+    }
+
+    public function updateVerification(Request $request, ActivationNota $nota)
+    {
+        $request->validate(
+            [
+                'cacti_url' => 'required|url|max:255',
+                'sensor_status' => 'required|in:Online,Tidak Stabil,Offline',
+                'online_date' => 'nullable|date',
+                'monitoring_capture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            ],
+            [
+                'cacti_url.required' => 'URL Cacti Monitoring wajib diisi.',
+                'cacti_url.url' => 'Format URL Cacti tidak valid.',
+
+                'sensor_status.required' => 'Status sensor wajib dipilih.',
+                'sensor_status.in' => 'Status sensor tidak valid.',
+
+                'online_date.date' => 'Format tanggal & waktu online tidak valid.',
+
+                'monitoring_capture.image' => 'Bukti monitoring harus berupa gambar.',
+                'monitoring_capture.mimes' => 'Format gambar harus JPG atau PNG.',
+                'monitoring_capture.max' => 'Ukuran gambar maksimal 2MB.',
+            ]
+        );
+
+        ActivationNota::updateVerification($nota->id, $request->all());
+
+        return redirect('/service-activations/detail/' . $nota->id)
+            ->with('success', 'Verifikasi aktivasi berhasil diperbarui.');
+    }
+
     public function show(ActivationNota $nota)
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();

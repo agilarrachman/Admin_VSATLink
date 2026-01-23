@@ -103,7 +103,8 @@
                                                         action="/service-activations/technician-on-the-way/{{ $activationNota->id }}"
                                                         method="POST">
                                                         @csrf
-                                                        <button type="submit" class="dropdown-item" onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi Teknisi Dalam Perjalanan?')">
+                                                        <button type="submit" class="dropdown-item"
+                                                            onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi Teknisi Dalam Perjalanan?')">
                                                             <i class="bx bx-navigation me-1"></i>
                                                             Teknisi Dalam Perjalanan
                                                         </button>
@@ -113,7 +114,8 @@
                                                         action="/service-activations/technician-arrived/{{ $activationNota->id }}"
                                                         method="POST">
                                                         @csrf
-                                                        <button type="submit" class="dropdown-item" onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi Teknisi Tiba Di Lokasi?')">
+                                                        <button type="submit" class="dropdown-item"
+                                                            onclick="return confirm('Apakah Anda yakin ingin mengubah status menjadi Teknisi Tiba Di Lokasi?')">
                                                             <i class="bx bx-navigation me-1"></i>
                                                             Teknisi Tiba Di Lokasi
                                                         </button>
@@ -135,13 +137,14 @@
                                             @if (auth()->user()->role === 'Super Admin' ||
                                                     (auth()->user()->role === 'Service Operation Admin' &&
                                                         auth()->user()->position === 'Provisioning Service Activation'))
-                                                @if ($activationNota->current_status_id == 8)
-                                                    <a class="dropdown-item"
-                                                        href="/service-activations/verification/{{ $activationNota->id }}">
-                                                        <i class="bx bx-check-shield me-1"></i>
-                                                        Verifikasi Layanan Aktif
-                                                    </a>
-                                                    @if ($activationNota->current_status_id >= 9)
+                                                @if ($activationNota->current_status_id >= 8)
+                                                    @if ($activationNota->sensor_status == null)
+                                                        <a class="dropdown-item"
+                                                            href="/service-activations/verification/{{ $activationNota->id }}">
+                                                            <i class="bx bx-check-shield me-1"></i>
+                                                            Verifikasi Layanan Aktif
+                                                        </a>
+                                                    @else
                                                         <a class="dropdown-item"
                                                             href="/service-activations/verification/{{ $activationNota->id }}/edit">
                                                             <i class="bx bx-check-shield me-1"></i>

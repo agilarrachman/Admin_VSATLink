@@ -101,7 +101,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">ESNO (dB)</label>
-                                    <input type="number" step="0.1" name="esno"
+                                    <input type="number" step="0.01" name="esno"
                                         class="form-control @error('esno') is-invalid @enderror"
                                         value="{{ old('esno') }}" placeholder="12.5" required>
                                     @error('esno')
@@ -143,7 +143,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">C/N (dB)</label>
-                                    <input type="number" step="0.1" name="cn"
+                                    <input type="number" step="0.01" name="cn"
                                         class="form-control @error('cn') is-invalid @enderror"
                                         value="{{ old('cn') }}" placeholder="Contoh: 14.5 (dB)">
                                     @error('cn')

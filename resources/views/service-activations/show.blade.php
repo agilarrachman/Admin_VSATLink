@@ -338,10 +338,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Bukti Monitoring (Screenshot)</label>
-                                @if ($nota->monitoring_capture_image_url)
-                                    <img src="{{ asset('storage/' . $nota->monitoring_capture_image_url) }}"
-                                        class="rounded" alt="monitoring_capture_image" width="300">
+                                <label class="form-label d-block">Bukti Monitoring (Screenshot)</label>
+                                @if ($nota->monitoring_capture_url)
+                                    <img src="{{ asset('storage/' . $nota->monitoring_capture_url) }}"
+                                        class="rounded" alt="monitoring_capture_image" width="50%" style="object-fit: cover;">
                                 @else
                                     <p class="text-muted mb-0">Screenshot bukti monitoring belum diunggah.</p>
                                 @endif

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('ip_backhaul', 255)->nullable();
             $table->enum('hub_type', ['Mangoesky', 'iDirect'])->nullable();
             $table->string('nms_id', 255)->nullable();
-            $table->timestamp('create_nms_date')->nullable();
+            $table->date('create_nms_date')->nullable();
             $table->string('ip_lan', 255)->nullable();
             $table->string('subnet_mask_lan', 255)->nullable();
             $table->decimal('sqf', 5, 2)->nullable();
