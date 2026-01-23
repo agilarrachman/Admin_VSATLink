@@ -153,7 +153,7 @@
                                                     @endif
                                                 @endif
                                                 @if ($activationNota->activation_document_url != null && $activationNota->current_status_id >= 10)
-                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                    <a class="dropdown-item" href="/service-activations/download/spa/{{ $activationNota->id }}">
                                                         <i class="bx bx-file me-1"></i>
                                                         Unduh SPA
                                                     </a>

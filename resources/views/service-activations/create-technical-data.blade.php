@@ -89,7 +89,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">SQF</label>
-                                    <input type="number" name="sqf"
+                                    <input type="number" step="0.01" name="sqf"
                                         class="form-control @error('sqf') is-invalid @enderror" value="{{ old('sqf') }}"
                                         placeholder="Contoh: 78" required>
                                     @error('sqf')
@@ -116,7 +116,7 @@
                                     <select name="los" class="form-select" required>
                                         <option value="">Pilih Line of Sight</option>
                                         <option value="Bersih" @selected(old('los') === 'Bersih')>Bersih</option>
-                                        <option value="Terhalang" @selected(old('los') === 'obstructed')>Obstructed</option>
+                                        <option value="Terhalang" @selected(old('los') === 'Terhalang')>Terhalang</option>
                                     </select>
                                 </div>
 

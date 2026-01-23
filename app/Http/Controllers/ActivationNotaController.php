@@ -493,4 +493,14 @@ class ActivationNotaController extends Controller
             'Jadwal instalasi berhasil diperbarui.'
         );
     }
+
+    public function downloadSPA(ActivationNota $nota)
+    {
+        $customerUrl = config('app.customer_url');
+        $filename = basename($nota->activation_document_url);
+
+        return redirect()->away(
+            $customerUrl . '/download/spa/' . $filename
+        );
+    }
 }

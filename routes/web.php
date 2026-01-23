@@ -61,5 +61,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/verification/{nota}', [ActivationNotaController::class, 'storeVerification']);
             Route::get('/verification/{nota}/edit', [ActivationNotaController::class, 'editVerification']);
             Route::put('/verification/{nota}', [ActivationNotaController::class, 'updateVerification']);
+            Route::get('/download/spa/{nota}', [ActivationNotaController::class, 'downloadSPA']);
         });
 });
