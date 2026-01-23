@@ -73,7 +73,8 @@
                                                     <form action="/logistics/ready-pickup/{{ $order->unique_order }}"
                                                         method="POST">
                                                         @csrf
-                                                        <button type="submit" class="dropdown-item">
+                                                        <button type="submit" class="dropdown-item"
+                                                            onclick="return confirm('Apakah Anda yakin ingin mengubah status pesanan menjadi Siap Diambil?')">
                                                             <i class="bx bx-package me-1"></i>
                                                             Siap Diambil
                                                         </button>

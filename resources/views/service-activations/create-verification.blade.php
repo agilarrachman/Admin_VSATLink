@@ -81,7 +81,8 @@
                         <hr class="my-4">
 
                         {{-- Form Verifikasi --}}
-                        <form action="/service-activations/verification/{{ $nota->id }}" method="POST" enctype="multipart/form-data">
+                        <form action="/service-activations/verification/{{ $nota->id }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
                             <p class="fw-bold text-primary mb-0">Data Verifikasi Aktivasi</p>
@@ -116,7 +117,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tanggal & Waktu Online</label>
-                                    <input type="datetime-local"
+                                    <input type="datetime-local" min="{{ now()->format('Y-m-d\TH:i') }}"
                                         class="form-control @error('online_date') is-invalid @enderror"
                                         value="{{ old('online_date') }}" name="online_date">
                                     @error('online_date')

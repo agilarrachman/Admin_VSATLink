@@ -79,7 +79,8 @@
                                                     <form action="/logistics/request-pickup/{{ $order->unique_order }}"
                                                         method="POST">
                                                         @csrf
-                                                        <button type="submit" class="dropdown-item">
+                                                        <button type="submit" class="dropdown-item"
+                                                            onclick="return confirm('Apakah Anda yakin ingin mengubah status pesanan menjadi Request Pickup?')">
                                                             <i class="bx bxs-truck me-1"></i>
                                                             Request Pickup
                                                         </button>
