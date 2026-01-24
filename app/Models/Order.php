@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -17,6 +16,10 @@ class Order extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'payment_date' => 'datetime',
+    ];
 
     public function getRouteKeyName()
     {
@@ -51,6 +54,11 @@ class Order extends Model
     public function order_address()
     {
         return $this->belongsTo(OrderAddress::class);
+    }
+
+    public function activation_nota()
+    {
+        return $this->belongsTo(ActivationNota::class);
     }
 
     public function activation_address()
@@ -370,8 +378,19 @@ class Order extends Model
     {
         $order = self::findOrFail($orderId);
 
+        $activationNota = ActivationNota::create([
+            'current_status_id' => 1,
+        ]);
+
+        ActivationStatusHistory::create([
+            'activation_status_id' => 1,
+            'activation_nota_id' => $activationNota->id,
+            'note' => "Pesanan {$order->unique_order} siap dilakukan penjadwalan instalasi dan aktivasi.",
+        ]);
+
         $order->update([
-            'current_status_id' => 7,
+            'activation_nota_id' => $activationNota->id,
+            'current_status_id'  => 7,
         ]);
 
         $timestamp = Carbon::now()->translatedFormat('d F Y H:i');

@@ -12,7 +12,7 @@
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
+    <!-- Header Logo -->
     <link rel="icon" href="assets/img/icon VSATLink.png" type="image/gif" sizes="16x16">
 
     <!-- Fonts -->

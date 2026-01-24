@@ -22,7 +22,7 @@
             <li class="menu-item {{ $management === 'orders' ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-receipt"></i>
-                    <div data-i18n="Dashboards">Orders</div>
+                    <div>Orders</div>
                     @if ($unconfirmedOrdersCount > 0)
                         <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
                             {{ $unconfirmedOrdersCount }}
@@ -32,12 +32,12 @@
                 <ul class="menu-sub">
                     <li class="menu-item {{ $page === 'order-management' ? 'active' : '' }}">
                         <a href="/" class="menu-link">
-                            <div data-i18n="Analytics">All Orders</div>
+                            <div>All Orders</div>
                         </a>
                     </li>
                     <li class="menu-item {{ $page === 'order-confirmation' ? 'active' : '' }}">
                         <a href="/order-confirmation" class="menu-link">
-                            <div data-i18n="Analytics">Confirm Orders</div>
+                            <div>Confirm Orders</div>
                             @if ($unconfirmedOrdersCount > 0)
                                 <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
                                     {{ $unconfirmedOrdersCount }}
@@ -52,7 +52,7 @@
             <li class="menu-item {{ $management === 'logistics' ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-package"></i>
-                    <div data-i18n="Dashboards">Logistics</div>
+                    <div>Logistics</div>
                     @if ($logisticsPendingTotal > 0)
                         <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
                             {{ $logisticsPendingTotal }}
@@ -62,7 +62,7 @@
                 <ul class="menu-sub">
                     <li class="menu-item {{ $page === 'logistic-expedition' ? 'active' : '' }}">
                         <a href="/logistics/expedition" class="menu-link">
-                            <div data-i18n="Analytics">Expedition Orders</div>
+                            <div>Expedition Orders</div>
                             @if ($logisticsExpeditionPendingCount > 0)
                                 <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
                                     {{ $logisticsExpeditionPendingCount }}
@@ -72,7 +72,7 @@
                     </li>
                     <li class="menu-item {{ $page === 'logistic-pickup' ? 'active' : '' }}">
                         <a href="/logistics/pickup" class="menu-link">
-                            <div data-i18n="Analytics">Pickup Orders</div>
+                            <div>Pickup Orders</div>
                             @if ($logisticsPickupPendingCount > 0)
                                 <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
                                     {{ $logisticsPickupPendingCount }}
@@ -83,27 +83,26 @@
                 </ul>
             </li>
         @endif
-        @if (auth()->user()->role === 'Super Admin' || auth()->user()->role === 'Service Activation Admin')
+        @if (auth()->user()->role === 'Super Admin' || auth()->user()->role === 'Service Operation Admin')
             <li class="menu-item {{ $management === 'service-activation' ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-broadcast"></i>
-                    <div data-i18n="Dashboards">Service Activation</div>
-                    <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">5</div>
+                    <div>Service Activations</div>
+                    @if ($activationSchedulePendingCount > 0)
+                        <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
+                            {{ $activationSchedulePendingCount }}
+                        </div>
+                    @endif
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="/service-activation" class="menu-link">
-                            <div data-i18n="Analytics">All Orders</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/" class="menu-link">
-                            <div data-i18n="Analytics">Confirm Orders</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/" class="menu-link">
-                            <div data-i18n="Analytics">Verification Orders</div>
+                    <li class="menu-item {{ $page === 'all-activations' ? 'active' : '' }}">
+                        <a href="/service-activations" class="menu-link">
+                            <div>All Activations</div>
+                            @if ($activationSchedulePendingCount > 0)
+                                <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
+                                    {{ $activationSchedulePendingCount }}
+                                </div>
+                            @endif
                         </a>
                     </li>
                 </ul>

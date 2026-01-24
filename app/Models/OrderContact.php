@@ -12,6 +12,6 @@ class OrderContact extends Model
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasOne(Order::class);
     }
 }
