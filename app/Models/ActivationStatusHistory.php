@@ -22,9 +22,9 @@ class ActivationStatusHistory extends Model
         return $this->belongsTo(ActivationStatus::class);
     }
 
-    public static function getLatestStatusActivation($order)
+    public static function getLatestStatusActivation($nota)
     {
-        return self::where('activation_nota_id', $order)
+        return self::where('activation_nota_id', $nota)
             ->latest()
             ->first();
     }
