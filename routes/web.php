@@ -12,8 +12,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::post('/signout', [AdminController::class, 'signout']);
     Route::get('/profile', [AdminController::class, 'profile']);
+    Route::get('/customer/{order}', [OrderController::class, 'customerShow']);
     Route::get('/orders/{order}', [OrderController::class, 'show']);
-    Route::get('/orders/{order}/customer', [OrderController::class, 'customerShow']);
     Route::get('/orders/{order}/data', [OrderController::class, 'data']);
     Route::get('/download/npwp/{order}', [OrderController::class, 'npwpDownload']);
     Route::get('/download/nib/{order}', [OrderController::class, 'nibDownload']);
@@ -42,11 +42,14 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/confirm-pickup', [LogisticController::class, 'confirmPickup']);
         });
 
+    Route::middleware('role:Super Admin,Sales Admin,Service Operation Admin')->group(function () {
+        Route::get('/service-activations/detail/{nota}', [ActivationNotaController::class, 'show']);
+    });
+
     Route::middleware('role:Super Admin, Service Operation Admin')
         ->prefix('service-activations')
         ->group(function () {
             Route::get('/', [ActivationNotaController::class, 'index']);
-            Route::get('/detail/{nota}', [ActivationNotaController::class, 'show']);
             Route::post('/input-installation-schedule', [ActivationNotaController::class, 'inputInstallationSchedule']);
             Route::post('/edit-installation-schedule', [ActivationNotaController::class, 'editInstallationSchedule']);
             Route::get('/provisioning/{nota}', [ActivationNotaController::class, 'createProvisioning']);

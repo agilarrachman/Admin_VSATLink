@@ -19113,6 +19113,14 @@ p.summary {
     background: #5623d8;
 }
 
+.step.canceled .circle {
+    background: #e53e3e;
+}
+
+.step.completed .circle {
+    background: #5623d8;
+}
+
 /* status aktif (sedang berjalan) */
 .step.active .circle {
     border: 2px solid #5623d8;

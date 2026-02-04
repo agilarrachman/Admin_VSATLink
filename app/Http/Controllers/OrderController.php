@@ -154,7 +154,9 @@ class OrderController extends Controller
                 'phone' => $customer->phone,
                 'npwp' => $customer->npwp,
                 'full_address' => $customer->full_address,
-                'sales' => $customer->sales?->name,
+                'sales_name' => $customer->sales?->name,
+                'sales_phone' => $customer->sales?->phone,
+                'sales_email' => $customer->sales?->email,
                 'source_information' => $customer->source_information,
             ],
             'address' => [

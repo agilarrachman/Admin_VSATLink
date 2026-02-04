@@ -38,7 +38,7 @@
                                         ? $activationNota->installation_session . ' | ' . $activationNota->installation_date->translatedFormat('d F Y')
                                         : '-' }}
                                 </td>
-                                <td>{{ $activationNota->online_date?->translatedFormat('d M Y, H:i') ?? '-' }}</td>
+                                <td>{{ $activationNota->online_date?->translatedFormat('H:i, d M Y') ?? '-' }}</td>
                                 </td>
                                 @php($badge = $activationNota->statusBadge())
                                 <td><span class="badge me-1 {{ $badge['class'] }}">{{ $badge['label'] }}</span></td>
@@ -54,7 +54,7 @@
                                                     class="bx bx-show me-1"></i>
                                                 Lihat Detail Aktivasi</a>
                                             <a class="dropdown-item"
-                                                href="/service-activations/{{ $activationNota->id }}/customer"><i
+                                                href="/customer/{{ $activationNota->order->unique_order }}"><i
                                                     class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
                                             @if (auth()->user()->role === 'Super Admin' ||

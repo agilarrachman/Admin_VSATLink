@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Detail Pesanan</h5>
+                    <h5 class="card-header">Detail Aktivasi Pesanan</h5>
 
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
@@ -103,10 +103,6 @@
                             <h4 class="my-3 text-center">
                                 {{ $activation_status->note }}
                             </h4>
-                            {{-- @if ($nota->activation->current_status_id == 7 && !empty($nota->activation->proof_of_delivery_image_url))
-                                <img src="{{ config('app.customer_url') }}/storage/{{ $nota->activation->proof_of_delivery_image_url }}"
-                                    class="rounded" alt="proof_of_delivery_image">
-                            @endif --}}
                         </div>
 
                         <div class="row">
@@ -242,7 +238,7 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Tanggal Pembuatan NMS</label>
                                 <input type="text" name="create_nms_date" class="form-control"
-                                    value="{{ $nota->create_nms_date->translatedFormat('d F Y') ?? '-' }}" readonly>
+                                    value="{{ $nota->create_nms_date?->translatedFormat('d F Y') ?? '-' }}" readonly>
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -333,7 +329,7 @@
 
                             <div class="col-md-4 mb-3">
                                 <label class="form-label">Tanggal & Waktu Online</label>
-                                <input type="text" class="form-control" value="{{ $nota->online_date ?? '-' }}"
+                                <input type="text" class="form-control" value="{{ $nota->online_date?->translatedFormat('H:i, d F Y') ?? '-' }}"
                                     name="online_date" readonly>
                             </div>
 
@@ -349,7 +345,7 @@
                         </div>
 
                         <div class="mt-2">
-                            <a href="/service-activations" class="btn btn-outline-secondary">
+                            <a href="{{ auth()->user()->role === 'Sales Admin' ? '/orders' : '/service-activations' }}" class="btn btn-outline-secondary">
                                 Kembali
                             </a>
                         </div>

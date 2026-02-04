@@ -69,9 +69,13 @@
                         <p class="fw-bold text-primary">Status Pesanan</p>
                         <div class="status d-flex flex-column align-items-center mb-4">
                             <div class="order-steps w-100">
-                                <div class="step {{ $order_status->order_status_id > 1 ? 'completed' : 'active' }}">
+                                <div
+                                    class="step
+                                        {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id > 1 ? 'completed' : 'active') }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id > 1)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id > 1)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -79,10 +83,11 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $order_status->order_status_id == 3 ? 'active' : '' }}
-                                                {{ $order_status->order_status_id >= 4 ? 'completed' : '' }}">
+                                    class="step {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id == 3 ? 'active' : ($order_status->order_status_id >= 4 ? 'completed' : '')) }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 4)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id >= 4)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -90,18 +95,23 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $order_status->order_status_id >= 5 ? 'completed' : '' }}">
+                                    class="step {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id >= 5 ? 'completed' : '') }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 5)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id >= 5)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
                                     <h5>{{ $order->shipping == 'JNE' ? 'Pengiriman' : 'Siap Diambil' }}</h5>
                                 </div>
 
-                                <div class="step {{ $order_status->order_status_id >= 7 ? 'completed' : '' }}">
+                                <div
+                                    class="step {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id >= 7 ? 'completed' : '') }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 7)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id >= 7)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
