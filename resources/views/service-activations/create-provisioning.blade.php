@@ -26,8 +26,7 @@
                                     <p class="mb-0" style="font-size: 14px">
                                         @if ($nota->installation_date)
                                             Jadwal Instalasi pada tanggal
-                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
-                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }}
                                         @else
                                             Belum dijadwalkan
                                         @endif
@@ -90,31 +89,13 @@
 
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">AO (Access Order)</label>
-                                    <input type="text" name="ao"
-                                        class="form-control @error('ao') is-invalid @enderror" value="{{ old('ao') }}"
-                                        placeholder="Contoh: AO-2025-00123" required>
-                                    @error('ao')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">SID (Service ID)</label>
-                                    <input type="text" name="sid"
-                                        class="form-control @error('sid') is-invalid @enderror" value="{{ old('sid') }}"
-                                        placeholder="Contoh: SID-88921" required>
-                                    @error('sid')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3 col-md-6">
                                     <label class="form-label">PE / Metro</label>
                                     <select name="pe" class="form-select" required>
                                         <option value="">Pilih PE / Metro</option>
-                                        <option value="PE-JKT-01" @selected(old('pe') === 'PE-JKT-01')>PE-JKT-01</option>
-                                        <option value="PE-SBY-01" @selected(old('pe') === 'PE-SBY-01')>PE-SBY-01</option>
+                                        <option value="RTR-CONSUMER-7206-E1-B-BGR" @selected(old('pe') === 'RTR-CONSUMER-7206-E1-B-BGR')>
+                                            RTR-CONSUMER-7206-E1-B-BGR </option>
+                                        <option value="RTR-ENTERPRISE-ASR1001-XE1-A-JKT" @selected(old('pe') === 'RTR-ENTERPRISE-ASR1001-XE1-A-JKT')>
+                                            RTR-ENTERPRISE-ASR1001-XE1-A-JKT</option>
                                     </select>
                                 </div>
 
@@ -129,23 +110,32 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">IP WAN</label>
-                                    <input type="text" name="ip_wan"
-                                        class="form-control @error('ip_wan') is-invalid @enderror"
-                                        value="{{ old('ip_wan') }}" placeholder="Contoh: 10.10.20.2" required>
-                                    @error('ip_wan')
+                                    <label class="form-label">IP Interface</label>
+                                    <input type="text" name="ip_interface"
+                                        class="form-control @error('ip_interface') is-invalid @enderror"
+                                        value="{{ old('ip_interface') }}" placeholder="Contoh: 10.10.20.2" required>
+                                    @error('ip_interface')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">IP DNS/Aplikasi</label>
+                                    <input type="text" name="ip_dns"
+                                        class="form-control @error('ip_dns') is-invalid @enderror"
+                                        value="{{ old('ip_dns') }}" placeholder="Contoh: 172.16.1.2" required>
+                                    @error('ip_dns')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">IP Backhaul</label>
-                                    <input type="text" name="ip_backhaul"
-                                        class="form-control @error('ip_backhaul') is-invalid @enderror"
-                                        value="{{ old('ip_backhaul') }}" placeholder="Contoh: 172.16.1.2" required>
-                                    @error('ip_backhaul')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <select name="ip_backhaul" class="form-select" required>
+                                        <option value="">Pilih Jenis IP Backhaul</option>
+                                        <option value="IP Public" @selected(old('ip_backhaul') === 'IP Public')>IP Public</option>
+                                        <option value="IP Private" @selected(old('ip_backhaul') === 'IP Private')>IP Private</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -159,8 +149,12 @@
                                     <label class="form-label">Jenis Hub</label>
                                     <select name="hub_type" class="form-select" required>
                                         <option value="">Pilih Jenis Hub</option>
-                                        <option value="Mangoesky" @selected(old('hub_type') === 'Mangoesky')>Mangoesky</option>
                                         <option value="iDirect" @selected(old('hub_type') === 'iDirect')>iDirect</option>
+                                        <option value="Newtec" @selected(old('hub_type') === 'Newtec')>Newtec</option>
+                                        <option value="Hughes HX50" @selected(old('hub_type') === 'Hughes HX50')>Hughes HX50</option>
+                                        <option value="Hughes HX90" @selected(old('hub_type') === 'Hughes HX90')>Hughes HX90</option>
+                                        <option value="Hughes HX200" @selected(old('hub_type') === 'Hughes HX200')>Hughes HX200</option>
+                                        <option value="HTS MP2" @selected(old('hub_type') === 'HTS MP2')>HTS MP2</option>
                                     </select>
                                 </div>
 

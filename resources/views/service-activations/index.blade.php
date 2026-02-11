@@ -34,9 +34,7 @@
                                 <td>{{ $activationNota->order->customer->name }}</td>
                                 <td>{{ $activationNota->order->product->name }}</td>
                                 <td>
-                                    {{ $activationNota->installation_session && $activationNota->installation_date
-                                        ? $activationNota->installation_session . ' | ' . $activationNota->installation_date->translatedFormat('d F Y')
-                                        : '-' }}
+                                    {{ $activationNota->installation_date ? $activationNota->installation_date->translatedFormat('d F Y') : '-' }}
                                 </td>
                                 <td>{{ $activationNota->online_date?->translatedFormat('H:i, d M Y') ?? '-' }}</td>
                                 </td>
@@ -72,8 +70,7 @@
                                                         class="dropdown-item btn-edit-installation-schedule"
                                                         data-bs-toggle="modal" data-bs-target="#editInstallationSchedule"
                                                         data-activation-id="{{ $activationNota->id }}"
-                                                        data-installation-date="{{ $activationNota->installation_date->format('Y-m-d') }}"
-                                                        data-installation-session="{{ $activationNota->installation_session }}">
+                                                        data-installation-date="{{ $activationNota->installation_date->format('Y-m-d') }}">
                                                         <i class="bx bx-calendar-plus me-1"></i>
                                                         Ubah Jadwal Instalasi
                                                     </button>
@@ -138,7 +135,7 @@
                                                     (auth()->user()->role === 'Service Operation Admin' &&
                                                         auth()->user()->position === 'Provisioning Service Activation'))
                                                 @if ($activationNota->current_status_id >= 8)
-                                                    @if ($activationNota->sensor_status == null)
+                                                    @if ($activationNota->online_date == null)
                                                         <a class="dropdown-item"
                                                             href="/service-activations/verification/{{ $activationNota->id }}">
                                                             <i class="bx bx-check-shield me-1"></i>
@@ -197,12 +194,6 @@
 
             modal.find('#edit_installation_activation_nota_id').val(activationNotaId);
             modal.find('#edit_installation_date').val(installationDate ?? '');
-
-            modal.find('#edit_installation_session_morning')
-                .prop('checked', installationSession === 'Pagi');
-
-            modal.find('#edit_installation_session_afternoon')
-                .prop('checked', installationSession === 'Siang');
 
             modal.find('#edit_submit_btn').prop('disabled', !installationDate);
         });

@@ -24,27 +24,6 @@
 
                     <input type="date" class="form-control mb-3" name="installation_date" id="edit_installation_date"
                         min="{{ date('Y-m-d') }}">
-
-                    <div class="input-form mb-3">
-                        <label class="form-label">Sesi Waktu</label>
-                        <div class="d-flex gap-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="installation_session"
-                                    id="edit_installation_session_morning" value="Pagi">
-                                <label class="form-check-label" for="edit_installation_session_morning">
-                                    Pagi (08.00–11.00)
-                                </label>
-                            </div>
-
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="installation_session"
-                                    id="edit_installation_session_afternoon" value="Siang">
-                                <label class="form-check-label" for="edit_installation_session_afternoon">
-                                    Siang (13.00–17.00)
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="modal-footer">

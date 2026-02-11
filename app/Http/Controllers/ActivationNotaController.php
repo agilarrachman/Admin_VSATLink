@@ -49,48 +49,45 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'ao' => 'required|string|max:255',
-                'sid' => 'required|string|max:255',
-                'pe' => 'required|string|max:255',
+                'pe' => 'required|in:RTR-CONSUMER-7206-E1-B-BGR,RTR-ENTERPRISE-ASR1001-XE1-A-JKT',
                 'interface' => 'required|string|max:255',
-                'ip_wan' => 'required|ip',
-                'ip_backhaul' => 'required|ip',
-                'hub_type' => 'required|in:Mangoesky,iDirect',
-                'nms_id' => 'required|string|max:255',
+                'ip_interface' => 'required|unique:activation_notas,ip_interface',
+                'ip_dns' => 'required|unique:activation_notas,ip_dns',
+                'ip_backhaul' => 'required|in:IP Private,IP Public',
+                'hub_type' => 'required|in:iDirect,Newtec,Hughes HX50,Hughes HX90,Hughes HX200,HTS MP2',
+                'nms_id' => 'required|string|max:255|unique:activation_notas,nms_id',
                 'create_nms_date' => 'required|date',
-                'ip_lan' => 'required|ip',
+                'ip_lan' => 'required|unique:activation_notas,ip_lan',
                 'subnet_mask_lan' => 'required|string|max:255',
             ],
             [
-                'ao.required' => 'AO wajib diisi.',
-                'ao.max' => 'AO maksimal 50 karakter.',
-
-                'sid.required' => 'SID wajib diisi.',
-                'sid.max' => 'SID maksimal 50 karakter.',
-
                 'pe.required' => 'PE wajib diisi.',
-                'pe.max' => 'PE maksimal 50 karakter.',
+                'pe.in' => 'PE harus salah satu dari: RTR-CONSUMER-7206-E1-B-BGR atau RTR-ENTERPRISE-ASR1001-XE1-A-JKT.',
 
                 'interface.required' => 'Interface wajib diisi.',
                 'interface.max' => 'Interface maksimal 50 karakter.',
 
-                'ip_wan.required' => 'IP WAN wajib diisi.',
-                'ip_wan.ip' => 'Format IP WAN tidak valid.',
+                'ip_interface.required' => 'IP Interface wajib diisi.',
+                'ip_interface.unique' => 'IP Interface sudah digunakan.',
 
-                'ip_backhaul.required' => 'IP Backhaul wajib diisi.',
-                'ip_backhaul.ip' => 'Format IP Backhaul tidak valid.',
+                'ip_dns.required' => 'IP DNS wajib diisi.',
+                'ip_dns.unique' => 'IP DNS sudah digunakan.',
+
+                'ip_backhaul.required' => 'IP Backhaul wajib dipilih.',
+                'ip_backhaul.in' => 'Tipe IP Backhaul harus salah satu dari: IP Private, IP Public.',
 
                 'hub_type.required' => 'Tipe HUB wajib dipilih.',
-                'hub_type.in' => 'Tipe HUB harus Mangoesky atau iDirect.',
+                'hub_type.in' => 'Tipe HUB harus salah satu dari: iDirect, Newtec, Hughes HX50, Hughes HX90, Hughes HX200, HTS MP2.',
 
                 'nms_id.required' => 'NMS ID wajib diisi.',
                 'nms_id.max' => 'NMS ID maksimal 50 karakter.',
+                'nms_id.unique' => 'NMS ID sudah digunakan.',
 
                 'create_nms_date.required' => 'Tanggal pembuatan NMS wajib diisi.',
                 'create_nms_date.date' => 'Format tanggal pembuatan NMS tidak valid.',
 
                 'ip_lan.required' => 'IP LAN wajib diisi.',
-                'ip_lan.ip' => 'Format IP LAN tidak valid.',
+                'ip_lan.unique' => 'IP LAN sudah digunakan.',
 
                 'subnet_mask_lan.required' => 'Subnet Mask LAN wajib diisi.',
                 'subnet_mask_lan.max' => 'Subnet Mask LAN maksimal 50 karakter.',
@@ -124,48 +121,45 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'ao' => 'required|string|max:255',
-                'sid' => 'required|string|max:255',
-                'pe' => 'required|string|max:255',
+                'pe' => 'required|in:RTR-CONSUMER-7206-E1-B-BGR,RTR-ENTERPRISE-ASR1001-XE1-A-JKT',
                 'interface' => 'required|string|max:255',
-                'ip_wan' => 'required|ip',
-                'ip_backhaul' => 'required|ip',
-                'hub_type' => 'required|in:Mangoesky,iDirect',
-                'nms_id' => 'required|string|max:255',
+                'ip_interface' => 'required|unique:activation_notas,ip_interface,' . $nota->id,
+                'ip_dns' => 'required|unique:activation_notas,ip_dns,' . $nota->id,
+                'ip_backhaul' => 'required|in:IP Private,IP Public',
+                'hub_type' => 'required|in:iDirect,Newtec,Hughes HX50,Hughes HX90,Hughes HX200,HTS MP2',
+                'nms_id' => 'required|string|max:255|unique:activation_notas,nms_id,' . $nota->id,
                 'create_nms_date' => 'required|date',
-                'ip_lan' => 'required|ip',
+                'ip_lan' => 'required|unique:activation_notas,ip_lan,' . $nota->id,
                 'subnet_mask_lan' => 'required|string|max:255',
             ],
             [
-                'ao.required' => 'AO wajib diisi.',
-                'ao.max' => 'AO maksimal 50 karakter.',
-
-                'sid.required' => 'SID wajib diisi.',
-                'sid.max' => 'SID maksimal 50 karakter.',
-
                 'pe.required' => 'PE wajib diisi.',
-                'pe.max' => 'PE maksimal 50 karakter.',
+                'pe.in' => 'PE harus salah satu dari: RTR-CONSUMER-7206-E1-B-BGR atau RTR-ENTERPRISE-ASR1001-XE1-A-JKT.',
 
                 'interface.required' => 'Interface wajib diisi.',
                 'interface.max' => 'Interface maksimal 50 karakter.',
 
-                'ip_wan.required' => 'IP WAN wajib diisi.',
-                'ip_wan.ip' => 'Format IP WAN tidak valid.',
+                'ip_interface.required' => 'IP Interface wajib diisi.',
+                'ip_interface.unique' => 'IP Interface sudah digunakan.',
+
+                'ip_dns.required' => 'IP DNS wajib diisi.',
+                'ip_dns.unique' => 'IP DNS sudah digunakan.',
 
                 'ip_backhaul.required' => 'IP Backhaul wajib diisi.',
-                'ip_backhaul.ip' => 'Format IP Backhaul tidak valid.',
+                'ip_backhaul.in' => 'Tipe IP Backhaul harus salah satu dari: IP Private, IP Public.',
 
                 'hub_type.required' => 'Tipe HUB wajib dipilih.',
-                'hub_type.in' => 'Tipe HUB harus Mangoesky atau iDirect.',
+                'hub_type.in' => 'Tipe HUB harus salah satu dari: iDirect, Newtec, Hughes HX50, Hughes HX90, Hughes HX200, HTS MP2.',
 
                 'nms_id.required' => 'NMS ID wajib diisi.',
                 'nms_id.max' => 'NMS ID maksimal 50 karakter.',
+                'nms_id.unique' => 'NMS ID sudah digunakan.',
 
                 'create_nms_date.required' => 'Tanggal pembuatan NMS wajib diisi.',
                 'create_nms_date.date' => 'Format tanggal pembuatan NMS tidak valid.',
 
                 'ip_lan.required' => 'IP LAN wajib diisi.',
-                'ip_lan.ip' => 'Format IP LAN tidak valid.',
+                'ip_lan.unique' => 'IP LAN sudah digunakan.',
 
                 'subnet_mask_lan.required' => 'Subnet Mask LAN wajib diisi.',
                 'subnet_mask_lan.max' => 'Subnet Mask LAN maksimal 50 karakter.',
@@ -218,7 +212,7 @@ class ActivationNotaController extends Controller
                 'sqf' => 'required|numeric|min:0',
                 'esno' => 'required|numeric|min:0',
                 'los' => 'required|in:Bersih,Terhalang',
-                'antena_diameter' => 'required|in:1.2,1.8',
+                'antena_diameter' => 'required|in:0.7,1.2,1.8',
                 'lft_id' => 'required|string|max:255',
                 'cn' => 'required|numeric|min:0',
                 'esn_modem' => 'required|string|max:255',
@@ -283,7 +277,7 @@ class ActivationNotaController extends Controller
                 'sqf' => 'required|numeric|min:0',
                 'esno' => 'required|numeric|min:0',
                 'los' => 'required|in:Bersih,Terhalang',
-                'antena_diameter' => 'required|in:1.2,1.8',
+                'antena_diameter' => 'required|in:0.7,1.2,1.8',
                 'lft_id' => 'required|string|max:255',
                 'cn' => 'required|numeric|min:0',
                 'esn_modem' => 'required|string|max:255',
@@ -345,17 +339,13 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'cacti_url' => 'required|url|max:255',
-                'sensor_status' => 'required|in:Online,Tidak Stabil,Offline',
+                'monitoring_url' => 'required|url|max:255',
                 'online_date' => 'nullable|date',
                 'monitoring_capture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             ],
             [
-                'cacti_url.required' => 'URL Cacti Monitoring wajib diisi.',
-                'cacti_url.url' => 'Format URL Cacti tidak valid.',
-
-                'sensor_status.required' => 'Status sensor wajib dipilih.',
-                'sensor_status.in' => 'Status sensor tidak valid.',
+                'monitoring_url.required' => 'URL Monitoring wajib diisi.',
+                'monitoring_url.url' => 'Format URL Monitoring tidak valid.',
 
                 'online_date.date' => 'Format tanggal & waktu online tidak valid.',
 
@@ -393,17 +383,13 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'cacti_url' => 'required|url|max:255',
-                'sensor_status' => 'required|in:Online,Tidak Stabil,Offline',
+                'monitoring_url' => 'required|url|max:255',
                 'online_date' => 'nullable|date',
                 'monitoring_capture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             ],
             [
-                'cacti_url.required' => 'URL Cacti Monitoring wajib diisi.',
-                'cacti_url.url' => 'Format URL Cacti tidak valid.',
-
-                'sensor_status.required' => 'Status sensor wajib dipilih.',
-                'sensor_status.in' => 'Status sensor tidak valid.',
+                'monitoring_url.required' => 'URL Monitoring wajib diisi.',
+                'monitoring_url.url' => 'Format URL Monitoring tidak valid.',
 
                 'online_date.date' => 'Format tanggal & waktu online tidak valid.',
 
@@ -443,10 +429,9 @@ class ActivationNotaController extends Controller
         $request->validate([
             'activation_nota_id' => 'required|exists:activation_notas,id',
             'installation_date' => 'required',
-            'installation_session' => 'required|in:Pagi,Siang',
         ]);
 
-        $activationNota = ActivationNota::inputInstallationSchedule($request->activation_nota_id, $request->installation_date, $request->installation_session);
+        $activationNota = ActivationNota::inputInstallationSchedule($request->activation_nota_id, $request->installation_date);
 
         $data = [
             'customer_name' => $activationNota->order->customer->name,
@@ -455,7 +440,6 @@ class ActivationNotaController extends Controller
             'unique_order'  => $activationNota->order->unique_order,
             'product_name'  => $activationNota->order->product->name,
             'installation_date'  => $activationNota->installation_date->translatedFormat('d F Y'),
-            'installation_session'  => $activationNota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)',
         ];
 
         $customerEmail = $activationNota->order->customer->email;
@@ -483,10 +467,9 @@ class ActivationNotaController extends Controller
         $request->validate([
             'activation_nota_id' => 'required|exists:activation_notas,id',
             'installation_date' => 'required',
-            'installation_session' => 'required|in:Pagi,Siang',
         ]);
 
-        ActivationNota::editInstallationSchedule($request->activation_nota_id, $request->installation_date, $request->installation_session);
+        ActivationNota::editInstallationSchedule($request->activation_nota_id, $request->installation_date);
 
         return back()->with(
             'success',

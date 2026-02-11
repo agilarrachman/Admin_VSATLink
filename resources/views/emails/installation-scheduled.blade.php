@@ -22,7 +22,6 @@
                         <strong>Detail Jadwal Instalasi & Aktivasi</strong><br><br>
                         <strong>Produk:</strong> {{ $product_name }}<br>
                         <strong>Tanggal Instalasi:</strong> {{ $installation_date }}<br>
-                        <strong>Sesi Instalasi:</strong> {{ $installation_session }}<br>
                         <strong>Sales Penanggung Jawab:</strong> {{ $sales_name }}
                     </td>
                 </tr>

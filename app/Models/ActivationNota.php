@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,55 +96,43 @@ class ActivationNota extends Model
             ->count();
     }
 
-    public static function inputInstallationSchedule($activationNotaId, $installationDate, $installationSession)
+    public static function inputInstallationSchedule($activationNotaId, $installationDate)
     {
         $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
             'current_status_id'  => 2,
             'installation_date' => $installationDate,
-            'installation_session' => $installationSession,
         ]);
-
-        $timeRange = $installationSession === 'Pagi' ? '08.00 - 11.00' : '13.00 - 17.00';
 
         ActivationStatusHistory::create([
             'activation_status_id' => 2,
             'activation_nota_id'   => $activationNota->id,
             'note' => 'Jadwal instalasi diajukan pada '
-                . Carbon::parse($installationDate)->translatedFormat('d F Y')
-                . ' (' . $installationSession . ', ' . $timeRange . ')',
+                . Carbon::parse($installationDate)->translatedFormat('d F Y'),
         ]);
 
         return $activationNota;
     }
 
-    public static function editInstallationSchedule($activationNotaId, $installationDate, $installationSession)
+    public static function editInstallationSchedule($activationNotaId, $installationDate)
     {
         $activationNota = self::findOrFail($activationNotaId);
-
-        $updateData = [
-            'installation_date'    => $installationDate,
-            'installation_session' => $installationSession,
-        ];
 
         if ($activationNota->current_status_id == 3) {
             $updateData['current_status_id'] = 4;
         }
 
-        $activationNota->update($updateData);
+        $activationNota->update([
+            'installation_date' => $installationDate,
+        ]);
 
         if ($activationNota->current_status_id == 3) {
-            $timeRange = $installationSession == 'Pagi'
-                ? '08.00 - 11.00'
-                : '13.00 - 17.00';
-
             ActivationStatusHistory::create([
                 'activation_status_id' => 4,
                 'activation_nota_id'   => $activationNota->id,
                 'note' => 'Jadwal instalasi diperbarui menjadi pada '
-                    . Carbon::parse($installationDate)->translatedFormat('d F Y')
-                    . ' (' . $installationSession . ', ' . $timeRange . ')',
+                    . Carbon::parse($installationDate)->translatedFormat('d F Y'),
             ]);
         }
 
@@ -152,30 +141,47 @@ class ActivationNota extends Model
 
     public static function storeProvisioning($activationNotaId, $requestData)
     {
-        $activationNota = self::findOrFail($activationNotaId);
+        DB::beginTransaction();
 
-        $activationNota->update([
-            'current_status_id'  => 5,
-            'ao' => $requestData['ao'],
-            'sid' => $requestData['sid'],
-            'pe' => $requestData['pe'],
-            'interface' => $requestData['interface'],
-            'ip_wan' => $requestData['ip_wan'],
-            'ip_backhaul' => $requestData['ip_backhaul'],
-            'hub_type' => $requestData['hub_type'],
-            'nms_id' => $requestData['nms_id'],
-            'create_nms_date' => $requestData['create_nms_date'],
-            'ip_lan' => $requestData['ip_lan'],
-            'subnet_mask_lan' => $requestData['subnet_mask_lan'],
-        ]);
+        try {
+            $activationNota = self::findOrFail($activationNotaId);
 
-        ActivationStatusHistory::create([
-            'activation_status_id' => 5,
-            'activation_nota_id'   => $activationNota->id,
-            'note' => 'Data provisioning telah diinput dan proses perjalanan teknisi dapat dimulai.'
-        ]);
+            $activationNota->update([
+                'current_status_id' => 5,
+                'pe' => $requestData['pe'] ?? null,
+                'interface' => $requestData['interface'] ?? null,
+                'ip_interface' => $requestData['ip_interface'] ?? null,
+                'ip_dns' => $requestData['ip_dns'] ?? null,
+                'ip_backhaul' => $requestData['ip_backhaul'] ?? null,
+                'hub_type' => $requestData['hub_type'] ?? null,
+                'nms_id' => $requestData['nms_id'] ?? null,
+                'create_nms_date' => $requestData['create_nms_date'] ?? null,
+                'ip_lan' => $requestData['ip_lan'] ?? null,
+                'subnet_mask_lan' => $requestData['subnet_mask_lan'] ?? null,
+            ]);
 
-        return $activationNota;
+            ActivationStatusHistory::create([
+                'activation_status_id' => 5,
+                'activation_nota_id'   => $activationNota->id,
+                'note' => 'Data provisioning telah diinput dan proses perjalanan teknisi dapat dimulai.'
+            ]);
+
+            DB::commit();
+
+            return $activationNota;
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Gagal store provisioning', [
+                'activation_nota_id' => $activationNotaId,
+                'error_message' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile(),
+            ]);
+
+            throw $e; // biar controller bisa handle juga
+        }
     }
 
     public static function updateProvisioning($activationNotaId, $requestData)
@@ -183,11 +189,11 @@ class ActivationNota extends Model
         $activationNota = self::findOrFail($activationNotaId);
 
         $activationNota->update([
-            'ao' => $requestData['ao'],
-            'sid' => $requestData['sid'],
+
             'pe' => $requestData['pe'],
             'interface' => $requestData['interface'],
-            'ip_wan' => $requestData['ip_wan'],
+            'ip_interface' => $requestData['ip_interface'],
+            'ip_dns' => $requestData['ip_dns'],
             'ip_backhaul' => $requestData['ip_backhaul'],
             'hub_type' => $requestData['hub_type'],
             'nms_id' => $requestData['nms_id'],
@@ -289,23 +295,20 @@ class ActivationNota extends Model
         $path = $requestData['monitoring_capture']->store('monitoring_captures', 'public');
 
         $activationNota->update([
-            'cacti_url' => $requestData['cacti_url'],
-            'sensor_status' => $requestData['sensor_status'],
+            'monitoring_url' => $requestData['monitoring_url'],
             'online_date' => $requestData['online_date'] ?? null,
             'monitoring_capture_url' => $path,
         ]);
 
-        if ($requestData['sensor_status'] != 'Offline') {
-            $activationNota->update([
-                'current_status_id'  => 9
-            ]);
+        $activationNota->update([
+            'current_status_id'  => 9
+        ]);
 
-            ActivationStatusHistory::create([
-                'activation_status_id' => 9,
-                'activation_nota_id'   => $activationNota->id,
-                'note' => 'Aktivasi layanan telah diverifikasi dan dinyatakan aktif.'
-            ]);
-        }
+        ActivationStatusHistory::create([
+            'activation_status_id' => 9,
+            'activation_nota_id'   => $activationNota->id,
+            'note' => 'Aktivasi layanan telah diverifikasi dan dinyatakan aktif.'
+        ]);
 
         return $activationNota;
     }
@@ -315,8 +318,7 @@ class ActivationNota extends Model
         $activationNota = self::findOrFail($activationNotaId);
 
         $updateData = [
-            'cacti_url'     => $requestData['cacti_url'],
-            'sensor_status' => $requestData['sensor_status'],
+            'monitoring_url'     => $requestData['monitoring_url'],
             'online_date'   => $requestData['online_date'] ?? null,
         ];
 
@@ -333,17 +335,15 @@ class ActivationNota extends Model
 
         $timestamp = Carbon::now()->translatedFormat('d F Y H:i');
 
-        if ($requestData['sensor_status'] != 'Offline') {
-            $activationNota->update([
-                'current_status_id'  => 9
-            ]);
+        $activationNota->update([
+            'current_status_id'  => 9
+        ]);
 
-            ActivationStatusHistory::create([
-                'activation_status_id' => 9,
-                'activation_nota_id'   => $activationNota->id,
-                'note' => "Aktivasi layanan telah diverifikasi dan dinyatakan aktif pada {$timestamp}."
-            ]);
-        }
+        ActivationStatusHistory::create([
+            'activation_status_id' => 9,
+            'activation_nota_id'   => $activationNota->id,
+            'note' => "Aktivasi layanan telah diverifikasi dan dinyatakan aktif pada {$timestamp}."
+        ]);
 
         return $activationNota;
     }

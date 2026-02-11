@@ -25,8 +25,7 @@
                                     <p class="mb-0" style="font-size: 14px">
                                         @if ($nota->installation_date)
                                             Jadwal Instalasi pada tanggal
-                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
-                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }}
                                         @else
                                             Belum dijadwalkan
                                         @endif
@@ -92,8 +91,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">SQF</label>
                                     <input type="number" step="0.01" name="sqf"
-                                        class="form-control @error('sqf') is-invalid @enderror" value="{{ old('sqf', $nota->sqf) }}"
-                                        placeholder="Contoh: 78" required>
+                                        class="form-control @error('sqf') is-invalid @enderror"
+                                        value="{{ old('sqf', $nota->sqf) }}" placeholder="Contoh: 78" required>
                                     @error('sqf')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -126,7 +125,8 @@
                                     <label class="form-label">Diameter Antena</label>
                                     <select name="antena_diameter" class="form-select" required>
                                         <option value="">Pilih Diameter Antena</option>
-                                        <option value="1.2" @selected(old('antena_diameter', $nota->antena_diameter) === '1.2')>1.2 m</option>
+                                        <option value="0.7" @selected(old('antena_diameter', $nota->antena_diameter) === '0.7')>0.7 m</option>
+                                        <option value="1.8" @selected(old('antena_diameter', $nota->antena_diameter) === '1.8')>1.8 m</option>
                                         <option value="1.8" @selected(old('antena_diameter', $nota->antena_diameter) === '1.8')>1.8 m</option>
                                     </select>
                                 </div>
@@ -159,7 +159,8 @@
                                     <label class="form-label">ESN Modem</label>
                                     <input type="text" name="esn_modem"
                                         class="form-control @error('esn_modem') is-invalid @enderror"
-                                        value="{{ old('esn_modem', $nota->esn_modem) }}" placeholder="Contoh: 15266359AV" required>
+                                        value="{{ old('esn_modem', $nota->esn_modem) }}" placeholder="Contoh: 15266359AV"
+                                        required>
                                     @error('esn_modem')
                                         <div class="invalid-feedback">
                                             {{ $message }}

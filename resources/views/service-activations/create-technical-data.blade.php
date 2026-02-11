@@ -25,8 +25,7 @@
                                     <p class="mb-0" style="font-size: 14px">
                                         @if ($nota->installation_date)
                                             Jadwal Instalasi pada tanggal
-                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
-                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }}
                                         @else
                                             Belum dijadwalkan
                                         @endif
@@ -124,6 +123,7 @@
                                     <label class="form-label">Diameter Antena</label>
                                     <select name="antena_diameter" class="form-select" required>
                                         <option value="">Pilih Diameter Antena</option>
+                                        <option value="0.7" @selected(old('antena_diameter') === '0.7')>0.7 m</option>
                                         <option value="1.2" @selected(old('antena_diameter') === '1.2')>1.2 m</option>
                                         <option value="1.8" @selected(old('antena_diameter') === '1.8')>1.8 m</option>
                                     </select>
