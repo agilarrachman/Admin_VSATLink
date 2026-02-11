@@ -199,6 +199,42 @@
                             </a>
                         </div>
 
+                        <p class="fw-bold text-primary">Serial Number Perangkat</p>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="modem_sn" class="form-label">Modem Serial Number</label>
+                                <input class="form-control" type="text" id="modem_sn" name="modem_sn"
+                                    value="{{ $order->modem_sn ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="adaptor_sn" class="form-label">Adaptor Serial Number</label>
+                                <input class="form-control" type="text" id="adaptor_sn" name="adaptor_sn"
+                                    value="{{ $order->adaptor_sn ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="buc_sn" class="form-label">BUC Serial Number</label>
+                                <input class="form-control" type="text" id="buc_sn" name="buc_sn"
+                                    value="{{ $order->buc_sn ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="lnb_sn" class="form-label">LNB Serial Number</label>
+                                <input class="form-control" type="text" id="lnb_sn" name="lnb_sn"
+                                    value="{{ $order->lnb_sn ?? '-' }}" readonly />
+                            </div>
+                            @if ($order->product->access_point != null)
+                                <div class="mb-3 col-md-6">
+                                    <label for="router_sn" class="form-label">Router Serial Number</label>
+                                    <input class="form-control" type="text" id="router_sn" name="router_sn"
+                                        value="{{ $order->router_sn ?? '-' }}" readonly />
+                                </div>
+                            @endif
+                            <div class="mb-3 col-md-6">
+                                <label for="antena_sn" class="form-label">Antena Serial Number</label>
+                                <input class="form-control" type="text" id="antena_sn" name="antena_sn"
+                                    value="{{ $order->antena_sn ?? '-' }}" readonly />
+                            </div>
+                        </div>
+
                         <div class="mt-2">
                             <button type="button" class="btn btn-outline-secondary"
                                 onclick="history.back()">Kembali</button>
