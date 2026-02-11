@@ -284,7 +284,7 @@ class Order extends Model
         return $databasePath;
     }
 
-    public static function requestPickup($orderId)
+    public static function requestPickup($orderId, $etdThru)
     {
         $order = self::findOrFail($orderId);
 
@@ -318,6 +318,7 @@ class Order extends Model
             'current_status_id'   => 5,
             'jne_tracking_number' => $jneTrackingNumber,
             'packing_list_id'     => $idPackingList,
+            'estimated_arrival_date' => Carbon::now()->addDays((int) $etdThru)->toDateString(),
         ]);
 
         $packingListUrl  = self::generatePackingListPdf($order->fresh());
@@ -331,7 +332,7 @@ class Order extends Model
         OrderStatusHistory::create([
             'order_status_id' => 5,
             'order_id' => $order->id,
-            'note' => "Permintaan pickup JNE untuk pesanan {$order->unique_order} telah dibuat.",
+            'note' => "Permintaan pickup JNE untuk pesanan {$order->unique_order} telah dibuat dan diperkirakan tiba pada tanggal {$order->estimated_arrival_date}.",
         ]);
     }
 
