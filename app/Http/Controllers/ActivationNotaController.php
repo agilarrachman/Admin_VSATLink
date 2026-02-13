@@ -213,9 +213,9 @@ class ActivationNotaController extends Controller
                 'esno' => 'required|numeric|min:0',
                 'los' => 'required|in:Bersih,Terhalang',
                 'antena_diameter' => 'required|in:0.7,1.2,1.8',
-                'lft_id' => 'required|string|max:255',
+                'lft_id' => 'required|string|max:255|unique:activation_notas,lft_id',
                 'cn' => 'required|numeric|min:0',
-                'esn_modem' => 'required|string|max:255',
+                'esn_modem' => 'required|string|max:255|unique:activation_notas,esn_modem',
                 'antena_type' => 'required|in:KU-BAND V61,KU-BAND V80',
                 'technician_note' => 'nullable',
             ],
@@ -235,12 +235,14 @@ class ActivationNotaController extends Controller
                 'antena_diameter.in'       => 'Diameter antena tidak valid.',
 
                 'lft_id.max' => 'ID LFT maksimal 50 karakter.',
+                'lft_id.unique' => 'ID LFT sudah digunakan.',
 
                 'cn.numeric' => 'C/N harus berupa angka.',
                 'cn.min'     => 'C/N tidak boleh bernilai negatif.',
 
                 'esn_modem.required' => 'ESN Modem wajib diisi.',
                 'esn_modem.max'      => 'ESN Modem maksimal 50 karakter.',
+                'esn_modem.unique'   => 'ESN Modem sudah digunakan.',
 
                 'antena_type.required' => 'Jenis antena wajib dipilih.',
                 'antena_type.in'       => 'Jenis antena tidak valid.',
@@ -278,9 +280,9 @@ class ActivationNotaController extends Controller
                 'esno' => 'required|numeric|min:0',
                 'los' => 'required|in:Bersih,Terhalang',
                 'antena_diameter' => 'required|in:0.7,1.2,1.8',
-                'lft_id' => 'required|string|max:255',
+                'lft_id' => 'required|string|max:255|unique:activation_notas,lft_id,' . $nota->id,
                 'cn' => 'required|numeric|min:0',
-                'esn_modem' => 'required|string|max:255',
+                'esn_modem' => 'required|string|max:255|unique:activation_notas,esn_modem,' . $nota->id,
                 'antena_type' => 'required|in:KU-BAND V61,KU-BAND V80',
                 'technician_note' => 'nullable',
             ],
@@ -300,12 +302,14 @@ class ActivationNotaController extends Controller
                 'antena_diameter.in'       => 'Diameter antena tidak valid.',
 
                 'lft_id.max' => 'ID LFT maksimal 50 karakter.',
+                'lft_id.unique' => 'ID LFT sudah digunakan.',
 
                 'cn.numeric' => 'C/N harus berupa angka.',
                 'cn.min'     => 'C/N tidak boleh bernilai negatif.',
 
                 'esn_modem.required' => 'ESN Modem wajib diisi.',
                 'esn_modem.max'      => 'ESN Modem maksimal 50 karakter.',
+                'esn_modem.unique'   => 'ESN Modem sudah digunakan.',
 
                 'antena_type.required' => 'Jenis antena wajib dipilih.',
                 'antena_type.in'       => 'Jenis antena tidak valid.',
@@ -339,13 +343,14 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'monitoring_url' => 'required|url|max:255',
+                'monitoring_url' => 'required|url|max:255|unique:activation_notas,monitoring_url',
                 'online_date' => 'nullable|date',
                 'monitoring_capture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             ],
             [
                 'monitoring_url.required' => 'URL Monitoring wajib diisi.',
                 'monitoring_url.url' => 'Format URL Monitoring tidak valid.',
+                'monitoring_url.unique' => 'URL Monitoring sudah digunakan.',
 
                 'online_date.date' => 'Format tanggal & waktu online tidak valid.',
 
@@ -383,13 +388,14 @@ class ActivationNotaController extends Controller
     {
         $request->validate(
             [
-                'monitoring_url' => 'required|url|max:255',
+                'monitoring_url' => 'required|url|max:255|unique:activation_notas,monitoring_url,' . $nota->id,
                 'online_date' => 'nullable|date',
                 'monitoring_capture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             ],
             [
                 'monitoring_url.required' => 'URL Monitoring wajib diisi.',
                 'monitoring_url.url' => 'Format URL Monitoring tidak valid.',
+                'monitoring_url.unique' => 'URL Monitoring sudah digunakan.',
 
                 'online_date.date' => 'Format tanggal & waktu online tidak valid.',
 
