@@ -54,7 +54,7 @@
                                                     class="bx bx-show me-1"></i>
                                                 Lihat Detail Aktivasi</a>
                                             <a class="dropdown-item"
-                                                href="/service-activations/{{ $activationNota->id }}/customer"><i
+                                                href="/customer/{{ $activationNota->order->unique_order }}"><i
                                                     class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
                                             @if (auth()->user()->role === 'Super Admin' ||

@@ -13,7 +13,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/signout', [AdminController::class, 'signout']);
     Route::get('/profile', [AdminController::class, 'profile']);
     Route::get('/orders/{order}', [OrderController::class, 'show']);
-    Route::get('/orders/{order}/customer', [OrderController::class, 'customerShow']);
+    Route::get('/customer/{order}', [OrderController::class, 'customerShow']);
     Route::get('/orders/{order}/data', [OrderController::class, 'data']);
     Route::get('/download/npwp/{order}', [OrderController::class, 'npwpDownload']);
     Route::get('/download/nib/{order}', [OrderController::class, 'nibDownload']);
