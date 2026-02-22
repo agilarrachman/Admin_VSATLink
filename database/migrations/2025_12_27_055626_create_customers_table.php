@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 255)->unique();
+            $table->string('username', 255)->collation('utf8mb4_bin')->unique();
             $table->string('name', 255);
             $table->string('company_representative_name', 255)->nullable();
             $table->enum('customer_type', ['PT.', 'CV.', 'Koperasi', 'Instansi Pendidikan', 'Instansi Pemerintah', 'Perorangan']);

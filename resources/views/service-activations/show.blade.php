@@ -242,7 +242,7 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Tanggal Pembuatan NMS</label>
                                 <input type="text" name="create_nms_date" class="form-control"
-                                    value="{{ $nota->create_nms_date->translatedFormat('d F Y') ?? '-' }}" readonly>
+                                    value="{{ $nota->create_nms_date?->translatedFormat('d F Y') ?? '-' }}" readonly>
                             </div>
 
                             <div class="mb-3 col-md-6">
