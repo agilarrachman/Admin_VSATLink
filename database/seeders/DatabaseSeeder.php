@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'profile_picture' => 'profile_pictures/4.png',
-                'username' => 'installationcoordinator',
+                'username' => 'installationadmin',
                 'name' => 'Rizky Pratama',
                 'email' => 'agilarrachman@apps.ipb.ac.id',
                 'password' => Hash::make('password123'),
