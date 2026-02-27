@@ -15,7 +15,7 @@
 
                 <div class="modal-body">
                     <p class="mb-3 text-muted" style="font-size: 14px">
-                        Silakan pilih tanggal dan sesi waktu untuk jadwal instalasi & aktivasi layanan. Pastikan data
+                        Silakan pilih tanggal untuk jadwal instalasi & aktivasi layanan. Pastikan data
                         yang dimasukkan sudah benar sebelum dikonfirmasi.
                     </p>
 
