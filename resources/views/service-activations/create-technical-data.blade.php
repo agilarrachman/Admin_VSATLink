@@ -77,7 +77,7 @@
 
                         <hr class="w-full border-t border-white/40 pb-3">
 
-                        <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST">
+                        <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <p class="fw-bold text-primary mb-0">Data Teknis dan Crosspole</p>
                             <p class="mb-3">
@@ -172,6 +172,22 @@
                                         <option value="KU-BAND V61" @selected(old('antena_type') === 'KU-BAND V61')>KU-BAND V61</option>
                                         <option value="KU-BAND V80" @selected(old('antena_type') === 'KU-BAND V80')>KU-BAND V80</option>
                                     </select>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Capture Ping</label>
+                                    <input type="file"
+                                        class="form-control @error('ping_capture') is-invalid @enderror"
+                                        name="ping_capture" accept="image/*" required>
+                                    <small class="text-muted">
+                                        Upload capture ping yang dilakukan setelah instalasi selesai sebagai bukti
+                                        konektivitas perangkat di lokasi pelanggan
+                                    </small>
+                                    @error('ping_capture')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12 mb-3">

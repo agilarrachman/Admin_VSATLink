@@ -33,6 +33,7 @@ return new class extends Migration
             $table->decimal('cn', 5, 2)->nullable();
             $table->string('esn_modem', 255)->nullable()->unique();
             $table->enum('antena_type', ['KU-BAND V61', 'KU-BAND V80'])->nullable();
+            $table->string('ping_capture_url', 255)->nullable();
             $table->text('technician_note')->nullable();
             $table->string('monitoring_url', 255)->nullable()->unique();
             $table->timestamp('online_date')->nullable();

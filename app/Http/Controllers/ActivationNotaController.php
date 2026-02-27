@@ -217,6 +217,7 @@ class ActivationNotaController extends Controller
                 'cn' => 'required|numeric|min:0',
                 'esn_modem' => 'required|string|max:255|unique:activation_notas,esn_modem',
                 'antena_type' => 'required|in:KU-BAND V61,KU-BAND V80',
+                'ping_capture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
                 'technician_note' => 'nullable',
             ],
             [
@@ -246,6 +247,11 @@ class ActivationNotaController extends Controller
 
                 'antena_type.required' => 'Jenis antena wajib dipilih.',
                 'antena_type.in'       => 'Jenis antena tidak valid.',
+
+                'ping_capture.required' => 'Bukti capture ping wajib diunggah.',
+                'ping_capture.image' => 'Bukti capture ping harus berupa gambar.',
+                'ping_capture.mimes' => 'Format gambar harus JPG, JPEG, atau PNG.',
+                'ping_capture.max' => 'Ukuran gambar maksimal 2MB.',
             ]
         );
 
@@ -284,6 +290,7 @@ class ActivationNotaController extends Controller
                 'cn' => 'required|numeric|min:0',
                 'esn_modem' => 'required|string|max:255|unique:activation_notas,esn_modem,' . $nota->id,
                 'antena_type' => 'required|in:KU-BAND V61,KU-BAND V80',
+                'ping_capture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'technician_note' => 'nullable',
             ],
             [
@@ -313,6 +320,11 @@ class ActivationNotaController extends Controller
 
                 'antena_type.required' => 'Jenis antena wajib dipilih.',
                 'antena_type.in'       => 'Jenis antena tidak valid.',
+
+                'ping_capture.required' => 'Bukti capture ping wajib diunggah.',
+                'ping_capture.image' => 'Bukti capture ping harus berupa gambar.',
+                'ping_capture.mimes' => 'Format gambar harus JPG, JPEG, atau PNG.',
+                'ping_capture.max' => 'Ukuran gambar maksimal 2MB.',
             ]
         );
 
@@ -356,7 +368,7 @@ class ActivationNotaController extends Controller
 
                 'monitoring_capture.required' => 'Bukti monitoring wajib diunggah.',
                 'monitoring_capture.image' => 'Bukti monitoring harus berupa gambar.',
-                'monitoring_capture.mimes' => 'Format gambar harus JPG atau PNG.',
+                'monitoring_capture.mimes' => 'Format gambar harus JPG, JPEG, atau PNG.',
                 'monitoring_capture.max' => 'Ukuran gambar maksimal 2MB.',
             ]
         );
@@ -400,7 +412,7 @@ class ActivationNotaController extends Controller
                 'online_date.date' => 'Format tanggal & waktu online tidak valid.',
 
                 'monitoring_capture.image' => 'Bukti monitoring harus berupa gambar.',
-                'monitoring_capture.mimes' => 'Format gambar harus JPG atau PNG.',
+                'monitoring_capture.mimes' => 'Format gambar harus JPG, JPEG, atau PNG.',
                 'monitoring_capture.max' => 'Ukuran gambar maksimal 2MB.',
             ]
         );

@@ -77,7 +77,7 @@
 
                         <hr class="w-full border-t border-white/40 pb-3">
 
-                        <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST">
+                        <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -126,7 +126,7 @@
                                     <select name="antena_diameter" class="form-select" required>
                                         <option value="">Pilih Diameter Antena</option>
                                         <option value="0.7" @selected(old('antena_diameter', $nota->antena_diameter) === '0.7')>0.7 m</option>
-                                        <option value="1.8" @selected(old('antena_diameter', $nota->antena_diameter) === '1.8')>1.8 m</option>
+                                        <option value="1.2" @selected(old('antena_diameter', $nota->antena_diameter) === '1.2')>1.2 m</option>
                                         <option value="1.8" @selected(old('antena_diameter', $nota->antena_diameter) === '1.8')>1.8 m</option>
                                     </select>
                                 </div>
@@ -177,6 +177,46 @@
                                     </select>
                                 </div>
 
+                                <div class="col-md-12 mb-3 d-flex flex-column">
+                                    <label class="form-label">Capture Ping</label>
+
+                                    @if ($nota->ping_capture_url)
+                                        <div id="capture-ping-view" class="d-flex align-items-center gap-2 mb-2">
+                                            <a href="{{ asset('storage/' . $nota->ping_capture_url) }}" target="_blank"
+                                                class="btn btn-primary" title="Lihat capture ping">
+                                                <i class="bx bx-show me-1"></i> Lihat
+                                            </a>
+
+                                            <button type="button" class="btn btn-outline-primary px-2"
+                                                title="Ganti capture ping" onclick="enableCapturePingEdit()">
+                                                <i class="bx bx-pencil"></i>
+                                            </button>
+                                        </div>
+
+                                        <small id="capture-ping-info" class="text-muted mb-2">
+                                            Capture ping yang telah diunggah sebelumnya
+                                        </small>
+                                    @endif
+
+                                    <div id="capture-ping-edit" class="{{ $nota->ping_capture_url ? 'd-none' : '' }}">
+                                        <input type="file"
+                                            class="form-control @error('ping_capture') is-invalid @enderror"
+                                            name="ping_capture" accept="image/*"
+                                            {{ $nota->ping_capture_url ? '' : 'required' }}>
+
+                                        <small class="text-muted">
+                                            Upload capture ping yang dilakukan setelah instalasi selesai sebagai bukti
+                                            konektivitas perangkat di lokasi pelanggan
+                                        </small>
+
+                                        @error('ping_capture')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Catatan Teknisi (Opsional)</label>
                                     <textarea name="technician_note" class="form-control @error('technician_note') is-invalid @enderror" rows="3"
@@ -202,3 +242,12 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function enableCapturePingEdit() {
+            document.getElementById('capture-ping-view')?.classList.add('d-none');
+            document.getElementById('capture-ping-info')?.classList.add('d-none');
+            document.getElementById('capture-ping-edit')?.classList.remove('d-none');
+        }
+    </script>
+@endpush

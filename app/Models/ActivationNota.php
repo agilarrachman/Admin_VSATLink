@@ -246,6 +246,7 @@ class ActivationNota extends Model
     public static function storeTechnicalData($activationNotaId, $requestData)
     {
         $activationNota = self::findOrFail($activationNotaId);
+        $path = $requestData['ping_capture']->store('ping_captures', 'public');
 
         $activationNota->update([
             'current_status_id'  => 8,
@@ -257,6 +258,7 @@ class ActivationNota extends Model
             'cn' => $requestData['cn'],
             'esn_modem' => $requestData['esn_modem'],
             'antena_type' => $requestData['antena_type'],
+            'ping_capture_url' => $path,
             'technician_note' => $requestData['technician_note'] ?? null,
         ]);
 
@@ -273,7 +275,7 @@ class ActivationNota extends Model
     {
         $activationNota = self::findOrFail($activationNotaId);
 
-        $activationNota->update([
+        $updateData = [
             'current_status_id'  => 8,
             'sqf' => $requestData['sqf'],
             'esno' => $requestData['esno'],
@@ -284,7 +286,18 @@ class ActivationNota extends Model
             'esn_modem' => $requestData['esn_modem'],
             'antena_type' => $requestData['antena_type'],
             'technician_note' => $requestData['technician_note'] ?? null,
-        ]);
+        ];
+
+        if (isset($requestData['ping_capture'])) {
+            Storage::disk('public')->delete($activationNota->ping_capture_url);
+
+            $path = $requestData['ping_capture']
+                ->store('ping_captures', 'public');
+
+            $updateData['ping_capture_url'] = $path;
+        }
+
+        $activationNota->update($updateData);
 
         return $activationNota;
     }

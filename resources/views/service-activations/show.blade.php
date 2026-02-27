@@ -292,7 +292,17 @@
                                     value="{{ $nota->antena_diameter ?? '-' }}" readonly>
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label d-block">Capture Ping</label>
+                                @if ($nota->ping_capture_url)
+                                    <img src="{{ asset('storage/' . $nota->ping_capture_url) }}" class="rounded"
+                                        alt="ping_capture_image" width="100%" style="object-fit: cover;">
+                                @else
+                                    <p class="text-muted mb-0">Bukti capture ping belum diunggah.</p>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label">Catatan Teknisi (Opsional)</label>
                                 <textarea name="technician_note" class="form-control" rows="3" placeholder="Masukkan catatan jika ada"
                                     readonly>{{ $nota->technician_note ?? '-' }}</textarea>
