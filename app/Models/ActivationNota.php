@@ -118,16 +118,19 @@ class ActivationNota extends Model
     public static function editInstallationSchedule($activationNotaId, $installationDate)
     {
         $activationNota = self::findOrFail($activationNotaId);
+        $oldStatus = $activationNota->current_status_id;
 
-        if ($activationNota->current_status_id == 3) {
+        $updateData = [
+            'installation_date' => $installationDate,
+        ];
+
+        if ($oldStatus == 3) {
             $updateData['current_status_id'] = 4;
         }
 
-        $activationNota->update([
-            'installation_date' => $installationDate,
-        ]);
+        $activationNota->update($updateData);
 
-        if ($activationNota->current_status_id == 3) {
+        if ($oldStatus == 3) {
             ActivationStatusHistory::create([
                 'activation_status_id' => 4,
                 'activation_nota_id'   => $activationNota->id,
