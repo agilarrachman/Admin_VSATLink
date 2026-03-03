@@ -51,8 +51,8 @@ class ActivationNotaController extends Controller
             [
                 'pe' => 'required|in:RTR-CONSUMER-7206-E1-B-BGR,RTR-ENTERPRISE-ASR1001-XE1-A-JKT',
                 'interface' => 'required|string|max:255',
-                'ip_interface' => 'required|unique:activation_notas,ip_interface',
-                'ip_dns' => 'required|unique:activation_notas,ip_dns',
+                'ip_interface' => 'required',
+                'ip_dns' => 'required',
                 'ip_backhaul' => 'required|in:IP Private,IP Public',
                 'hub_type' => 'required|in:iDirect,Newtec,Hughes HX50,Hughes HX90,Hughes HX200,HTS MP2',
                 'nms_id' => 'required|string|max:255|unique:activation_notas,nms_id',
@@ -68,10 +68,8 @@ class ActivationNotaController extends Controller
                 'interface.max' => 'Interface maksimal 50 karakter.',
 
                 'ip_interface.required' => 'IP Interface wajib diisi.',
-                'ip_interface.unique' => 'IP Interface sudah digunakan.',
 
                 'ip_dns.required' => 'IP DNS wajib diisi.',
-                'ip_dns.unique' => 'IP DNS sudah digunakan.',
 
                 'ip_backhaul.required' => 'IP Backhaul wajib dipilih.',
                 'ip_backhaul.in' => 'Tipe IP Backhaul harus salah satu dari: IP Private, IP Public.',
@@ -123,8 +121,8 @@ class ActivationNotaController extends Controller
             [
                 'pe' => 'required|in:RTR-CONSUMER-7206-E1-B-BGR,RTR-ENTERPRISE-ASR1001-XE1-A-JKT',
                 'interface' => 'required|string|max:255',
-                'ip_interface' => 'required|unique:activation_notas,ip_interface,' . $nota->id,
-                'ip_dns' => 'required|unique:activation_notas,ip_dns,' . $nota->id,
+                'ip_interface' => 'required',
+                'ip_dns' => 'required',
                 'ip_backhaul' => 'required|in:IP Private,IP Public',
                 'hub_type' => 'required|in:iDirect,Newtec,Hughes HX50,Hughes HX90,Hughes HX200,HTS MP2',
                 'nms_id' => 'required|string|max:255|unique:activation_notas,nms_id,' . $nota->id,
@@ -140,10 +138,8 @@ class ActivationNotaController extends Controller
                 'interface.max' => 'Interface maksimal 50 karakter.',
 
                 'ip_interface.required' => 'IP Interface wajib diisi.',
-                'ip_interface.unique' => 'IP Interface sudah digunakan.',
 
                 'ip_dns.required' => 'IP DNS wajib diisi.',
-                'ip_dns.unique' => 'IP DNS sudah digunakan.',
 
                 'ip_backhaul.required' => 'IP Backhaul wajib diisi.',
                 'ip_backhaul.in' => 'Tipe IP Backhaul harus salah satu dari: IP Private, IP Public.',

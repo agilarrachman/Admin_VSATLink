@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('installation_date')->nullable();
             $table->enum('pe', ['RTR-CONSUMER-7206-E1-B-BGR', 'RTR-ENTERPRISE-ASR1001-XE1-A-JKT'])->nullable();
             $table->string('interface', 255)->nullable();
-            $table->string('ip_interface', 255)->nullable()->unique();
-            $table->string('ip_dns', 255)->nullable()->unique();
+            $table->string('ip_interface', 255)->nullable();
+            $table->string('ip_dns', 255)->nullable();
             $table->enum('ip_backhaul', ['IP Private', 'IP Public'])->nullable();
             $table->enum('hub_type', ['iDirect', 'Newtec', 'Hughes HX50', 'Hughes HX90', 'Hughes HX200', 'HTS MP2'])->nullable();
             $table->string('nms_id', 255)->nullable()->unique();
