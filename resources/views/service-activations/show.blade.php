@@ -202,6 +202,12 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
+                                <label class="form-label">IP DNS/Aplikasi</label>
+                                <input type="text" name="ip_dns" class="form-control"
+                                    value="{{ $nota->ip_dns ?? '-' }}" placeholder="Contoh: 10.10.20.2" readonly>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
                                 <label class="form-label">IP Backhaul</label>
                                 <input type="text" name="ip_backhaul" class="form-control"
                                     value="{{ $nota->ip_backhaul ?? '-' }}" placeholder="Contoh: 172.16.1.2" readonly>
