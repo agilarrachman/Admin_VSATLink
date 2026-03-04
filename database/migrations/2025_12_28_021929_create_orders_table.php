@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('antena_sn', 255)->nullable();
             $table->string('adaptor_sn', 255)->nullable();
             $table->string('jne_tracking_number', 255)->nullable();
+            $table->date('estimated_arrival_date')->nullable();
             $table->string('packing_list_id', 255)->nullable();
             $table->string('packing_list_document_url', 255)->nullable();
             $table->string('delivery_note_document_url', 255)->nullable();

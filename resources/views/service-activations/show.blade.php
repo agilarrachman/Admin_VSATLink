@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <h5 class="card-header">Detail Pesanan</h5>
+                    <h5 class="card-header">Detail Aktivasi Pesanan</h5>
 
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show mx-3" role="alert">
@@ -33,8 +33,7 @@
                                     <p class="mb-0" style="font-size: 14px">
                                         @if ($nota->installation_date)
                                             Jadwal Instalasi pada tanggal
-                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
-                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }}
                                         @else
                                             Belum dijadwalkan
                                         @endif
@@ -68,7 +67,7 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $activation_status->activation_status_id == 5 ? 'active' : '' }}
+                                    class="step {{ $activation_status->activation_status_id == 6 ? 'active' : '' }}
                                                 {{ $activation_status->activation_status_id >= 7 ? 'completed' : '' }}">
                                     <div class="circle">
                                         @if ($activation_status->activation_status_id >= 7)
@@ -103,10 +102,6 @@
                             <h4 class="my-3 text-center">
                                 {{ $activation_status->note }}
                             </h4>
-                            {{-- @if ($nota->activation->current_status_id == 7 && !empty($nota->activation->proof_of_delivery_image_url))
-                                <img src="{{ config('app.customer_url') }}/storage/{{ $nota->activation->proof_of_delivery_image_url }}"
-                                    class="rounded" alt="proof_of_delivery_image">
-                            @endif --}}
                         </div>
 
                         <div class="row">
@@ -189,18 +184,6 @@
                         <p class="fw-bold text-primary">Data Resource & Infrastruktur</p>
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">AO (Access Order)</label>
-                                <input type="text" name="ao" class="form-control"
-                                    value="{{ $nota->ao ?? '-' }}" placeholder="Contoh: AO-2025-00123" readonly>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">SID (Service ID)</label>
-                                <input type="text" name="sid" class="form-control"
-                                    value="{{ $nota->sid ?? '-' }}" placeholder="Contoh: SID-88921" readonly>
-                            </div>
-
-                            <div class="mb-3 col-md-6">
                                 <label class="form-label">PE / Metro</label>
                                 <input type="text" name="pe" class="form-control"
                                     value="{{ $nota->pe ?? '-' }}" readonly>
@@ -213,9 +196,15 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">IP WAN</label>
-                                <input type="text" name="ip_wan" class="form-control"
-                                    value="{{ $nota->ip_wan ?? '-' }}" placeholder="Contoh: 10.10.20.2" readonly>
+                                <label class="form-label">IP Interface</label>
+                                <input type="text" name="ip_interface" class="form-control"
+                                    value="{{ $nota->ip_interface ?? '-' }}" placeholder="Contoh: 10.10.20.2" readonly>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">IP DNS/Aplikasi</label>
+                                <input type="text" name="ip_dns" class="form-control"
+                                    value="{{ $nota->ip_dns ?? '-' }}" placeholder="Contoh: 10.10.20.2" readonly>
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -309,7 +298,17 @@
                                     value="{{ $nota->antena_diameter ?? '-' }}" readonly>
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label d-block">Capture Ping</label>
+                                @if ($nota->ping_capture_url)
+                                    <img src="{{ asset('storage/' . $nota->ping_capture_url) }}" class="rounded"
+                                        alt="ping_capture_image" width="100%" style="object-fit: cover;">
+                                @else
+                                    <p class="text-muted mb-0">Bukti capture ping belum diunggah.</p>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label">Catatan Teknisi (Opsional)</label>
                                 <textarea name="technician_note" class="form-control" rows="3" placeholder="Masukkan catatan jika ada"
                                     readonly>{{ $nota->technician_note ?? '-' }}</textarea>
@@ -318,30 +317,25 @@
 
                         <p class="fw-bold text-primary">Data Verifikasi Aktivasi</p>
                         <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label">URL Cacti Monitoring</label>
-                                <input type="text" name="cacti_url" class="form-control"
-                                    value="{{ $nota->cacti_url ?? '-' }}"
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">URL Monitoring</label>
+                                <input type="text" name="monitoring_url" class="form-control"
+                                    value="{{ $nota->monitoring_url ?? '-' }}"
                                     placeholder="Contoh: http://cacti.vsatlink.co.id/graph.php?id=123" readonly>
                             </div>
 
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label">Status Sensor</label>
-                                <input type="text" name="sensor_status" class="form-control"
-                                    value="{{ $nota->sensor_status ?? '-' }}" readonly>
-                            </div>
-
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label">Tanggal & Waktu Online</label>
-                                <input type="text" class="form-control" value="{{ $nota->online_date ?? '-' }}"
+                                <input type="text" class="form-control"
+                                    value="{{ $nota->online_date?->translatedFormat('H:i, d F Y') ?? '-' }}"
                                     name="online_date" readonly>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label d-block">Bukti Monitoring (Screenshot)</label>
                                 @if ($nota->monitoring_capture_url)
-                                    <img src="{{ asset('storage/' . $nota->monitoring_capture_url) }}"
-                                        class="rounded" alt="monitoring_capture_image" width="50%" style="object-fit: cover;">
+                                    <img src="{{ asset('storage/' . $nota->monitoring_capture_url) }}" class="rounded"
+                                        alt="monitoring_capture_image" width="50%" style="object-fit: cover;">
                                 @else
                                     <p class="text-muted mb-0">Screenshot bukti monitoring belum diunggah.</p>
                                 @endif
@@ -349,7 +343,8 @@
                         </div>
 
                         <div class="mt-2">
-                            <a href="/service-activations" class="btn btn-outline-secondary">
+                            <a href="{{ auth()->user()->role === 'Sales Admin' ? '/orders' : '/service-activations' }}"
+                                class="btn btn-outline-secondary">
                                 Kembali
                             </a>
                         </div>

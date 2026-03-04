@@ -60,9 +60,19 @@
                         <p class="fw-bold text-primary">Informasi Akun</p>
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="sales" class="form-label">Sales Pendamping</label>
-                                <input class="form-control" type="text" id="sales" name="sales"
+                                <label for="sales_name" class="form-label">Nama Sales Pendamping</label>
+                                <input class="form-control" type="text" id="sales_name" name="sales_name"
                                     value="{{ $order->customer->sales->name }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="sales_phone" class="form-label">Nomor Telepon Sales Pendamping</label>
+                                <input class="form-control" type="text" id="sales_phone" name="sales_phone"
+                                    value="{{ $order->customer->sales->phone }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="sales_email" class="form-label">Email Sales Pendamping</label>
+                                <input class="form-control" type="text" id="sales_email" name="sales_email"
+                                    value="{{ $order->customer->sales->email }}" readonly />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="source_information" class="form-label">Sumber Informasi</label>

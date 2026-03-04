@@ -69,9 +69,13 @@
                         <p class="fw-bold text-primary">Status Pesanan</p>
                         <div class="status d-flex flex-column align-items-center mb-4">
                             <div class="order-steps w-100">
-                                <div class="step {{ $order_status->order_status_id > 1 ? 'completed' : 'active' }}">
+                                <div
+                                    class="step
+                                        {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id > 1 ? 'completed' : 'active') }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id > 1)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id > 1)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -79,10 +83,11 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $order_status->order_status_id == 3 ? 'active' : '' }}
-                                                {{ $order_status->order_status_id >= 4 ? 'completed' : '' }}">
+                                    class="step {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id == 3 ? 'active' : ($order_status->order_status_id >= 4 ? 'completed' : '')) }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 4)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id >= 4)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -90,18 +95,23 @@
                                 </div>
 
                                 <div
-                                    class="step {{ $order_status->order_status_id >= 5 ? 'completed' : '' }}">
+                                    class="step {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id >= 5 ? 'completed' : '') }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 5)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id >= 5)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
                                     <h5>{{ $order->shipping == 'JNE' ? 'Pengiriman' : 'Siap Diambil' }}</h5>
                                 </div>
 
-                                <div class="step {{ $order_status->order_status_id >= 7 ? 'completed' : '' }}">
+                                <div
+                                    class="step {{ $order_status->order_status_id == 8 ? 'canceled' : ($order_status->order_status_id >= 7 ? 'completed' : '') }}">
                                     <div class="circle">
-                                        @if ($order_status->order_status_id >= 7)
+                                        @if ($order_status->order_status_id == 8)
+                                            <i class="bx bx-x"></i>
+                                        @elseif ($order_status->order_status_id >= 7)
                                             <i class="bx bx-check"></i>
                                         @endif
                                     </div>
@@ -187,6 +197,42 @@
                                 class="form-control px-3 py-2">
                                 {{ $order->activation_address?->google_maps_url ?? '-' }}
                             </a>
+                        </div>
+
+                        <p class="fw-bold text-primary">Serial Number Perangkat</p>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="modem_sn" class="form-label">Modem Serial Number</label>
+                                <input class="form-control" type="text" id="modem_sn" name="modem_sn"
+                                    value="{{ $order->modem_sn ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="adaptor_sn" class="form-label">Adaptor Serial Number</label>
+                                <input class="form-control" type="text" id="adaptor_sn" name="adaptor_sn"
+                                    value="{{ $order->adaptor_sn ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="buc_sn" class="form-label">BUC Serial Number</label>
+                                <input class="form-control" type="text" id="buc_sn" name="buc_sn"
+                                    value="{{ $order->buc_sn ?? '-' }}" readonly />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="lnb_sn" class="form-label">LNB Serial Number</label>
+                                <input class="form-control" type="text" id="lnb_sn" name="lnb_sn"
+                                    value="{{ $order->lnb_sn ?? '-' }}" readonly />
+                            </div>
+                            @if ($order->product->access_point != null)
+                                <div class="mb-3 col-md-6">
+                                    <label for="router_sn" class="form-label">Router Serial Number</label>
+                                    <input class="form-control" type="text" id="router_sn" name="router_sn"
+                                        value="{{ $order->router_sn ?? '-' }}" readonly />
+                                </div>
+                            @endif
+                            <div class="mb-3 col-md-6">
+                                <label for="antena_sn" class="form-label">Antena Serial Number</label>
+                                <input class="form-control" type="text" id="antena_sn" name="antena_sn"
+                                    value="{{ $order->antena_sn ?? '-' }}" readonly />
+                            </div>
                         </div>
 
                         <div class="mt-2">

@@ -59,7 +59,7 @@
                                             <a class="dropdown-item" href="/orders/{{ $order->unique_order }}">
                                                 <i class="bx bx-show me-1"></i>
                                                 Lihat Detail Pesanan</a>
-                                            <a class="dropdown-item" href="/customer/{{ $order->unique_order }}r">
+                                            <a class="dropdown-item" href="/customer/{{ $order->unique_order }}">
                                                 <i class="bx bx-user me-1"></i>
                                                 Lihat Informasi Customer</a>
                                             @if ($order->current_status_id <= 4)

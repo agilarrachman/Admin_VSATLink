@@ -25,8 +25,7 @@
                                     <p class="mb-0" style="font-size: 14px">
                                         @if ($nota->installation_date)
                                             Jadwal Instalasi pada tanggal
-                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
-                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }}
                                         @else
                                             Belum dijadwalkan
                                         @endif
@@ -78,7 +77,7 @@
 
                         <hr class="w-full border-t border-white/40 pb-3">
 
-                        <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST">
+                        <form action="/service-activations/technical-data/{{ $nota->id }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -92,8 +91,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">SQF</label>
                                     <input type="number" step="0.01" name="sqf"
-                                        class="form-control @error('sqf') is-invalid @enderror" value="{{ old('sqf', $nota->sqf) }}"
-                                        placeholder="Contoh: 78" required>
+                                        class="form-control @error('sqf') is-invalid @enderror"
+                                        value="{{ old('sqf', $nota->sqf) }}" placeholder="Contoh: 78" required>
                                     @error('sqf')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -126,6 +125,7 @@
                                     <label class="form-label">Diameter Antena</label>
                                     <select name="antena_diameter" class="form-select" required>
                                         <option value="">Pilih Diameter Antena</option>
+                                        <option value="0.7" @selected(old('antena_diameter', $nota->antena_diameter) === '0.7')>0.7 m</option>
                                         <option value="1.2" @selected(old('antena_diameter', $nota->antena_diameter) === '1.2')>1.2 m</option>
                                         <option value="1.8" @selected(old('antena_diameter', $nota->antena_diameter) === '1.8')>1.8 m</option>
                                     </select>
@@ -159,7 +159,8 @@
                                     <label class="form-label">ESN Modem</label>
                                     <input type="text" name="esn_modem"
                                         class="form-control @error('esn_modem') is-invalid @enderror"
-                                        value="{{ old('esn_modem', $nota->esn_modem) }}" placeholder="Contoh: 15266359AV" required>
+                                        value="{{ old('esn_modem', $nota->esn_modem) }}" placeholder="Contoh: 15266359AV"
+                                        required>
                                     @error('esn_modem')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -174,6 +175,46 @@
                                         <option value="KU-BAND V61" @selected(old('antena_type', $nota->antena_type) === 'KU-BAND V61')>KU-BAND V61</option>
                                         <option value="KU-BAND V80" @selected(old('antena_type', $nota->antena_type) === 'KU-BAND V80')>KU-BAND V80</option>
                                     </select>
+                                </div>
+
+                                <div class="col-md-12 mb-3 d-flex flex-column">
+                                    <label class="form-label">Capture Ping</label>
+
+                                    @if ($nota->ping_capture_url)
+                                        <div id="capture-ping-view" class="d-flex align-items-center gap-2 mb-2">
+                                            <a href="{{ asset('storage/' . $nota->ping_capture_url) }}" target="_blank"
+                                                class="btn btn-primary" title="Lihat capture ping">
+                                                <i class="bx bx-show me-1"></i> Lihat
+                                            </a>
+
+                                            <button type="button" class="btn btn-outline-primary px-2"
+                                                title="Ganti capture ping" onclick="enableCapturePingEdit()">
+                                                <i class="bx bx-pencil"></i>
+                                            </button>
+                                        </div>
+
+                                        <small id="capture-ping-info" class="text-muted mb-2">
+                                            Capture ping yang telah diunggah sebelumnya
+                                        </small>
+                                    @endif
+
+                                    <div id="capture-ping-edit" class="{{ $nota->ping_capture_url ? 'd-none' : '' }}">
+                                        <input type="file"
+                                            class="form-control @error('ping_capture') is-invalid @enderror"
+                                            name="ping_capture" accept="image/*"
+                                            {{ $nota->ping_capture_url ? '' : 'required' }}>
+
+                                        <small class="text-muted">
+                                            Upload capture ping yang dilakukan setelah instalasi selesai sebagai bukti
+                                            konektivitas perangkat di lokasi pelanggan
+                                        </small>
+
+                                        @error('ping_capture')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12 mb-3">
@@ -201,3 +242,12 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function enableCapturePingEdit() {
+            document.getElementById('capture-ping-view')?.classList.add('d-none');
+            document.getElementById('capture-ping-info')?.classList.add('d-none');
+            document.getElementById('capture-ping-edit')?.classList.remove('d-none');
+        }
+    </script>
+@endpush

@@ -27,8 +27,7 @@
                                     <p class="mb-0" style="font-size: 14px">
                                         @if ($nota->installation_date)
                                             Jadwal Instalasi pada tanggal
-                                            {{ $nota->installation_date->translatedFormat('d F Y') }} |
-                                            {{ $nota->installation_session === 'Pagi' ? 'Pagi (08.00-11.00)' : 'Siang (13.00-17.00)' }}
+                                            {{ $nota->installation_date->translatedFormat('d F Y') }}
                                         @else
                                             Belum dijadwalkan
                                         @endif
@@ -94,26 +93,16 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">URL Cacti Monitoring</label>
-                                    <input type="url" name="cacti_url"
-                                        class="form-control @error('cacti_url') is-invalid @enderror"
-                                        value="{{ old('cacti_url', $nota->cacti_url) }}"
+                                    <label class="form-label">URL Monitoring</label>
+                                    <input type="url" name="monitoring_url"
+                                        class="form-control @error('monitoring_url') is-invalid @enderror"
+                                        value="{{ old('monitoring_url', $nota->monitoring_url) }}"
                                         placeholder="Contoh: http://cacti.vsatlink.co.id/graph.php?id=123" required>
-                                    @error('cacti_url')
+                                    @error('monitoring_url')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Status Sensor</label>
-                                    <select name="sensor_status" class="form-select" required>
-                                        <option value="">Pilih Status</option>
-                                        <option value="Online" @selected(old('sensor_status', $nota->sensor_status) === 'Online')>Online</option>
-                                        <option value="Tidak Stabil" @selected(old('sensor_status', $nota->sensor_status) === 'Tidak Stabil')>Tidak Stabil</option>
-                                        <option value="Offline" @selected(old('sensor_status', $nota->sensor_status) === 'Offline')>Offline</option>
-                                    </select>
                                 </div>
 
                                 <div class="col-md-6 mb-3">

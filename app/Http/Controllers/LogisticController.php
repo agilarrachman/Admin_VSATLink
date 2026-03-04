@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActivationNota;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
 class LogisticController extends Controller
@@ -146,7 +147,25 @@ class LogisticController extends Controller
 
     public function requestPickup(Order $order)
     {
-        Order::requestPickup($order->id);
+        $url_jne = config('app.url_jne');
+        $username = config('app.username_jne');
+        $api_key = config('app.api_key_jne');
+        $village = $order->order_address->village();
+        $device_weight = $order->product->device_weight;
+
+        $response = Http::asForm()
+            ->withOptions(['verify' => false])
+            ->post($url_jne . 'pricedev', [
+                'username' => $username,
+                'api_key' => $api_key,
+                'from'     => 'BOO10000',
+                'thru'     => $village->tariff_code,
+                'weight'   => $device_weight,
+            ]);
+
+        $etdThru = data_get($response->json(), 'price.0.etd_thru');
+
+        Order::requestPickup($order->id, $etdThru);
 
         return redirect('/logistics/expedition')->with('success', 'Permintaan pickup ke ekspedisi berhasil dibuat dan dokumen logistik telah digenerate.');
     }

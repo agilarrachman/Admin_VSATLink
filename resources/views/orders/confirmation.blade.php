@@ -167,7 +167,10 @@
                     $('#npwp').val(cs.npwp);
                     $('#email').val(cs.email);
                     $('#phone').val(cs.phone);
-                    $('#sales').val(cs.sales ?? '-');
+
+                    $('#sales_name').val(cs.sales_name ?? '-');
+                    $('#sales_phone').val(cs.sales_phone ?? '-');
+                    $('#sales_email').val(cs.sales_email ?? '-');
                     $('#source_information').val(cs.source_information ?? '-');
 
                     $('#province').val(ad.province ?? '-');

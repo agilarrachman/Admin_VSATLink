@@ -48,6 +48,12 @@
                                                     href="/download/invoice/{{ $order->unique_order }}">
                                                     <i class="bx bx-receipt me-1"></i> Unduh Invoice</a>
                                             @endif
+                                            @if ($order->current_status_id == 7)
+                                                <a class="dropdown-item"
+                                                    href="/service-activations/detail/{{ $order->activation_nota->id }}">
+                                                    <i class="bx bx-broadcast me-1"></i>
+                                                    Lihat Detail Aktivasi</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
