@@ -94,7 +94,7 @@
                 <td colspan="4">Informasi Pengiriman</td>
             </tr>
             <tr>
-                <td width="25%"><strong>No Surat Jalan</strong></td>
+                <td width="25%"><strong>Order ID</strong></td>
                 <td width="25%">{{ $order->unique_order }}</td>
                 <td width="25%"><strong>Tanggal</strong></td>
                 <td width="25%">{{ now()->format('d-m-Y') }}</td>
@@ -181,49 +181,42 @@
         <!-- PERANGKAT -->
         <table>
             <tr class="section">
-                <td colspan="4">Daftar Perangkat</td>
+                <td colspan="3">Daftar Perangkat</td>
             </tr>
             <tr>
                 <th>No</th>
                 <th>Perangkat</th>
-                <th>Serial Number</th>
                 <th>Qty</th>
             </tr>
             <tr>
                 <td>1</td>
                 <td>{{ $order->product->modem ?? '-' }}</td>
-                <td>{{ $order->modem_sn ?? '-' }}</td>
                 <td>1</td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>{{ $order->product->adaptor ?? '-' }}</td>
-                <td>{{ $order->adaptor_sn ?? '-' }}</td>
                 <td>1</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>{{ $order->product->buc ?? '-' }}</td>
-                <td>{{ $order->buc_sn ?? '-' }}</td>
                 <td>1</td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>{{ $order->product->lnb ?? '-' }}</td>
-                <td>{{ $order->lnb_sn ?? '-' }}</td>
                 <td>1</td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>{{ $order->product->antena ?? '-' }}</td>
-                <td>{{ $order->antena_sn ?? '-' }}</td>
                 <td>1</td>
             </tr>
             @if ($order->router_sn)
                 <tr>
                     <td>6</td>
                     <td>{{ $order->product->access_point ?? '-' }}</td>
-                    <td>{{ $order->router_sn }}</td>
                     <td>1</td>
                 </tr>
             @endif
