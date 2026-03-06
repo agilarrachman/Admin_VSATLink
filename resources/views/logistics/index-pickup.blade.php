@@ -87,7 +87,7 @@
                                                     </a>
                                                 @endif
                                             @endif
-                                            @if ($order->current_status_id >= 6 && $order->current_status_id < 8)
+                                            @if ($order->current_status_id >= 6 && $order->current_status_id < 7)
                                                 <button type="button" class="dropdown-item btn-confirm-pickup"
                                                     data-toggle="modal" data-target="#confirmPickupModal"
                                                     data-order-id="{{ $order->id }}">

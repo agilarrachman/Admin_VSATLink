@@ -69,13 +69,17 @@ class LogisticController extends Controller
 
     public function storeSN(Request $request, Order $order)
     {
+        $routerRule = $order->product_id == 2
+            ? 'nullable|min:6|max:20|unique:orders,router_sn,' . $order->id
+            : 'required|min:6|max:20|unique:orders,router_sn,' . $order->id;
+
         $request->validate(
             [
                 'modem_sn'   => 'required|min:6|max:20|unique:orders,modem_sn',
                 'adaptor_sn' => 'required|min:6|max:20|unique:orders,adaptor_sn',
                 'buc_sn'     => 'required|min:6|max:20|unique:orders,buc_sn',
                 'lnb_sn'     => 'required|min:6|max:20|unique:orders,lnb_sn',
-                'router_sn'  => 'nullable|min:6|max:20|unique:orders,router_sn',
+                'router_sn'  => $routerRule,
                 'antena_sn'  => 'required|min:6|max:20|unique:orders,antena_sn',
             ],
             [
@@ -117,13 +121,17 @@ class LogisticController extends Controller
 
     public function updateSN(Request $request, Order $order)
     {
+        $routerRule = $order->product_id == 2
+            ? 'nullable|min:6|max:20|unique:orders,router_sn,' . $order->id
+            : 'required|min:6|max:20|unique:orders,router_sn,' . $order->id;
+
         $request->validate(
             [
                 'modem_sn'   => 'required|min:6|max:20|unique:orders,modem_sn,' . $order->id,
                 'adaptor_sn' => 'required|min:6|max:20|unique:orders,adaptor_sn,' . $order->id,
                 'buc_sn'     => 'required|min:6|max:20|unique:orders,buc_sn,' . $order->id,
                 'lnb_sn'     => 'required|min:6|max:20|unique:orders,lnb_sn,' . $order->id,
-                'router_sn'  => 'nullable|min:6|max:20|unique:orders,router_sn,' . $order->id,
+                'router_sn'  => $routerRule,
                 'antena_sn'  => 'required|min:6|max:20|unique:orders,antena_sn,' . $order->id,
             ],
             [
