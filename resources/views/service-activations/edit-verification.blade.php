@@ -107,7 +107,10 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tanggal & Waktu Online</label>
-                                    <input type="datetime-local" min="{{ now()->format('Y-m-d\TH:i') }}"
+                                    <input type="datetime-local"
+                                        min="{{ old('online_date', $nota->online_date) && old('online_date', $nota->online_date) < now()
+                                            ? \Carbon\Carbon::parse(old('online_date', $nota->online_date))->format('Y-m-d\TH:i')
+                                            : now()->format('Y-m-d\TH:i') }}"
                                         class="form-control @error('online_date') is-invalid @enderror"
                                         value="{{ old('online_date', $nota->online_date) }}" name="online_date">
                                     @error('online_date')
