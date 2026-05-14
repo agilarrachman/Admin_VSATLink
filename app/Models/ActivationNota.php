@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ActivationNota extends Model
@@ -26,7 +27,6 @@ class ActivationNota extends Model
     {
         return $this->hasOne(Order::class);
     }
-
 
     public function activation_statuses()
     {
@@ -84,6 +84,16 @@ class ActivationNota extends Model
         };
     }
 
+    public static function totalOnProgress()
+    {
+        return self::whereIn('current_status_id', [1, 2, 3, 4, 5, 6, 7, 8, 9])->count();
+    }
+
+    public static function activeVSAT()
+    {
+        return self::where('current_status_id', 10)->count();
+    }
+
     public static function getAllActivationNotas()
     {
         return self::latest()
@@ -118,6 +128,7 @@ class ActivationNota extends Model
     public static function editInstallationSchedule($activationNotaId, $installationDate)
     {
         $activationNota = self::findOrFail($activationNotaId);
+        $order = Order::where('activation_nota_id', $activationNotaId)->firstOrFail();
         $oldStatus = $activationNota->current_status_id;
 
         $updateData = [
@@ -137,6 +148,18 @@ class ActivationNota extends Model
                 'note' => 'Jadwal instalasi diperbarui menjadi pada '
                     . Carbon::parse($installationDate)->translatedFormat('d F Y'),
             ]);
+
+            $dataOrder = [
+                'order' => $order,
+                'installation_date' => Carbon::parse($installationDate)->translatedFormat('d F Y H:i'),
+            ];
+
+            $provisioningEmails = Admin::getAllProvisioningEmail();
+
+            Mail::send('emails.schedule-confirmed', $dataOrder, function ($message) use ($provisioningEmails) {
+                $message->to($provisioningEmails)
+                    ->subject('[NOTIFIKASI] Jadwal Instalasi Telah Ditetapkan');
+            });;
         }
 
         return $activationNota;
@@ -148,6 +171,7 @@ class ActivationNota extends Model
 
         try {
             $activationNota = self::findOrFail($activationNotaId);
+            $order = Order::where('activation_nota_id', $activationNotaId)->firstOrFail();
 
             $activationNota->update([
                 'current_status_id' => 5,
@@ -170,6 +194,18 @@ class ActivationNota extends Model
             ]);
 
             DB::commit();
+
+            $dataOrder = [
+                'order' => $order,
+                'activation_nota' => $activationNota
+            ];
+
+            $installationCoordinatorEmails = Admin::getAllInstallationCoordinatorEmail();
+
+            Mail::send('emails.provisioning-submitted', $dataOrder, function ($message) use ($installationCoordinatorEmails) {
+                $message->to($installationCoordinatorEmails)
+                    ->subject('[NOTIFIKASI] Data Provisioning Telah Diajukan');
+            });
 
             return $activationNota;
         } catch (\Exception $e) {
@@ -249,6 +285,7 @@ class ActivationNota extends Model
     public static function storeTechnicalData($activationNotaId, $requestData)
     {
         $activationNota = self::findOrFail($activationNotaId);
+        $order = Order::where('activation_nota_id', $activationNotaId)->firstOrFail();
         $path = $requestData['ping_capture']->store('ping_captures', 'public');
 
         $activationNota->update([
@@ -270,6 +307,18 @@ class ActivationNota extends Model
             'activation_nota_id'   => $activationNota->id,
             'note' => 'Data teknis telah diinput dan permintaan aktivasi telah diajukan.'
         ]);
+
+        $dataOrder = [
+            'order' => $order,
+            'activation_nota' => $activationNota
+        ];
+
+        $provisioningEmails = Admin::getAllProvisioningEmail();
+
+        Mail::send('emails.verification-activation', $dataOrder, function ($message) use ($provisioningEmails) {
+            $message->to($provisioningEmails)
+                ->subject('[NOTIFIKASI] Verifikasi Aktivasi Layanan');
+        });
 
         return $activationNota;
     }

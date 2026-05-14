@@ -17,6 +17,13 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+        <li class="menu-item {{ $management === 'dashboard' ? 'active' : '' }}">
+            <a href="/" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-alt"></i>
+                <div>Dashboard</div>
+            </a>
+        </li>
+
         <!-- Sidebar Menu -->
         @if (auth()->user()->role === 'Super Admin' || auth()->user()->role === 'Sales Admin')
             <li class="menu-item {{ $management === 'orders' ? 'active open' : '' }}">
@@ -31,7 +38,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item {{ $page === 'order-management' ? 'active' : '' }}">
-                        <a href="/" class="menu-link">
+                        <a href="/orders" class="menu-link">
                             <div>All Orders</div>
                         </a>
                     </li>

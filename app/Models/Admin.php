@@ -49,4 +49,20 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Customer::class);
     }
+
+    public static function getAllInstallationCoordinatorEmail()
+    {
+        return self::where('role', 'Service Operation Admin')
+            ->where('position', 'Installation Coordinator')
+            ->pluck('email')
+            ->toArray();
+    }
+
+    public static function getAllProvisioningEmail()
+    {
+        return self::where('role', 'Service Operation Admin')
+            ->where('position', 'Provisioning Service Activation')
+            ->pluck('email')
+            ->toArray();
+    }
 }

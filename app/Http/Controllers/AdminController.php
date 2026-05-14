@@ -3,27 +3,100 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivationNota;
+use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
+        $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
 
-        if ($user->role === 'Super Admin') {        
-            return redirect('/orders');
-        } elseif ($user->role === 'Sales Admin') {
-            return redirect('/orders');
-        } elseif ($user->role === 'Logistic Admin') {
-            return redirect('/logistics/expedition');
-        } elseif ($user->role === 'Service Operation Admin') {
-            return redirect('/service-activations');
-        } else {
-            return redirect('/login');
-        }
+        $monthlyComparison = Order::monthlyRevenueComparison();
+        $weeklyComparison = Order::weeklyRevenueComparison();
+        $dailyComparison = Order::dailyRevenueComparison();
+
+        $weeklyChart = Order::weeklyRevenueChart();
+        $dailyChart = Order::dailyRevenueChart();
+
+        return view('index', [
+            'management' => 'dashboard',
+            'page' => 'dashboard',
+
+            'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
+
+            'logisticsPendingTotal' =>
+            $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
+
+            'logisticsExpeditionPendingCount' =>
+            $logisticsExpeditionPendingCount,
+
+            'logisticsPickupPendingCount' =>
+            $logisticsPickupPendingCount,
+
+            'activationSchedulePendingCount' =>
+            ActivationNota::activationSchedulePendingCount(),
+
+            'totalRevenue' => Order::totalRevenue(),
+
+            'totalActiveOrders' => Order::totalActiveOrders(),
+
+            'totalOnProgressActivation' =>
+            ActivationNota::totalOnProgress(),
+
+            'activeVSAT' =>
+            ActivationNota::activeVSAT(),
+
+            'totalOrders' => Order::totalOrders(),
+
+            'productStats' => Product::statistics(),
+
+            'monthlyRevenue' => Order::monthlyRevenueChart(),
+
+            'monthlyDifference' =>
+            $monthlyComparison['difference'],
+
+            'monthlyPercentage' =>
+            $monthlyComparison['percentage'],
+
+            'currentMonthRevenue' =>
+            $monthlyComparison['current'],
+
+            'lastMonthRevenue' =>
+            $monthlyComparison['last'],
+
+            'weeklyRevenue' =>
+            $weeklyChart['revenue'],
+
+            'weeklyCategories' =>
+            $weeklyChart['categories'],
+
+            'weeklyDifference' =>
+            $weeklyComparison['difference'],
+
+            'weeklyPercentage' =>
+            $weeklyComparison['percentage'],
+
+            'dailyRevenue' =>
+            $dailyChart['revenue'],
+
+            'dailyCategories' =>
+            $dailyChart['categories'],
+
+            'dailyDifference' =>
+            $dailyComparison['difference'],
+
+            'dailyPercentage' =>
+            $dailyComparison['percentage'],
+
+            'activationLocations' =>
+            Order::activationLocations(),
+        ]);
     }
 
     public function signin()
@@ -61,9 +134,9 @@ class AdminController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
-        
+
         return view('profile', [
-            'management' => 'profile', 
+            'management' => 'profile',
             'page' => 'profile',
 
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),

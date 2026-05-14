@@ -14,4 +14,11 @@ class Product extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public static function statistics()
+    {
+        return self::withCount(['orders as total'])
+            ->orderByDesc('total')
+            ->get(['id', 'name', 'image_url']);
+    }
 }
