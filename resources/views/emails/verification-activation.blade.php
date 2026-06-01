@@ -33,7 +33,7 @@
                         <strong>Kode Pesanan:</strong> {{ $order->unique_order }}<br>
                         <strong>Produk:</strong> {{ $order->product->name }}<br>
                         <strong>Jadwal Instalasi:</strong>
-                        {{ $activation_nota->installation_date->translatedFormat('d F Y H:i') }}
+                        {{ $activation_nota->installation_date->translatedFormat('d F Y') }}
                     </td>
                 </tr>
             </table>

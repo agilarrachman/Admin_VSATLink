@@ -17,7 +17,11 @@ class Product extends Model
 
     public static function statistics()
     {
-        return self::withCount(['orders as total'])
+        return self::withCount([
+            'orders as total' => function ($query) {
+                $query->where('current_status_id', '!=', 8);
+            }
+        ])
             ->orderByDesc('total')
             ->get(['id', 'name', 'image_url']);
     }

@@ -5,8 +5,8 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="col-lg-12 mb-4 order-0 d-flex px-0">
-                <div class="col-lg-3 col-md-12 col-6">
+            <div class="col-lg-12 mb-4 order-0 d-flex flex-column flex-lg-row px-0">
+                <div class="col-lg-3 col-md-12 col-6 mb-lg-0 mb-4">
                     <div class="card" style="height: 160px">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -14,12 +14,12 @@
                                     <img src="../assets/img/icons/total revenue.png" alt="chart success" class="rounded" />
                                 </div>
                             </div>
-                            <span class="fw-medium d-block mb-1">Total Revenue</span>
+                            <span class="fw-medium d-block mb-1">Total Revenue {{ now()->year }}</span>
                             <h3 class="card-title mb-2">Rp{{ number_format($totalRevenue, 0, ',', '.') }}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6">
+                <div class="col-lg-3 col-md-12 col-6 mb-lg-0 mb-4">
                     <div class="card" style="height: 160px">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -28,12 +28,12 @@
                                         class="rounded" />
                                 </div>
                             </div>
-                            <span>Total Active Orders</span>
+                            <span>Total On-Progress Orders</span>
                             <h3 class="card-title text-nowrap mb-1">{{ $totalActiveOrders }}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6">
+                <div class="col-lg-3 col-md-12 col-6 mb-lg-0 mb-4">
                     <div class="card" style="height: 160px">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6">
+                <div class="col-lg-3 col-md-12 col-6 mb-lg-0">
                     <div class="card" style="height: 160px">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">

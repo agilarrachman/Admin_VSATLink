@@ -16,6 +16,9 @@ class AdminController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        $installationPendingCount = ActivationNota::activationInstallationPendingCount();
+        $provisioningPendingCount = ActivationNota::activationProvisioningPendingCount();
+        $totalActivationPendingCount = $installationPendingCount + $provisioningPendingCount;
 
         $monthlyComparison = Order::monthlyRevenueComparison();
         $weeklyComparison = Order::weeklyRevenueComparison();
@@ -29,31 +32,24 @@ class AdminController extends Controller
             'page' => 'dashboard',
 
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
-
             'logisticsPendingTotal' =>
             $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
-
             'logisticsExpeditionPendingCount' =>
             $logisticsExpeditionPendingCount,
-
             'logisticsPickupPendingCount' =>
             $logisticsPickupPendingCount,
-
-            'activationSchedulePendingCount' =>
-            ActivationNota::activationSchedulePendingCount(),
+            'activationInstallationPendingCount' => $installationPendingCount,
+            'activationProvisioningPendingCount' => $provisioningPendingCount,
+            'totalActivationPendingCount' => $totalActivationPendingCount,
 
             'totalRevenue' => Order::totalRevenue(),
-
             'totalActiveOrders' => Order::totalActiveOrders(),
-
             'totalOnProgressActivation' =>
             ActivationNota::totalOnProgress(),
-
             'activeVSAT' =>
             ActivationNota::activeVSAT(),
 
             'totalOrders' => Order::totalOrders(),
-
             'productStats' => Product::statistics(),
 
             'monthlyRevenue' => Order::monthlyRevenueChart(),
@@ -134,6 +130,9 @@ class AdminController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        $installationPendingCount = ActivationNota::activationInstallationPendingCount();
+        $provisioningPendingCount = ActivationNota::activationProvisioningPendingCount();
+        $totalActivationPendingCount = $installationPendingCount + $provisioningPendingCount;
 
         return view('profile', [
             'management' => 'profile',
@@ -142,8 +141,10 @@ class AdminController extends Controller
             'unconfirmedOrdersCount' => Order::unconfirmedOrdersCount(),
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
-            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
-            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+            'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,            
+            'activationInstallationPendingCount' => $installationPendingCount,
+            'activationProvisioningPendingCount' => $provisioningPendingCount,
+            'totalActivationPendingCount' => $totalActivationPendingCount,
         ]);
     }
 }

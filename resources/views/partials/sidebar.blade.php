@@ -95,9 +95,15 @@
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-broadcast"></i>
                     <div>Service Activations</div>
-                    @if ($activationSchedulePendingCount > 0)
+                    @if ($totalActivationPendingCount > 0)
                         <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
-                            {{ $activationSchedulePendingCount }}
+                            @if (auth()->user()->position === 'Installation Coordinator')
+                                {{ $activationInstallationPendingCount }}
+                            @elseif (auth()->user()->position === 'Provisioning Service Activation')
+                                {{ $activationProvisioningPendingCount }}
+                            @else
+                                {{ $totalActivationPendingCount }}
+                            @endif
                         </div>
                     @endif
                 </a>
@@ -105,9 +111,15 @@
                     <li class="menu-item {{ $page === 'all-activations' ? 'active' : '' }}">
                         <a href="/service-activations" class="menu-link">
                             <div>All Activations</div>
-                            @if ($activationSchedulePendingCount > 0)
+                            @if ($totalActivationPendingCount > 0)
                                 <div class="badge bg-danger rounded-pill ms-auto" style="min-width: 22px">
-                                    {{ $activationSchedulePendingCount }}
+                                    @if (auth()->user()->position === 'Installation Coordinator')
+                                        {{ $activationInstallationPendingCount }}
+                                    @elseif (auth()->user()->position === 'Provisioning Service Activation')
+                                        {{ $activationProvisioningPendingCount }}
+                                    @else
+                                        {{ $totalActivationPendingCount }}
+                                    @endif
                                 </div>
                             @endif
                         </a>

@@ -132,7 +132,9 @@ class Order extends Model
 
     public static function totalRevenue()
     {
-        return self::sum('total_cost');
+        return self::where('payment_success', 1)
+            ->whereYear('payment_date', now()->year)
+            ->sum('total_cost');
     }
 
     public static function totalActiveOrders()
@@ -322,8 +324,15 @@ class Order extends Model
             '=',
             'activation_addresses.id'
         )
+            ->join(
+                'activation_notas',
+                'orders.activation_nota_id',
+                '=',
+                'activation_notas.id'
+            )
             ->whereNotNull('activation_addresses.latitude')
             ->whereNotNull('activation_addresses.longitude')
+            ->where('activation_notas.current_status_id', 10)
             ->select(
                 'orders.unique_order',
                 'orders.total_cost',

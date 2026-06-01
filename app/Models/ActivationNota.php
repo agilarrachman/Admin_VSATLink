@@ -100,9 +100,15 @@ class ActivationNota extends Model
             ->get();
     }
 
-    public static function activationSchedulePendingCount()
+    public static function activationInstallationPendingCount()
     {
-        return self::whereIn('current_status_id', [1, 3])
+        return self::whereIn('current_status_id', [1, 3, 5, 6, 7])
+            ->count();
+    }
+
+    public static function activationProvisioningPendingCount()
+    {
+        return self::whereIn('current_status_id', [4, 8])
             ->count();
     }
 
@@ -151,7 +157,7 @@ class ActivationNota extends Model
 
             $dataOrder = [
                 'order' => $order,
-                'installation_date' => Carbon::parse($installationDate)->translatedFormat('d F Y H:i'),
+                'installation_date' => Carbon::parse($installationDate)->translatedFormat('d F Y'),
             ];
 
             $provisioningEmails = Admin::getAllProvisioningEmail();

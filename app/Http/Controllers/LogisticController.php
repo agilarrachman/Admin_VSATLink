@@ -17,6 +17,9 @@ class LogisticController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        $installationPendingCount = ActivationNota::activationInstallationPendingCount();
+        $provisioningPendingCount = ActivationNota::activationProvisioningPendingCount();
+        $totalActivationPendingCount = $installationPendingCount + $provisioningPendingCount;
 
         return view('logistics.index-expedition', [
             'management' => 'logistics',
@@ -27,7 +30,9 @@ class LogisticController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
-            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+            'activationInstallationPendingCount' => $installationPendingCount,
+            'activationProvisioningPendingCount' => $provisioningPendingCount,
+            'totalActivationPendingCount' => $totalActivationPendingCount,
         ]);
     }
 
@@ -35,6 +40,9 @@ class LogisticController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        $installationPendingCount = ActivationNota::activationInstallationPendingCount();
+        $provisioningPendingCount = ActivationNota::activationProvisioningPendingCount();
+        $totalActivationPendingCount = $installationPendingCount + $provisioningPendingCount;
 
         return view('logistics.index-pickup', [
             'management' => 'logistics',
@@ -45,7 +53,9 @@ class LogisticController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
-            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+            'activationInstallationPendingCount' => $installationPendingCount,
+            'activationProvisioningPendingCount' => $provisioningPendingCount,
+            'totalActivationPendingCount' => $totalActivationPendingCount,
         ]);
     }
 
@@ -53,6 +63,9 @@ class LogisticController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        $installationPendingCount = ActivationNota::activationInstallationPendingCount();
+        $provisioningPendingCount = ActivationNota::activationProvisioningPendingCount();
+        $totalActivationPendingCount = $installationPendingCount + $provisioningPendingCount;
 
         return view('logistics.input-sn', [
             'management' => 'general',
@@ -63,7 +76,9 @@ class LogisticController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
-            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+            'activationInstallationPendingCount' => $installationPendingCount,
+            'activationProvisioningPendingCount' => $provisioningPendingCount,
+            'totalActivationPendingCount' => $totalActivationPendingCount,
         ]);
     }
 
@@ -105,6 +120,9 @@ class LogisticController extends Controller
     {
         $logisticsExpeditionPendingCount = Order::logisticsExpeditionPendingCount();
         $logisticsPickupPendingCount     = Order::logisticsPickupPendingCount();
+        $installationPendingCount = ActivationNota::activationInstallationPendingCount();
+        $provisioningPendingCount = ActivationNota::activationProvisioningPendingCount();
+        $totalActivationPendingCount = $installationPendingCount + $provisioningPendingCount;
 
         return view('logistics.edit-sn', [
             'management' => 'general',
@@ -115,7 +133,9 @@ class LogisticController extends Controller
             'logisticsPendingTotal'    => $logisticsExpeditionPendingCount + $logisticsPickupPendingCount,
             'logisticsExpeditionPendingCount' => $logisticsExpeditionPendingCount,
             'logisticsPickupPendingCount'     => $logisticsPickupPendingCount,
-            'activationSchedulePendingCount' => ActivationNota::activationSchedulePendingCount(),
+            'activationInstallationPendingCount' => $installationPendingCount,
+            'activationProvisioningPendingCount' => $provisioningPendingCount,
+            'totalActivationPendingCount' => $totalActivationPendingCount,
         ]);
     }
 
