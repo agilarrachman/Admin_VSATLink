@@ -19,7 +19,7 @@ class Product extends Model
     {
         return self::withCount([
             'orders as total' => function ($query) {
-                $query->where('current_status_id', '!=', 8);
+                $query->whereIn('current_status_id', [4, 5, 6, 7]);
             }
         ])
             ->orderByDesc('total')
